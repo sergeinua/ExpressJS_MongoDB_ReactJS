@@ -3,12 +3,44 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 var Page = require('../models/page');
+var User = require('../models/user');
 
-router.get('/', function(req, res, next) {
-    // res.render('layouts/admin');
+function isLogged(req, res, next) {
+    if (req.session.user) {
+        next();
+    } else {
+        res.redirect('/admin/login');
+    }
+}
+
+router.get('/', isLogged, function(req, res, next) {
+    res.redirect('/admin/page/list');
 });
 
-router.get('/page/list', function(req, res, next) {
+router.get('/login', function (req, res, next) {
+    res.render('pages/admin/login');
+});
+
+router.post('/login', function (req, res, next) {
+    User.findOne({login: req.body.login}, function (err, user) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        if (user) {
+            if (user.password == req.body.password) {
+                req.session.user = user;
+                res.status(200).send(user);
+            } else {
+                res.status(500).send('Wrong password');
+            }
+        } else {
+            res.status(500).send('User not found');
+        }
+    });
+
+});
+
+router.get('/page/list', isLogged, function(req, res, next) {
     var message = null;
     if (req.session.message) {
         message = req.session.message;
@@ -19,7 +51,7 @@ router.get('/page/list', function(req, res, next) {
     });
 });
 
-router.get('/page/create', function(req, res, next) {
+router.get('/page/create', isLogged, function(req, res, next) {
     var data = {
         formAction: '/admin/page/create',
         formMethod: 'post',
@@ -39,7 +71,7 @@ router.get('/page/create', function(req, res, next) {
     res.render('pages/admin/page-form', { page: page, data: data, message: message });
 });
 
-router.post('/page/create', function (req, res, next) {
+router.post('/page/create', isLogged, function (req, res, next) {
     var newPage = new Page({
         title: req.body.title,
         content: req.body.content,
@@ -56,7 +88,7 @@ router.post('/page/create', function (req, res, next) {
     })
 });
 
-router.get('/page/:id', function (req, res, next) {
+router.get('/page/:id', isLogged, function (req, res, next) {
     var message = null;
     var data = {
         formAction: '/admin/page/' + req.params.id,
@@ -69,7 +101,7 @@ router.get('/page/:id', function (req, res, next) {
     });
 });
 
-router.post('/page/:id', function (req, res, next) {
+router.post('/page/:id', isLogged, function (req, res, next) {
     var page = new Page({
         title: req.body.title,
         content: req.body.content,
@@ -86,6 +118,7 @@ router.post('/page/:id', function (req, res, next) {
                 if (err) {
                     console.log('error', err);
                 } else {
+                    req.session.message = 'Page saved successfully';
                     res.redirect('/admin/page/list');
                 }
             })
@@ -93,7 +126,7 @@ router.post('/page/:id', function (req, res, next) {
     });
 });
 
-router.delete('/page/:id', function (req, res, next) {
+router.delete('/page/:id', isLogged, function (req, res, next) {
     Page.findByIdAndRemove(req.params.id, function(err, page) {
         req.session.message = 'Page was successfully deleted';
     });
