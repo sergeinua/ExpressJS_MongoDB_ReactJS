@@ -1,0 +1,37 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="row">
+        <div class="md-6">
+            <% if (message) { %>
+                <div class="alert alert-success"><%= message %></div>
+            <% } %>
+            <div class="panel">
+                <h4>List of the pages</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>title</th>
+                    </tr>
+                    <tr></tr>
+                    </thead>
+                    <tbody>
+                    <% pages.forEach(function(page){ %>
+                        <tr>
+                            <td><%= page.title %></td>
+                            <td>
+                                <a href="/admin/page/<%= page._id %>" class="btn btn-primary">update</a>
+                                <a onclick="deletePage('<%= page._id %>')" class="btn btn-danger">delete</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/admin-footer.ejs %>
