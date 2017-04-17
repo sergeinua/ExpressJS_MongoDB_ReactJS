@@ -37,10 +37,14 @@ router.post('/login', function (req, res, next) {
             res.status(500).send('User not found');
         }
     });
-
 });
 
-router.get('/page/list', isLogged, function(req, res, next) {
+router.post('/logout', isLogged, function (req, res, next) {
+    req.session.user = null;
+    res.status(200).send('Logged out');
+});
+
+router.get('/page/list', isLogged, function (req, res, next) {
     var message = null;
     if (req.session.message) {
         message = req.session.message;
@@ -51,7 +55,7 @@ router.get('/page/list', isLogged, function(req, res, next) {
     });
 });
 
-router.get('/page/create', isLogged, function(req, res, next) {
+router.get('/page/create', isLogged, function (req, res, next) {
     var data = {
         formAction: '/admin/page/create',
         formMethod: 'post',
@@ -127,8 +131,9 @@ router.post('/page/:id', isLogged, function (req, res, next) {
 });
 
 router.delete('/page/:id', isLogged, function (req, res, next) {
-    Page.findByIdAndRemove(req.params.id, function(err, page) {
+    Page.findByIdAndRemove(req.params.id, function (err, page) {
         req.session.message = 'Page was successfully deleted';
+        res.status(200).send('Page deleted');
     });
 });
 
