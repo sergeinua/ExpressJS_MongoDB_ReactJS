@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 var Page = require('../models/page');
 var User = require('../models/user');
+var Item = require('../models/item');
 
 function isLogged(req, res, next) {
     if (req.session.user) {
@@ -93,13 +94,13 @@ router.post('/page/create', isLogged, function (req, res, next) {
 });
 
 router.get('/page/:id', isLogged, function (req, res, next) {
-    var message = null;
-    var data = {
-        formAction: '/admin/page/' + req.params.id,
-        formMethod: 'post',
-        formTitle: 'Update page',
-        btnText: 'update'
-    };
+    var message = null,
+        data = {
+            formAction: '/admin/page/' + req.params.id,
+            formMethod: 'post',
+            formTitle: 'Update page',
+            btnText: 'update'
+        };
     Page.findOne({ _id: req.params.id }, function (err, page) {
         res.render('pages/admin/page-form', { page: page, data: data, message: message });
     });
@@ -134,6 +135,92 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
     Page.findByIdAndRemove(req.params.id, function (err, page) {
         req.session.message = 'Page was successfully deleted';
         res.status(200).send('Page deleted');
+    });
+});
+
+router.get('/item/list', isLogged, function (req, res, next) {
+    var items = [
+        {
+            "_id" : "58f8c2ae54bd2601f4638181",
+            "code" : "1",
+            "coordinates" : {
+                "lng" : 151.146812438965,
+                "lat" : -33.8174490628987
+            },
+            "pics" : "",
+            "price" : 200,
+            "beds" : 1,
+            "bath" : 2,
+            "sqft" : 100,
+            "address" : "kiev",
+            "description" : "Amazing",
+            "__v" : 0
+        },
+        {
+            "_id" : "58f8c3b8a02aa99d61238fcc",
+            "code" : "2",
+            "coordinates" : {
+                "lat" : -33.8174490628987,
+                "lng" : 151.146812438965
+            },
+            "pics" : "",
+            "price" : 200,
+            "beds" : 1,
+            "bath" : 2,
+            "sqft" : 100,
+            "address" : "kiev",
+            "description" : "Amazing"
+        }
+    ];
+    var message = null;
+    res.render('pages/admin/item-list', { items: items, message: message });
+});
+
+router.get('/item/:id', isLogged, function (req, res, next) {
+    var items = [
+        {
+            "_id" : "58f8c2ae54bd2601f4638181",
+            "code" : "1",
+            "coordinates" : {
+                "lng" : 151.146812438965,
+                "lat" : -33.8174490628987
+            },
+            "pics" : "",
+            "price" : 200,
+            "beds" : 1,
+            "bath" : 2,
+            "sqft" : 100,
+            "address" : "kiev",
+            "description" : "Amazing",
+            "__v" : 0
+        },
+        {
+            "_id" : "58f8c3b8a02aa99d61238fcc",
+            "code" : "2",
+            "coordinates" : {
+                "lat" : -33.8174490628987,
+                "lng" : 151.146812438965
+            },
+            "pics" : "",
+            "price" : 200,
+            "beds" : 1,
+            "bath" : 2,
+            "sqft" : 100,
+            "address" : "kiev",
+            "description" : "Amazing"
+        }
+    ];
+    var message = null,
+        data = {
+            formAction: '/admin/item/' + req.params.id,
+            formMethod: 'post',
+            formTitle: 'Update item',
+            btnText: 'update'
+        };
+    items.forEach(function (item) {
+        if (item._id === req.params.id) {
+            res.render('pages/admin/item-form', { data: data, item: item, message: message });
+        }
     });
 });
 

@@ -1,0 +1,43 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="row">
+        <div class="md-6">
+            <% if (message) { %>
+                <div class="alert alert-success"><%= message %></div>
+            <% } %>
+            <div class="panel">
+                <h4>List of the items</h4>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>code</th>
+                        <th>price</th>
+                        <th>beds</th>
+                        <th>bath</th>
+                        <th>sqft</th>
+                        <th>address</th>
+                    </tr>
+                    <tr></tr>
+                    </thead>
+                    <tbody>
+                    <% items.forEach(function(item){ %>
+                        <tr onclick="window.document.location='/admin/item/<%= item._id %>';">
+                            <td><%= item.code %></td>
+                            <td><%= item.price %></td>
+                            <td><%= item.beds %></td>
+                            <td><%= item.bath %></td>
+                            <td><%= item.sqft %></td>
+                            <td><%= item.address %></td>
+                        </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/admin-footer.ejs %>

@@ -1,3 +1,680 @@
+<!doctype html>
 <html>
-main
+
+<head lang="en">
+    <meta content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui" name="viewport" />
+    <meta charSet="UTF-8" />
+    <meta content="IE=Edge" httpEquiv="X-UA-Compatible" />
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+        height: 1000px;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        margin-left: 17px;
+        margin-top: 10px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
+    .controls:focus {
+        border-color: #4d90fe;
+    }
+    .title {
+        font-weight: bold;
+    }
+    #infowindow-content {
+        display: none;
+    }
+    #map #infowindow-content {
+        display: inline;
+    }
+    #pac-input {
+        top: 10px!important;
+    }
+</style>
+
+
+
+
+<div id="app-root">
+    <div class="AppTemplate">
+        <div class="LoadingBar">
+            <div class="LoadingBar-progress" style="width:0%;opacity:0;">
+            </div>
+        </div>
+        <div class="SplitMapTemplate mobile-header-padding map-view">
+            <div class="HeaderNav">
+                <div class="HamburgerNav">
+                    <aside class="HamburgerNav-left">
+                        <div class="HamburgerNav-menu">
+                            <div class="HamburgerNav-logo-wrapper">
+                                <a class="Linker Linker-default" href="index.html">
+                                    <img class="HamburgerNav-logo" src="img/hotpadsLogoHorizontal.svg" />
+                                </a>
+                            </div>
+                            <ul class="HamburgerNav-list">
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="apartments-for-rent/map.html">
+                                        <i class="HamburgerNav-icon icon-search-for-rent"></i>
+                                        <span class="HamburgerNav-link-text">Search for rent</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="map.html">
+                                        <i class="HamburgerNav-icon icon-search-for-sale"></i>
+                                        <span class="HamburgerNav-link-text">Search for sale</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="loginDashboard.html">
+                                        <i class="HamburgerNav-icon icon-star-outline"></i>
+                                        <span class="HamburgerNav-link-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="loginSearch.html">
+                                        <i class="HamburgerNav-icon icon-alert"></i>
+                                        <span class="HamburgerNav-link-text">Search alerts</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="loginAddPost.html">
+                                        <i class="HamburgerNav-icon icon-post-a-listing"></i>
+                                        <span class="HamburgerNav-link-text">Post to HotPads</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="mailto:support@realtor.loc">
+                                        <i class="HamburgerNav-icon icon-sublet"></i>
+                                        <span class="HamburgerNav-link-text">Send feedback</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default">
+                                        <i class="HamburgerNav-icon icon-profile"></i>
+                                        <span class="HamburgerNav-link-text">Sign in / register</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div>
+                                <div class="HamburgerNav-section">
+                                    <!-- react-text: 53 -->San Francisco
+                                    <!-- /react-text -->
+                                    <!-- react-text: 54 -->For rent
+                                    <!-- /react-text -->
+                                </div>
+                                <ul class="HamburgerNav-list">
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="apartments-for-rent.html">
+                                            <span class="HamburgerNav-link-text">Apartments for Rent</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="houses-for-rent.html">
+                                            <span class="HamburgerNav-link-text">Houses for Rent</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="condos-for-rent.html">
+                                            <span class="HamburgerNav-link-text">Condos for Rent</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="townhomes-for-rent.html">
+                                            <span class="HamburgerNav-link-text">Townhomes for Rent</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="duplexes-for-rent.html">
+                                            <span class="HamburgerNav-link-text">Duplexes for Rent</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="corporate-housing.html">
+                                            <span class="HamburgerNav-link-text">Corporate Housing for Rent</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="HamburgerNav-section">
+                                    <!-- react-text: 76 -->San Francisco
+                                    <!-- /react-text -->
+                                    <!-- react-text: 77 -->For sale
+                                    <!-- /react-text -->
+                                </div>
+                                <ul class="HamburgerNav-list">
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="homes-for-sale.html">
+                                            <span class="HamburgerNav-link-text">Homes for Sale</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="land-for-sale.html">
+                                            <span class="HamburgerNav-link-text">Lots and Land for Sale</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="condos-for-sale.html">
+                                            <span class="HamburgerNav-link-text">Condos for Sale</span>
+                                        </a>
+                                    </li>
+                                    <li class="HamburgerNav-list-item">
+                                        <a class="Linker Linker-default" href="townhomes-for-sale.html">
+                                            <span class="HamburgerNav-link-text">Townhomes for Sale</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="HamburgerNav-section">Resources</div>
+                            <ul class="HamburgerNav-list">
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="blog.html">
+                                        <span class="HamburgerNav-link-text">Blog</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="pages/rentersGuide/home.html">
+                                        <span class="HamburgerNav-link-text">Renter&#x27;s guide</span>
+                                    </a>
+                                </li>
+                                <li class="HamburgerNav-list-item">
+                                    <a class="Linker Linker-default" href="pages/buyersGuide/index.html">
+                                        <span class="HamburgerNav-link-text">Buyer&#x27;s guide</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                <span></span>
+                <div class="HeaderNav-wrapper">
+                    <div class="HeaderNavMobile">
+                        <div class="HeaderNavMobile-nav-left">
+                            <div class="HeaderNavMobile-on-click">
+                                <img class="HeaderNavMobile-ham-nav" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOC42NiAxNi4wNSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNlMzVhMjg7fS5jbHMtMntmaWxsOiNkMzQ4MjI7fS5jbHMtM3tmaWxsOiNmMzc3NTI7fS5jbHMtNHtmaWxsOiNmZmY7fS5jbHMtNXtmaWxsOiNlY2MxMzI7fS5jbHMtNntmaWxsOiNkMWEwMjU7fS5jbHMtN3tmaWxsOiNmOWQzNjQ7fS5jbHMtOHtmaWxsOiM0MmIwYTg7fS5jbHMtOXtmaWxsOiM1ZmM0YmI7fS5jbHMtMTB7ZmlsbDojMmE5ZDk1O30uY2xzLTExe2ZpbGw6I2Q4ZDhkODt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPkFzc2V0IDI8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTQuODYsMi4xMiwxOS42MywwbDQuNzcsMi4xMi0xLjU4LDkuMjEtMy4xOSwxLjgxLTMuMTktMS44MSIvPjxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTE0Ljg2LDIuMTJsNC43NywyLjI1djguNzZsLTMuMTktMS44MSIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTE5LjYzLDQuMzdsNC43Ny0yLjI1LTEuNTgsOS4yMS0zLjE5LDEuODEiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0yMi41NSw4LjI1bC0uMjgsMi4xNUwyMS4xMywxMWwuMDctMS44OU0xNy41OSw0LjM5bC4xOCwyLjA5TDE5LDcuMDYsMTksNC45NCIvPjxwYXRoIGNsYXNzPSJjbHMtNSIgZD0iTTIyLDcuNCwyNC4yMSw1bDQsMS4zOS41LDItMi4zMSw1Ljg5LTIuMSwxLjU2LTIuNzItMS43NSIvPjxwYXRoIGNsYXNzPSJjbHMtNiIgZD0iTTIyLDcuNGw0LjIyLDEuNDgtMS45Miw3LTIuNzItMS43NSIvPjxwYXRoIGNsYXNzPSJjbHMtNyIgZD0iTTI2LjE3LDguODhsMi0yLjQ3LjUsMi0yLjMxLDUuODktMi4xLDEuNTYiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik0yMy4yNSwxNC45NWwuMjktMS43OS44Mi4zM0wyNCwxNS40MW0zLTUtLjQ1LDEuNDUtLjcyLjM2LjM2LTEuMzgiLz48cGF0aCBjbGFzcz0iY2xzLTgiIGQ9Ik0xMi40OCw1Ljg2bC0uOTQsMS4zOC0uNzUtLjEzTDEwLDcuNTIsMTEuODcsMTNsMi4zNSwyLjc4LDMuNjQtMS44Ni0uMS00LjYzLTIuNDQtMiIvPjxwYXRoIGNsYXNzPSJjbHMtOSIgZD0iTTEzLjI2LDExLjM3bDIuMDUtNC4wOCwyLjQ0LDIsLjEsNC42My0zLjY0LDEuODZNMTEuNTQsNy4yNGwtLjg0LjQ4LjQ2LDEuNzMuNTUtMS4xNCIvPjxwYXRoIGNsYXNzPSJjbHMtMTAiIGQ9Ik0xMCw3LjUybC42Ni4xOS40NiwxLjczLDIuMSwxLjkyLDEsNC4zOUwxMS44NywxMyIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTE1LjMxLDE1bC0uMjItMS43NC0uNy4zMS4zMiwxLjczbTEuMzQtNCwuMTcsMS4wNywxLS40Mi0uMTEtMS4xMiIvPjxnIGlkPSJoYW0tbmF2LWZ1bGwiPjxwYXRoIGlkPSJGaWxsLTE3IiBjbGFzcz0iY2xzLTExIiBkPSJNLjg5LDEuODRIOS4yNEEuODkuODksMCwxLDAsOS4yNCwwSC44OWEuODkuODksMCwxLDAsMCwxLjc5Ii8+PHBhdGggaWQ9IkZpbGwtMTkiIGNsYXNzPSJjbHMtMTEiIGQ9Ik0uODksMTZIOS4yNGEuODkuODksMCwxLDAsMC0xLjc5SC44OUEuODkuODksMCwxLDAsLjg5LDE2Ii8+PHBhdGggaWQ9IkZpbGwtMjEiIGNsYXNzPSJjbHMtMTEiIGQ9Ik0uODksOC44OUg2LjI2YS44OS44OSwwLDEsMCwwLTEuNzlILjg5YS44OS44OSwwLDAsMCwwLDEuNzkiLz48L2c+PC9nPjwvZz48L3N2Zz4=" />
+                            </div>
+                        </div>
+                        <div class="HeaderNavMobile-nav-center">
+                            <div class="HeaderNavMobile-search-wrapper">
+                                <div class="AutocompleteSearchInput">
+                                        <span class="AutocompleteSearchInput-geolocate-btn">
+                                            <i class="Geolocation icon-location geolocate-autocomplete-search"></i>
+                                        </span>
+                                    <input type="text" autocomplete="off" class="AutocompleteSearchInput-search-input" placeholder="Find apartments in..." value="San Francisco, CA" />
+                                    <button class="AutocompleteSearchInput-search-submit">
+                                            <span class="AutocompleteSearchInput-icon-search-btn">
+                                                <i class="icon-search"></i>
+                                            </span>
+                                    </button>
+                                    <div class="AutocompleteSearchInput-suggestions Utils-hidden">
+                                        <ul class="AutocompleteSearchInput-list">
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="HeaderNavMobile-nav-right">
+                            <div class="HeaderNavMobile-filter-btn HeaderNavMobile-on-click">
+                                <i class="icon-filter"></i>
+                                <span class="HeaderNavMobile-label">FILTERS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="HeaderNavMdAndUp show-for-medium-up">
+                        <header>
+                            <nav class="HeaderNavMdAndUp-header-nav">
+                                <a class="HeaderNavMdAndUp-menu-icon">
+                                    <span></span>
+                                </a>
+                                <div class="HeaderNavMdAndUp-logo-wrapper">
+                                    <a class="Linker Linker-default" href="index.html">
+                                        <img class="HeaderNavMdAndUp-logo" src="img/hotpadsLogoHorizontal.svg" />
+                                    </a>
+                                </div>
+                                <div class="HeaderNavMenuItem">
+                                    <a class="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">For rent</a>
+                                    <div class="rent-drop-down HeaderDropdown">
+                                        <span class="HeaderDropdown-up-arrow"></span>
+                                        <ul class="HeaderDropdown-items">
+                                            <div class="HeaderNav-LocationHeader">San Francisco</div>
+                                            <a class="Linker Linker-default" href="apartments-for-rent.html">
+                                                <li>Apartments for Rent</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="houses-for-rent.html">
+                                                <li>Houses for Rent</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="condos-for-rent.html">
+                                                <li>Condos for Rent</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="townhomes-for-rent.html">
+                                                <li>Townhomes for Rent</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="duplexes-for-rent.html">
+                                                <li>Duplexes for Rent</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="corporate-housing.html">
+                                                <li>Corporate Housing for Rent</li>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="HeaderNavMenuItem">
+                                    <a class="Linker Linker HeaderNavMenuItem-item active Linker-default" href="#">For sale</a>
+                                    <div class="sale-drop-down HeaderDropdown">
+                                        <span class="HeaderDropdown-up-arrow"></span>
+                                        <ul class="HeaderDropdown-items">
+                                            <div class="HeaderNav-LocationHeader">San Francisco</div>
+                                            <a class="Linker Linker-default" href="homes-for-sale.html">
+                                                <li>Homes for Sale</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="land-for-sale.html">
+                                                <li>Lots and Land for Sale</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="condos-for-sale.html">
+                                                <li>Condos for Sale</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="townhomes-for-sale.html">
+                                                <li>Townhomes for Sale</li>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="HeaderNavMenuItem">
+                                    <a class="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">Explore</a>
+                                    <div class="explore-drop-down HeaderDropdown">
+                                        <span class="HeaderDropdown-up-arrow"></span>
+                                        <ul class="HeaderDropdown-items">
+                                            <a class="Linker Linker-default" href="#">
+                                                <li>Homes for Sale in San Jose</li>
+                                            </a>
+                                            <a class="Linker Linker-default" href="#">
+                                                <li>Homes for Sale in Sacramento</li>
+                                            </a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="HeaderNavMdAndUp-lg-and-up">
+                                    <div class="HeaderNavMenuItem">
+                                        <a class="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginDashboard.html">Dashboard</a>
+                                    </div>
+                                </div>
+                                <div class="HeaderNavMdAndUp-lg-and-up">
+                                    <div class="HeaderNavMenuItem">
+                                        <a class="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginAddPost.html">Post to HotPads</a>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!-- react-empty: 212 -->
+                        </header>
+                    </div>
+                </div>
+            </div>
+            <section class="FilterNav">
+                <div class="Row">
+                    <nav class="filter-nav show-for-medium-up">
+                        <div class="search-input-wrapper">
+                            <div class="AutocompleteSearchInput">
+                                    <span class="AutocompleteSearchInput-geolocate-btn">
+                                        <i class="Geolocation icon-location geolocate-autocomplete-search"></i>
+                                    </span>
+                                <input type="text" autocomplete="off" class="AutocompleteSearchInput-search-input" placeholder="Find apartments in..." value="San Francisco, CA" />
+                                <button class="AutocompleteSearchInput-search-submit">
+                                        <span class="AutocompleteSearchInput-icon-search-btn">
+                                            <i class="icon-search"></i>
+                                        </span>
+                                </button>
+                                <div class="AutocompleteSearchInput-suggestions Utils-hidden">
+                                    <ul class="AutocompleteSearchInput-list">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-options">
+                            <div class="filter-criteria" name="price-filter">
+                                <div class="ButtonDropdown">
+                                    <div class="ButtonDropdown-clickable">
+                                        <label class="Label">Any price</label>
+                                        <i class="ButtonDropdown-dropdown-arrow Utils-arrow-down icon-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-criteria bed-option" name="bed-filter">
+                                <div class="ButtonDropdown">
+                                    <div class="ButtonDropdown-clickable">
+                                        <label class="Label">All beds, All baths</label>
+                                        <i class="ButtonDropdown-dropdown-arrow Utils-arrow-down icon-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-criteria items-option show-for-large-up" name="propertyType-filter">
+                                <div class="ButtonDropdown">
+                                    <div class="ButtonDropdown-clickable">
+                                        <label class="Label">Property types</label>
+                                        <i class="ButtonDropdown-dropdown-arrow Utils-arrow-down icon-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-criteria items-option" name="advanced-filter">
+                                <div class="ButtonDropdown">
+                                    <div class="ButtonDropdown-clickable">
+                                        <label class="Label">More</label>
+                                        <i class="ButtonDropdown-dropdown-arrow Utils-arrow-down icon-arrow"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-criteria search-alerts show-for-medium-up" name="search-alerts">
+                                <button class="Button Button-sm Button-primary">Get alerts</button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </section>
+
+
+            <div class="map-wrapper right-sidebar-active">
+                <!--<div class="Spinner spinner-wrapper">-->
+                    <!--<div class="load-wrapper">-->
+                        <!--<i class="loading-icon icon-load"></i>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+<!--map_start-->
+                <input id="pac-input" class="controls" type="text"
+                       placeholder="Enter a location">
+                <div id="map"></div>
+                <div id="infowindow-content">
+                    <span id="place-name" class="title"></span><br>
+                    Place ID <span id="place-id"></span><br>
+                    <span id="place-address"></span>
+                </div>
+<!--map_end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="right-sidebar right-sidebar-active" id="right-sidebar">
+                <div class="HybridMapPage" id="HybridMapPage">
+                    <!-- react-empty: 255 -->
+                    <div class="HybridMapPage-secondary-nav-wrapper">
+                        <div class="SecondaryNav SecondaryNav-fixed">
+                            <div class="SecondaryNav-breadcrumbs-wrapper Utils-text-overflow short">
+                                <div class="AreaBreadcrumbs">
+                                    <ul class="HpBreadcrumb Utils-text-overflow">
+                                        <li class="HpBreadcrumb-item">
+                                                <span class="TinyText">
+                                                <a itemprop="item" class="Linker Linker-secondary" href="#">
+                                                    <span class="link-style" itemprop="name">CA</span>
+                                                </a>
+                                                    <!-- react-text: 265 -->/
+                                                    <!-- /react-text -->
+                                                </span>
+                                            <meta content="1" itemprop="position" />
+                                        </li>
+                                        <li class="HpBreadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="#">
+                                                <span class="TinyText">
+                                                <a itemprop="item" class="Linker Linker-secondary" href="homes-for-sale.html">
+                                                    <span class="link-style" itemprop="name">San Francisco Homes</span>
+                                                </a>
+                                                </span>
+                                            <meta content="2" itemprop="position" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="SecondaryNav-sort-wrapper">
+                                <div class="SortNav">
+                                    <div class="Select">
+                                        <div class="Select-input-container">
+                                            <select class="Select-input Select-sm Select-no-label">
+                                                <option value="">Recommended</option>
+                                                <option value="activated">Newest</option>
+                                                <option value="weekViews">Most Viewed</option>
+                                                <option value="photoCount">Photo Count</option>
+                                                <option value="highPrice">High Price</option>
+                                                <option value="lowPrice">Low Price</option>
+                                            </select>
+                                            <span class="Select-dropdown-arrow Select-sm">
+                                                    <span style="display:inline-block;vertical-align:middle;line-height:0;">
+                                                        <svg class="Svg" fill="currentColor" style="width: 12px;height: 12px;" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                                        <path d="M95.87 25.42l-.12.11L50 70.46 4.26 25.55l-.12-.11a1.92 1.92 0 0 0-2.56.1A1.84 1.84 0 0 0 1.45 28l.12.12 47.07 46.32a1.94 1.94 0 0 0 2.71 0l47.1-46.24.12-.12a1.84 1.84 0 0 0-.1-2.51 1.92 1.92 0 0 0-2.56-.1z"/>
+                                                        </svg>
+                                                    </span>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="SecondaryNav-map-list-toggle">List</span>
+                        </div>
+                    </div>
+                    <div>
+
+
+                        <div class="HybridView" id="hybrid-view" data-reactid="287">
+                            <div>
+                                <div>
+                                    <div>
+                                        <div class="ListingWrapper">
+                                            <div class="ListingWide">
+                                                <div class="PhotoGallery">
+                                                    <div class="gallery"><i class="fav-icon icon-star-outline"></i>
+                                                        <div class="gallery-darken-overlay"></div>
+                                                        <div class="HpImage">
+                                                            <div aria-label="3401 Clay Street Photo 1"
+                                                                 title="3401 Clay Street Photo 1"
+                                                                 style="background-image: url(&quot;https://photonet.hotpads.com/search/listingPhoto/HotPads/1394531/0001_322827349_medium.jpg&quot;); background-repeat: no-repeat; background-position: center center; background-size: cover; width: 100%; height: 100%;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="image-cache"></div>
+                                                </div>
+                                                <div class="ListingContent">
+                                                    <div class="Container Container-md">
+                                                        <div class="listing-info">
+                                                            <div class="content-left"><a class="Linker Linker-default"
+                                                                                         href="/3401-clay-street-san-francisco-ca-94118-ttxgaz/pad">
+                                                                    <h4 class="name">3401 Clay Street</h4>
+                                                                    <p class="city"><span>San Francisco</span>
+                                                                        <!-- react-text: 429 -->,
+                                                                        <!-- /react-text --><span> CA</span><span> 94118</span>
+                                                                    </p></a>
+                                                                <p class="keyword Utils-text-overflow">Apartments For
+                                                                    Rent</p><img class="verified-icon"
+                                                                                 src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwdjE2aDhWMEgweiIvPjwvZGVmcz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjxwYXRoIGQ9Ik03Ljc5Ni4wM0w3Ljc3LjAzNiA3Ljc1NC4wNEM3LjQxLjE1OCA1LjA3Ljk1NyAyLjgyIDEuMzhjLS44MDguMTUtMS42MDYuMjU1LTIuMzE2LjI1Ni0uMTg2IDAtLjI5Ny4wNDYtLjM3My4xMDUtLjA3My4wNjItLjEyOC4xNTItLjEzLjMwMnY1LjI3M2MwIC4wNzIuMDIgMS4yMzMuOTU4IDIuODQ2Ljk0MiAxLjYxNCAyLjc5OCAzLjY4NSA2LjUxNiA1LjU5N2wuMDczLjAzNy4wMzMuMDRoLjAwM2MuMDE2LjAxLjA0Ny4wMjcuMDg0LjA0NC4wNzUuMDM1LjE3NS4wNzMuMjU3LjEuMDI4LjAxLjA1NC4wMTYuMDc1LjAyMlYwYy0uMDE3LjAwMy0uMDUuMDEtLjA5Ni4wMTVINy45Yy0uMDYyLjAxLS4wOTYuMDEzLS4xMDQuMDE0IiBmaWxsPSIjMTc5Qzg4IiBtYXNrPSJ1cmwoI2IpIi8+PC9nPjxwYXRoIGQ9Ik04LjAxMi4wMDJMOCAwdjE2bC4wNzQtLjAyMmMuMDg0LS4wMjcuMTktLjA2Ny4yNjQtLjEwMi4wMzYtLjAxNy4wNjctLjAzNC4wOC0uMDQybC4wMzQtLjA0LjA3My0uMDM2YzMuNzItMS45MSA1LjU3Ny0zLjk4MyA2LjUxNy01LjU5Ni45NC0xLjYxMy45NTgtMi43NzQuOTU4LTIuODQ2VjIuMDQyYzAtLjEtLjAyNy0uMTctLjA2NS0uMjI2LS4wMzgtLjA1NC0uMDg4LS4wOTQtLjE1OC0uMTI2bC0uMDE3LS4wMDZjLS4wNzUtLjAzLS4xNTgtLjA0OC0uMjY1LS4wNDgtLjcxIDAtMS41MDctLjEwNS0yLjMxOC0uMjU2LS44MS0uMTUyLTEuNjMtLjM1My0yLjM2NS0uNTUzQzkuNS40NyA4LjQ2LjExNSA4LjI0Mi4wNEw4LjIzLjAzOGwtLjAyNy0uMDFoLS4wMWMtLjAxNy0uMDAzLS4wNS0uMDA1LS4wOTYtLjAxMmgtLjAwMy0uMDAyTDguMDEyIDAiIGZpbGw9IiMzNUNEQjgiLz48cGF0aCBkPSJNMTEuOSAzLjk5Yy0uMzUyLS4yMi0uODE0LS4xMTUtMS4wMzUuMjM1bC0zLjMyMiA1LjI4TDUuOTc1IDguMjJjLS4zMi0uMjYyLS43OTMtLjIxNS0xLjA1NS4xMDUtLjI2My4zMi0uMjE2Ljc5My4xMDQgMS4wNTZsMi4yMjUgMS44MjVjLjE2NS4xMzYuMzgzLjE5NC41OTQuMTYuMjEyLS4wMzQuNC0uMTYuNTE1LS4zNGwzLjc3NC02Yy4yMi0uMzUuMTE2LS44MTQtLjIzNS0xLjAzNSIgZmlsbD0iI0ZGRiIvPjwvZz48L3N2Zz4=">
+                                                            </div>
+                                                            <div class="content-right">
+                                                                <div class="min-price"><span>$4,200</span></div>
+                                                                <div class="beds">1 bed</div>
+                                                                <span class="tag"><!-- react-empty: 439 --></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div>
+                                    <div>
+                                        <div class="ListingWrapper">
+                                            <div class="ListingWide">
+                                                <div class="PhotoGallery">
+                                                    <div class="gallery"><i class="fav-icon icon-star-outline"></i>
+                                                        <div class="gallery-darken-overlay"></div>
+                                                        <div class="HpImage">
+                                                            <div aria-label="399 Fremont Photo 1"
+                                                                 title="399 Fremont Photo 1"
+                                                                 style="background-image: url(&quot;https://photonet.hotpads.com/search/listingPhoto/UDR/99517/0002_298490700_medium.jpg&quot;); background-repeat: no-repeat; background-position: center center; background-size: cover; width: 100%; height: 100%;"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="image-cache"></div>
+                                                </div>
+                                                <div class="ListingContent">
+                                                    <div class="Container Container-md">
+                                                        <div class="listing-info">
+                                                            <div class="content-left"><a class="Linker Linker-default"
+                                                                                         href="/399-fremont-san-francisco-ca-94105-ssg6v9/pad">
+                                                                    <h4 class="name">399 Fremont</h4>
+                                                                    <p class="city"><span>San Francisco</span>
+                                                                        <!-- react-text: 860 -->,
+                                                                        <!-- /react-text --><span> CA</span><span> 94105</span>
+                                                                    </p></a>
+                                                                <p class="keyword Utils-text-overflow">Apartments For
+                                                                    Rent</p><img class="verified-icon"
+                                                                                 src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwdjE2aDhWMEgweiIvPjwvZGVmcz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjxwYXRoIGQ9Ik03Ljc5Ni4wM0w3Ljc3LjAzNiA3Ljc1NC4wNEM3LjQxLjE1OCA1LjA3Ljk1NyAyLjgyIDEuMzhjLS44MDguMTUtMS42MDYuMjU1LTIuMzE2LjI1Ni0uMTg2IDAtLjI5Ny4wNDYtLjM3My4xMDUtLjA3My4wNjItLjEyOC4xNTItLjEzLjMwMnY1LjI3M2MwIC4wNzIuMDIgMS4yMzMuOTU4IDIuODQ2Ljk0MiAxLjYxNCAyLjc5OCAzLjY4NSA2LjUxNiA1LjU5N2wuMDczLjAzNy4wMzMuMDRoLjAwM2MuMDE2LjAxLjA0Ny4wMjcuMDg0LjA0NC4wNzUuMDM1LjE3NS4wNzMuMjU3LjEuMDI4LjAxLjA1NC4wMTYuMDc1LjAyMlYwYy0uMDE3LjAwMy0uMDUuMDEtLjA5Ni4wMTVINy45Yy0uMDYyLjAxLS4wOTYuMDEzLS4xMDQuMDE0IiBmaWxsPSIjMTc5Qzg4IiBtYXNrPSJ1cmwoI2IpIi8+PC9nPjxwYXRoIGQ9Ik04LjAxMi4wMDJMOCAwdjE2bC4wNzQtLjAyMmMuMDg0LS4wMjcuMTktLjA2Ny4yNjQtLjEwMi4wMzYtLjAxNy4wNjctLjAzNC4wOC0uMDQybC4wMzQtLjA0LjA3My0uMDM2YzMuNzItMS45MSA1LjU3Ny0zLjk4MyA2LjUxNy01LjU5Ni45NC0xLjYxMy45NTgtMi43NzQuOTU4LTIuODQ2VjIuMDQyYzAtLjEtLjAyNy0uMTctLjA2NS0uMjI2LS4wMzgtLjA1NC0uMDg4LS4wOTQtLjE1OC0uMTI2bC0uMDE3LS4wMDZjLS4wNzUtLjAzLS4xNTgtLjA0OC0uMjY1LS4wNDgtLjcxIDAtMS41MDctLjEwNS0yLjMxOC0uMjU2LS44MS0uMTUyLTEuNjMtLjM1My0yLjM2NS0uNTUzQzkuNS40NyA4LjQ2LjExNSA4LjI0Mi4wNEw4LjIzLjAzOGwtLjAyNy0uMDFoLS4wMWMtLjAxNy0uMDAzLS4wNS0uMDA1LS4wOTYtLjAxMmgtLjAwMy0uMDAyTDguMDEyIDAiIGZpbGw9IiMzNUNEQjgiLz48cGF0aCBkPSJNMTEuOSAzLjk5Yy0uMzUyLS4yMi0uODE0LS4xMTUtMS4wMzUuMjM1bC0zLjMyMiA1LjI4TDUuOTc1IDguMjJjLS4zMi0uMjYyLS43OTMtLjIxNS0xLjA1NS4xMDUtLjI2My4zMi0uMjE2Ljc5My4xMDQgMS4wNTZsMi4yMjUgMS44MjVjLjE2NS4xMzYuMzgzLjE5NC41OTQuMTYuMjEyLS4wMzQuNC0uMTYuNTE1LS4zNGwzLjc3NC02Yy4yMi0uMzUuMTE2LS44MTQtLjIzNS0xLjAzNSIgZmlsbD0iI0ZGRiIvPjwvZz48L3N2Zz4=">
+                                                            </div>
+                                                            <div class="content-right">
+                                                                <div class="min-price"><span>$3,075+</span></div>
+                                                                <div class="beds">Studio to 3 beds</div>
+                                                                <span class="tag"><!-- react-empty: 870 --></span></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="fb-root"></div>
+    </div>
+</div>
+
+<script>
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -33.8688, lng: 151.2195},
+            zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+            map: map
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(20);
+            }
+
+            // Set the position of the marker using the place ID and location.
+//            marker.setPlace({
+//                placeId: place.place_id,
+//                location: place.geometry.location
+//            });
+//            marker.setVisible(true);
+
+            infowindowContent.children['place-name'].textContent = place.name;
+            infowindowContent.children['place-id'].textContent = place.place_id;
+            infowindowContent.children['place-address'].textContent =
+                place.formatted_address;
+            infowindow.open(map, marker);
+        });
+        google.maps.event.addListener(map, 'click', function(event) {
+            placeMarker(event.latLng);
+            console.log('event', JSON.stringify(event.latLng));
+
+        });
+
+        function placeMarker(location) {
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4MDQL1d2dTKJQBq-alxGtbE8mCu-CLDk&libraries=places&callback=initMap"
+        async defer></script>
+
+
+</body>
+
 </html>
