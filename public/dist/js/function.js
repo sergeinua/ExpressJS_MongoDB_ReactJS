@@ -9,18 +9,6 @@ function deletePage(pageId) {
             console.log('Error occurred while deleting page', error);
         });
 }
-$(document).ready(function () {
-    $('#sign-out').on('click', function (e) {
-        e.preventDefault();
-        $.post('/admin/logout')
-            .success(function (result) {
-                window.location.reload();
-            })
-            .error(function (error) {
-                console.log('Error occurred during logout', error);
-            });
-    });
-});
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},
@@ -91,3 +79,44 @@ function initMap() {
         });
     }
 }
+$(document).ready(function () {
+    $('#sign-out').on('click', function (e) {
+        e.preventDefault();
+        $.post('/admin/logout')
+            .success(function (result) {
+                window.location.reload();
+            })
+            .error(function (error) {
+                console.log('Error occurred during logout', error);
+            });
+    });
+    //file upload
+    $('#file-upload').submit(function() {
+        $("#status").empty().text("File is uploading...");
+        $(this).ajaxSubmit({
+            error: function(xhr) {
+                status('Error: ' + xhr.status);
+            },
+            success: function(response) {
+                $("#status").empty().text(response);
+                console.log(response);
+                addUploadedImage(response.originalname);
+            }
+        });
+        return false;
+    });
+    //show uploaded image in the gallery list
+    function addUploadedImage(filename) {
+        var _div = '<div class="col-sm-6">' +
+            '<img class="img-responsive" src="/img/' + filename + '" alt="Photo">' +
+            '</div>';
+        $('#gallery').append(_div);
+        //adding uploaded urls
+        if ($('#pics').val().length > 0) {
+            var _existing = $('#pics').val();
+            $('#pics').val(_existing + ',' + filename);
+        } else {
+            $('#pics').val(filename);
+        }
+    }
+});

@@ -6,6 +6,19 @@ var Page = require('../models/page');
 var User = require('../models/user');
 var Item = require('../models/item');
 
+var multer  = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/img/');
+    },
+    filename: function (req, file, cb) {
+        //check file name here
+        cb(null, file.originalname);
+    }
+});
+
+var upload = multer({ storage: storage }).single('img');
+
 function isLogged(req, res, next) {
     if (req.session.user) {
         next();
@@ -43,6 +56,16 @@ router.post('/login', function (req, res, next) {
 router.post('/logout', isLogged, function (req, res, next) {
     req.session.user = null;
     res.status(200).send('Logged out');
+});
+//TODO: add auth after testing here
+router.post('/img', function (req, res, next) {
+    upload(req, res, function (err) {
+        if (err) {
+            console.log('error while upload: ', err);
+            res.status(500).send(err);
+        }
+        res.status(200).send(req.file);
+    });
 });
 
 router.get('/page/list', isLogged, function (req, res, next) {
@@ -137,14 +160,14 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
         res.status(200).send('Page deleted');
     });
 });
-
+//TODO: add auth after testing here
 router.get('/item/list',  function (req, res, next) {
     var message = null;
     Item.find(function (err, items) {
         res.render('pages/admin/item-list', { items: items, message: message });
     });
 });
-
+//TODO: add auth after testing here
 router.get('/item/create', function (req, res, next) {
     var message = null,
         data = {
@@ -166,10 +189,11 @@ router.get('/item/create', function (req, res, next) {
             sqft: null,
             address: null,
             description: null
-        });
-    res.render('pages/admin/item-form', { data: data, item: item, message: message });
+        }),
+        pics = null;
+    res.render('pages/admin/item-form', { data: data, item: item, message: message, pics: pics });
 });
-
+//TODO: add auth after testing here
 router.get('/item/:id', function (req, res, next) {
     var message = null,
         data = {
@@ -179,10 +203,15 @@ router.get('/item/:id', function (req, res, next) {
             btnText: 'update'
         };
     Item.findById(req.params.id, function (err, item) {
-        res.render('pages/admin/item-form', { data: data, item: item, message: message });
+        console.log('----',item.pics.length);
+        var pics = null;
+        if (item.pics.length > 0) {
+            pics = item.pics.split(',');
+        }
+        res.render('pages/admin/item-form', { data: data, item: item, message: message, pics: pics });
     });
 });
-
+//TODO: add auth after testing here
 router.post('/item/:id', function (req, res, next) {
     Item.findById(req.params.id, function (err, item) {
         if (err) {
