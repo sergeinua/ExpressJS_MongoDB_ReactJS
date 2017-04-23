@@ -13,11 +13,29 @@
                         <% } %>
 
                         <form action="<%= data.formAction %>" method="<%= data.formMethod %>" class="clearfix">
+                            <h4>Address</h4>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <span id="locationFull"></span>
+                                <div class="col-lg-10">
+                                    <input id="address" name="address" placeholder="address" value="<%= item.address %>">
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group input-group-lg">
+                                        <button type="submit" class="btn btn-lg btn-success"><%= data.btnText %></button>
+                                    </div>
                                 </div>
                             </div>
+                            <h4>Coordinates</h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>lat</label>
+                                    <input type="text" id="lat" name="lat" placeholder="lat" value="<%= item.coordinates.lat %>">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>lng</label>
+                                    <input type="text" id="lng" name="lng" placeholder="lng" value="<%= item.coordinates.lng %>">
+                                </div>
+                            </div>
+                            <h4>Params</h4>
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group input-group-lg">
@@ -25,32 +43,28 @@
                                         <input type="text" name="code" placeholder="code" value="<%= item.code %>">
                                     </div>
                                     <div class="form-group input-group-lg">
-                                        <label for="code">Price</label>
+                                        <label>Price</label>
                                         <input type="text" name="price" placeholder="price" value="<%= item.price %>">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group input-group-lg">
-                                        <label for="code">Beds</label>
+                                        <label>Beds</label>
                                         <input type="text" name="beds" placeholder="beds" value="<%= item.beds %>">
                                     </div>
                                     <div class="form-group input-group-lg">
-                                        <label for="code">Bath</label>
+                                        <label>Bath</label>
                                         <input type="text" name="bath" placeholder="bath" value="<%= item.bath %>">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group input-group-lg">
-                                        <label for="code">Sqft</label>
+                                        <label>Sqft</label>
                                         <input type="text" name="sqft" placeholder="sqft" value="<%= item.sqft %>">
-                                    </div>
-                                    <div class="form-group input-group-lg">
-                                        <label for="code">Location</label>
-                                        <input id="location" type="text" name="location" placeholder="location" value="<%= item.location %>">
                                     </div>
                                 </div>
                             </div>
-
+                            <h4>Location</h4>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <input id="pac-input" class="controls" type="text"
@@ -63,16 +77,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <h4>Images</h4>
                             <div class="row">
-                                <div class="col-lg-1">
-                                    <div class="container">
-                                        <div class="form-group input-group-lg">
-                                            <button type="submit" class="btn btn-lg btn-success"><%= data.btnText %></button>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-12">
+
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

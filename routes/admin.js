@@ -58,17 +58,17 @@ router.get('/page/list', isLogged, function (req, res, next) {
 
 router.get('/page/create', isLogged, function (req, res, next) {
     var data = {
-        formAction: '/admin/page/create',
-        formMethod: 'post',
-        formTitle: 'Create page',
-        btnText: 'create'
-    },
-    message = null,
-    page = {
-        title: null,
-        content: null,
-        slug: null
-    };
+            formAction: '/admin/page/create',
+            formMethod: 'post',
+            formTitle: 'Create page',
+            btnText: 'create'
+        },
+        message = null,
+        page = new Page({
+            title: null,
+            content: null,
+            slug: null
+        });
     if (req.session.message) {
         message = req.session.message;
         req.session.message = null;
@@ -101,7 +101,7 @@ router.get('/page/:id', isLogged, function (req, res, next) {
             formTitle: 'Update page',
             btnText: 'update'
         };
-    Page.findOne({ _id: req.params.id }, function (err, page) {
+    Page.findById(req.params.id, function (err, page) {
         res.render('pages/admin/page-form', { page: page, data: data, message: message });
     });
 });
@@ -138,78 +138,39 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
     });
 });
 
-router.get('/item/list', isLogged, function (req, res, next) {
-    var items = [
-        {
-            "_id" : "58f8c2ae54bd2601f4638181",
-            "code" : "1",
-            "coordinates" : {
-                "lng" : 151.146812438965,
-                "lat" : -33.8174490628987
-            },
-            "pics" : "",
-            "price" : 200,
-            "beds" : 1,
-            "bath" : 2,
-            "sqft" : 100,
-            "address" : "kiev",
-            "description" : "Amazing",
-            "__v" : 0
-        },
-        {
-            "_id" : "58f8c3b8a02aa99d61238fcc",
-            "code" : "2",
-            "coordinates" : {
-                "lat" : -33.8174490628987,
-                "lng" : 151.146812438965
-            },
-            "pics" : "",
-            "price" : 200,
-            "beds" : 1,
-            "bath" : 2,
-            "sqft" : 100,
-            "address" : "kiev",
-            "description" : "Amazing"
-        }
-    ];
+router.get('/item/list',  function (req, res, next) {
     var message = null;
-    res.render('pages/admin/item-list', { items: items, message: message });
+    Item.find(function (err, items) {
+        res.render('pages/admin/item-list', { items: items, message: message });
+    });
 });
 
-router.get('/item/:id', isLogged, function (req, res, next) {
-    var items = [
-        {
-            "_id" : "58f8c2ae54bd2601f4638181",
-            "code" : "1",
-            "coordinates" : {
-                "lng" : 151.146812438965,
-                "lat" : -33.8174490628987
-            },
-            "pics" : "",
-            "price" : 200,
-            "beds" : 1,
-            "bath" : 2,
-            "sqft" : 100,
-            "address" : "kiev",
-            "description" : "Amazing",
-            "__v" : 0
+router.get('/item/create', function (req, res, next) {
+    var message = null,
+        data = {
+            formAction: '/admin/item/create',
+            formMethod: 'post',
+            formTitle: 'Create item',
+            btnText: 'create'
         },
-        {
-            "_id" : "58f8c3b8a02aa99d61238fcc",
-            "code" : "2",
-            "coordinates" : {
-                "lat" : -33.8174490628987,
-                "lng" : 151.146812438965
+        item = new Item({
+            coordinates: {
+                lat: null,
+                lng: null
             },
-            "pics" : "",
-            "price" : 200,
-            "beds" : 1,
-            "bath" : 2,
-            "sqft" : 100,
-            "address" : "kiev",
-            "description" : "Amazing"
-        }
-    ];
+            code: null,
+            pics: null,
+            price: null,
+            beds: null,
+            bath: null,
+            sqft: null,
+            address: null,
+            description: null
+        });
+    res.render('pages/admin/item-form', { data: data, item: item, message: message });
+});
+
+router.get('/item/:id', function (req, res, next) {
     var message = null,
         data = {
             formAction: '/admin/item/' + req.params.id,
@@ -217,10 +178,42 @@ router.get('/item/:id', isLogged, function (req, res, next) {
             formTitle: 'Update item',
             btnText: 'update'
         };
-    items.forEach(function (item) {
-        if (item._id === req.params.id) {
-            res.render('pages/admin/item-form', { data: data, item: item, message: message });
+    Item.findById(req.params.id, function (err, item) {
+        res.render('pages/admin/item-form', { data: data, item: item, message: message });
+    });
+});
+
+router.post('/item/:id', function (req, res, next) {
+    Item.findById(req.params.id, function (err, item) {
+        if (err) {
+            console.log('error', err);
+        } else {
+            item.coordinates = { lat: req.body.lat, lng: req.body.lng } || item.coordinates;
+            item.code = req.body.code || item.code;
+            item.pics = req.body.pics || item.pics;
+            item.price = req.body.price || item.price;
+            item.beds = req.body.beds || item.beds;
+            item.bath = req.body.bath || item.bath;
+            item.sqft = req.body.sqft || item.sqft;
+            item.address = req.body.address || item.address;
+            item.description = req.body.description || item.description;
+
+            item.save(function (err, page) {
+                if (err) {
+                    console.log('error', err);
+                } else {
+                    req.session.message = 'Item saved successfully';
+                    res.redirect('/admin/item/list');
+                }
+            });
         }
+    });
+});
+
+router.delete('/item/:id', isLogged, function (req, res, next) {
+    Item.findByIdAndRemove(req.params.id, function (err, page) {
+        req.session.message = 'Item was successfully deleted';
+        res.status(200).send('Item deleted');
     });
 });
 
