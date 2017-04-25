@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/dataset');
+mongoose.connect('mongodb://sergeinua:Pa$$word123@cluster0-shard-00-00-cwigj.mongodb.net:27017,cluster0-shard-00-01-cwigj.mongodb.net:27017,cluster0-shard-00-02-cwigj.mongodb.net:27017/dataset?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
