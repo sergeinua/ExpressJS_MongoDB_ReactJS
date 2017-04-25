@@ -113,7 +113,7 @@ router.post('/page/create', isLogged, function (req, res, next) {
             req.session.message = 'Page saved successfully';
             res.redirect('/admin/page/list');
         }
-    })
+    });
 });
 
 router.get('/page/:id', isLogged, function (req, res, next) {
@@ -164,6 +164,7 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
 router.get('/item/list',  function (req, res, next) {
     var message = null;
     Item.find(function (err, items) {
+        console.log('items', items);
         res.render('pages/admin/item-list', { items: items, message: message });
     });
 });
@@ -194,6 +195,32 @@ router.get('/item/create', function (req, res, next) {
     res.render('pages/admin/item-form', { data: data, item: item, message: message, pics: pics });
 });
 //TODO: add auth after testing here
+router.post('/item/create', function (req, res, next) {
+    var newItem = new Item({
+        coordinates: {
+            lat: req.body.lat,
+            lng: req.body.lng
+        },
+        code: req.body.code,
+        pics: req.body.pics,
+        price: req.body.price,
+        beds: req.body.beds,
+        bath: req.body.bath,
+        sqft: req.body.sqft,
+        address: req.body.address,
+        description: req.body.description
+    });
+    newItem.save(function (err, data) {
+        if (err) {
+            console.log('Error while creating item', err);
+            req.session.message = err;
+        } else {
+            req.session.message = 'Item saved successfully';
+            res.redirect('/admin/item/list');
+        }
+    });
+});
+//TODO: add auth after testing here
 router.get('/item/:id', function (req, res, next) {
     var message = null,
         data = {
@@ -203,7 +230,6 @@ router.get('/item/:id', function (req, res, next) {
             btnText: 'update'
         };
     Item.findById(req.params.id, function (err, item) {
-        console.log('----',item.pics.length);
         var pics = null;
         if (item.pics.length > 0) {
             pics = item.pics.split(',');

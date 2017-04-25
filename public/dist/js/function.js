@@ -118,5 +118,6 @@ $(document).ready(function () {
         } else {
             $('#pics').val(filename);
         }
+        $('#empty-img').remove();
     }
 });
