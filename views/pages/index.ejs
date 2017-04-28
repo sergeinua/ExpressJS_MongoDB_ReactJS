@@ -57,6 +57,9 @@
     #pac-input {
         top: 10px!important;
     }
+    .hidden {
+        display: none;
+    }
 </style>
 
 
@@ -65,8 +68,7 @@
 <div id="app-root">
     <div class="AppTemplate">
         <div class="LoadingBar">
-            <div class="LoadingBar-progress" style="width:0%;opacity:0;">
-            </div>
+            <div class="LoadingBar-progress" style="width:0%;opacity:0;"></div>
         </div>
         <div class="SplitMapTemplate mobile-header-padding map-view">
 <!-----------------------MENU-start-->
@@ -387,8 +389,7 @@
             </section>
             <div class="map-wrapper right-sidebar-active">
 <!--map_start-->
-                <input id="pac-input" class="controls" type="text"
-                       placeholder="Enter a location">
+                <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
                 <div id="map"></div>
                 <div id="infowindow-content">
                     <span id="place-name" class="title"></span><br>
@@ -437,12 +438,12 @@
                                                 <option value="lowPrice">Low Price</option>
                                             </select>
                                             <span class="Select-dropdown-arrow Select-sm">
-                                                    <span style="display:inline-block;vertical-align:middle;line-height:0;">
-                                                        <svg class="Svg" fill="currentColor" style="width: 12px;height: 12px;" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                                <span style="display:inline-block;vertical-align:middle;line-height:0;">
+                                                    <svg class="Svg" fill="currentColor" style="width: 12px;height: 12px;" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                                                         <path d="M95.87 25.42l-.12.11L50 70.46 4.26 25.55l-.12-.11a1.92 1.92 0 0 0-2.56.1A1.84 1.84 0 0 0 1.45 28l.12.12 47.07 46.32a1.94 1.94 0 0 0 2.71 0l47.1-46.24.12-.12a1.84 1.84 0 0 0-.1-2.51 1.92 1.92 0 0 0-2.56-.1z"/>
-                                                        </svg>
-                                                    </span>
+                                                    </svg>
                                                 </span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -451,204 +452,215 @@
                             <span class="SecondaryNav-map-list-toggle">List</span>
                         </div>
                     </div>
-                    <div>
 
 <!--conditional rendering here start-->
-                        <!--<div class="HybridView" id="hybrid-view" data-reactid="287">-->
-                            <!--<% items.forEach(function(item){ %>-->
-                            <!--&lt;!&ndash;TODO: get rid of this shit&ndash;&gt;-->
-                                <!--<% var pics = null; %>-->
-                                    <!--<% if (item.pics.length > 0) { %>-->
-                                        <!--<% pics = item.pics.split(','); %>-->
-                                    <!--<% } else { %>-->
-                                        <!--<% pics = item.pics %>-->
-                                    <!--<% } %>-->
-                                        <!--&lt;!&ndash;single item BEGIN&ndash;&gt;-->
-                                        <!--<div class="ListingWrapper">-->
-                                            <!--<div class="ListingWide">-->
-                                                <!--<div class="PhotoGallery">-->
-                                                    <!--<div class="gallery"><i class="fav-icon icon-star-outline"></i>-->
-                                                        <!--<div class="gallery-darken-overlay"></div>-->
-                                                        <!--<div class="HpImage">-->
-                                                            <!--<div aria-label="3401 Clay Street Photo 1"-->
-                                                                 <!--title="3401 Clay Street Photo 1"-->
-                                                                 <!--style="background-image: url(/img/<%= pics[0] %>); background-repeat: no-repeat; background-position: center center; background-size: cover; width: 100%; height: 100%;"></div>-->
-                                                        <!--</div>-->
-                                                    <!--</div>-->
-                                                    <!--<div class="image-cache"></div>-->
-                                                <!--</div>-->
-                                                <!--<div class="ListingContent">-->
-                                                    <!--<div class="Container Container-md">-->
-                                                        <!--<div class="listing-info">-->
-                                                            <!--<div class="content-left">-->
-                                                                <!--<a class="Linker Linker-default"-->
-                                                                   <!--href="/3401-clay-street-san-francisco-ca-94118-ttxgaz/pad">-->
-                                                                    <!--<h4 class="name">3401 Clay Street</h4>-->
-                                                                    <!--<p class="city">-->
-                                                                        <!--<span>San Francisco,</span>-->
-                                                                        <!--&lt;!&ndash; react-text: 429 &ndash;&gt;-->
-                                                                        <!--&lt;!&ndash; /react-text &ndash;&gt;<span> CA</span><span> 94118</span>-->
-                                                                    <!--</p>-->
-                                                                <!--</a>-->
-                                                                <!--<p class="keyword Utils-text-overflow">Apartments For-->
-                                                                    <!--Rent</p><img class="verified-icon"-->
-                                                                                 <!--src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwdjE2aDhWMEgweiIvPjwvZGVmcz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjxwYXRoIGQ9Ik03Ljc5Ni4wM0w3Ljc3LjAzNiA3Ljc1NC4wNEM3LjQxLjE1OCA1LjA3Ljk1NyAyLjgyIDEuMzhjLS44MDguMTUtMS42MDYuMjU1LTIuMzE2LjI1Ni0uMTg2IDAtLjI5Ny4wNDYtLjM3My4xMDUtLjA3My4wNjItLjEyOC4xNTItLjEzLjMwMnY1LjI3M2MwIC4wNzIuMDIgMS4yMzMuOTU4IDIuODQ2Ljk0MiAxLjYxNCAyLjc5OCAzLjY4NSA2LjUxNiA1LjU5N2wuMDczLjAzNy4wMzMuMDRoLjAwM2MuMDE2LjAxLjA0Ny4wMjcuMDg0LjA0NC4wNzUuMDM1LjE3NS4wNzMuMjU3LjEuMDI4LjAxLjA1NC4wMTYuMDc1LjAyMlYwYy0uMDE3LjAwMy0uMDUuMDEtLjA5Ni4wMTVINy45Yy0uMDYyLjAxLS4wOTYuMDEzLS4xMDQuMDE0IiBmaWxsPSIjMTc5Qzg4IiBtYXNrPSJ1cmwoI2IpIi8+PC9nPjxwYXRoIGQ9Ik04LjAxMi4wMDJMOCAwdjE2bC4wNzQtLjAyMmMuMDg0LS4wMjcuMTktLjA2Ny4yNjQtLjEwMi4wMzYtLjAxNy4wNjctLjAzNC4wOC0uMDQybC4wMzQtLjA0LjA3My0uMDM2YzMuNzItMS45MSA1LjU3Ny0zLjk4MyA2LjUxNy01LjU5Ni45NC0xLjYxMy45NTgtMi43NzQuOTU4LTIuODQ2VjIuMDQyYzAtLjEtLjAyNy0uMTctLjA2NS0uMjI2LS4wMzgtLjA1NC0uMDg4LS4wOTQtLjE1OC0uMTI2bC0uMDE3LS4wMDZjLS4wNzUtLjAzLS4xNTgtLjA0OC0uMjY1LS4wNDgtLjcxIDAtMS41MDctLjEwNS0yLjMxOC0uMjU2LS44MS0uMTUyLTEuNjMtLjM1My0yLjM2NS0uNTUzQzkuNS40NyA4LjQ2LjExNSA4LjI0Mi4wNEw4LjIzLjAzOGwtLjAyNy0uMDFoLS4wMWMtLjAxNy0uMDAzLS4wNS0uMDA1LS4wOTYtLjAxMmgtLjAwMy0uMDAyTDguMDEyIDAiIGZpbGw9IiMzNUNEQjgiLz48cGF0aCBkPSJNMTEuOSAzLjk5Yy0uMzUyLS4yMi0uODE0LS4xMTUtMS4wMzUuMjM1bC0zLjMyMiA1LjI4TDUuOTc1IDguMjJjLS4zMi0uMjYyLS43OTMtLjIxNS0xLjA1NS4xMDUtLjI2My4zMi0uMjE2Ljc5My4xMDQgMS4wNTZsMi4yMjUgMS44MjVjLjE2NS4xMzYuMzgzLjE5NC41OTQuMTYuMjEyLS4wMzQuNC0uMTYuNTE1LS4zNGwzLjc3NC02Yy4yMi0uMzUuMTE2LS44MTQtLjIzNS0xLjAzNSIgZmlsbD0iI0ZGRiIvPjwvZz48L3N2Zz4=">-->
-                                                            <!--</div>-->
-                                                            <!--<div class="content-right">-->
-                                                                <!--<div class="min-price"><span>$4,200</span></div>-->
-                                                                <!--<div class="beds">1 bed</div>-->
-                                                                <!--<span class="tag">&lt;!&ndash; react-empty: 439 &ndash;&gt;</span></div>-->
-                                                        <!--</div>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                        <!--&lt;!&ndash;single item END&ndash;&gt;-->
-                            <!--<% }); %>-->
-                        <!--</div>-->
-            <!--conditional rendering here end-->
-
-
-                        <div class="ListingPage" id="ListingPage">
-                            <div class="secondary-nav-wrapper">
-                                <div class="SecondaryNav">
-                                    <div class="SecondaryNav-breadcrumbs-wrapper Utils-text-overflow">
-                                        <div class="AreaBreadcrumbs">
-<!--------------------------------------------------country + city here-->
-                                        </div>
-                                    </div>
-                                    <div class="SecondaryNav-close-btn">
-                                        <button class="Button Button-sm Button-default">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="Hdp">
-                                <div class="HdpPhotoGallery">
-                                    <div class="Carousel">
-                                        <div class="Carousel-container">
-                                            <div class="Carousel-track bxslider"
-                                                 style="transform: translate3d(0px, 0px, 0px); width: 12390px;">
-                                                <div class="Carousel-item-wrapper" style="width: 590px;">
-                                                    <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg"
-                                                            class="Carousel-item">
+                    <div class="HybridView" id="hybrid-view" data-reactid="287">
+                        <% items.forEach(function(item){ %>
+                        <!--TODO: get rid of this shit-->
+                            <% var pics = null; %>
+                                <% if (item.pics.length > 0) { %>
+                                    <% pics = item.pics.split(','); %>
+                                <% } else { %>
+                                    <% pics = item.pics %>
+                                <% } %>
+                                    <!--single item BEGIN-->
+                                    <div class="ListingWrapper">
+                                        <div class="ListingWide">
+                                            <div class="PhotoGallery">
+                                                <div class="gallery"><i class="fav-icon icon-star-outline"></i>
+                                                    <div class="gallery-darken-overlay"></div>
+                                                    <div class="HpImage">
+                                                        <div aria-label="3401 Clay Street Photo 1"
+                                                             title="3401 Clay Street Photo 1"
+                                                             style="background-image: url(/img/<%= pics[0] %>); background-repeat: no-repeat; background-position: center center; background-size: cover; width: 100%; height: 100%;"></div>
+                                                    </div>
                                                 </div>
-                                                <div class="Carousel-item-wrapper" style="width: 590px;">
-                                                    <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg"
-                                                            class="Carousel-item">
-                                                </div>
-                                                <div class="Carousel-item-wrapper" style="width: 590px;">
-                                                    <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg"
-                                                            class="Carousel-item">
-                                                </div>
+                                                <div class="image-cache"></div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="MultiModelHdpHeader">
-                                    <div class="Container Container-md">
-                                        <div class="Row">
-                                            <div class="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
-                                                <div class="FloorplanPricePreview"><span
-                                                            class="Text Utils-accent-dark Text-tiny">Studio</span>
-                                                    <div><h3 class="Text Text-sm">$2,995</h3></div>
-                                                </div>
-                                            </div>
-                                            <div class="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
-                                                <div class="FloorplanPricePreview"><span
-                                                            class="Text Utils-accent-dark Text-tiny">1 bed</span>
-                                                    <div><h3 class="Text Text-sm">$3,495</h3></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="HdpAddress">
-                                    <div class="HdpAddress-address-details" id="HdpAddress-address-details">
-                                        <div class="Container Container-md">
-                                            <div class="Row">
-                                                <div class="HdpAddress-address-wrapper">
-                                                    <h1 class="Text HdpAddress-title Text-sm">
-                                                        <div class="Utils-text-overflow">1660 Bay Street</div>
-                                                        <div class="Utils-text-overflow Utils-accent-dark">
-                                                            <span>
-                                                                <span itemprop="addressLocality">San Francisco</span>
-                                                                <span itemprop="addressRegion"> CA</span>
-                                                                <span itemprop="postalCode"> 94123</span>
-                                                            </span>
-                                                        </div>
-                                                    </h1>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ContactButton">
-                                    <div class="Container Container-md">
-                                        <div class="Row">
-                                            <button class="Button Button-md Button-primary Button-full">Be the FIRST to
-                                                contact!
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="HdpDescription">
-                                        <div class="HdpContentWrapper">
-                                            <div>
+                                            <div class="ListingContent">
                                                 <div class="Container Container-md">
-                                                    <div class="HdpContentWrapper-header">
-                                                        <div class="HdpContentWrapper-left">
-                                                            <div class="HdpContentWrapper-title">
-                                                                <span class="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Description</span>
-                                                            </div>
+                                                    <div class="listing-info">
+                                                        <div class="content-left">
+                                                            <a class="Linker Linker-default"
+                                                               href="/3401-clay-street-san-francisco-ca-94118-ttxgaz/pad">
+                                                                <h4 class="name">3401 Clay Street</h4>
+                                                                <p class="city">
+                                                                    <span>San Francisco,</span>
+                                                                    <!-- react-text: 429 -->
+                                                                    <!-- /react-text --><span> CA</span><span> 94118</span>
+                                                                </p>
+                                                            </a>
+                                                            <p class="keyword Utils-text-overflow">Apartments For
+                                                                Rent</p><img class="verified-icon"
+                                                                             src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxkZWZzPjxwYXRoIGlkPSJhIiBkPSJNMCAwdjE2aDhWMEgweiIvPjwvZGVmcz48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnPjxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmIj48dXNlIHhsaW5rOmhyZWY9IiNhIi8+PC9tYXNrPjxwYXRoIGQ9Ik03Ljc5Ni4wM0w3Ljc3LjAzNiA3Ljc1NC4wNEM3LjQxLjE1OCA1LjA3Ljk1NyAyLjgyIDEuMzhjLS44MDguMTUtMS42MDYuMjU1LTIuMzE2LjI1Ni0uMTg2IDAtLjI5Ny4wNDYtLjM3My4xMDUtLjA3My4wNjItLjEyOC4xNTItLjEzLjMwMnY1LjI3M2MwIC4wNzIuMDIgMS4yMzMuOTU4IDIuODQ2Ljk0MiAxLjYxNCAyLjc5OCAzLjY4NSA2LjUxNiA1LjU5N2wuMDczLjAzNy4wMzMuMDRoLjAwM2MuMDE2LjAxLjA0Ny4wMjcuMDg0LjA0NC4wNzUuMDM1LjE3NS4wNzMuMjU3LjEuMDI4LjAxLjA1NC4wMTYuMDc1LjAyMlYwYy0uMDE3LjAwMy0uMDUuMDEtLjA5Ni4wMTVINy45Yy0uMDYyLjAxLS4wOTYuMDEzLS4xMDQuMDE0IiBmaWxsPSIjMTc5Qzg4IiBtYXNrPSJ1cmwoI2IpIi8+PC9nPjxwYXRoIGQ9Ik04LjAxMi4wMDJMOCAwdjE2bC4wNzQtLjAyMmMuMDg0LS4wMjcuMTktLjA2Ny4yNjQtLjEwMi4wMzYtLjAxNy4wNjctLjAzNC4wOC0uMDQybC4wMzQtLjA0LjA3My0uMDM2YzMuNzItMS45MSA1LjU3Ny0zLjk4MyA2LjUxNy01LjU5Ni45NC0xLjYxMy45NTgtMi43NzQuOTU4LTIuODQ2VjIuMDQyYzAtLjEtLjAyNy0uMTctLjA2NS0uMjI2LS4wMzgtLjA1NC0uMDg4LS4wOTQtLjE1OC0uMTI2bC0uMDE3LS4wMDZjLS4wNzUtLjAzLS4xNTgtLjA0OC0uMjY1LS4wNDgtLjcxIDAtMS41MDctLjEwNS0yLjMxOC0uMjU2LS44MS0uMTUyLTEuNjMtLjM1My0yLjM2NS0uNTUzQzkuNS40NyA4LjQ2LjExNSA4LjI0Mi4wNEw4LjIzLjAzOGwtLjAyNy0uMDFoLS4wMWMtLjAxNy0uMDAzLS4wNS0uMDA1LS4wOTYtLjAxMmgtLjAwMy0uMDAyTDguMDEyIDAiIGZpbGw9IiMzNUNEQjgiLz48cGF0aCBkPSJNMTEuOSAzLjk5Yy0uMzUyLS4yMi0uODE0LS4xMTUtMS4wMzUuMjM1bC0zLjMyMiA1LjI4TDUuOTc1IDguMjJjLS4zMi0uMjYyLS43OTMtLjIxNS0xLjA1NS4xMDUtLjI2My4zMi0uMjE2Ljc5My4xMDQgMS4wNTZsMi4yMjUgMS44MjVjLjE2NS4xMzYuMzgzLjE5NC41OTQuMTYuMjEyLS4wMzQuNC0uMTYuNTE1LS4zNGwzLjc3NC02Yy4yMi0uMzUuMTE2LS44MTQtLjIzNS0xLjAzNSIgZmlsbD0iI0ZGRiIvPjwvZz48L3N2Zz4=">
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="HdpContentWrapper-content">
-                                                    <div class="Container Container-md">
-                                                        <div id="HdpDescriptionContent">Brimming with vibrant details,
-                                                            this beautiful Marina retreat draws inspiration from
-                                                            colonial Mexico. From the Spanish tile roof to lobby
-                                                            Mariachi murals, there is more than a little south of the
-                                                            border charm to go around. These apartments boast above
-                                                            average dimensions we re talking living room concert huge.
-                                                            Invite your whole crew for taco night.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="HdpFormWrapper">
-                                        <div class="HdpForm" id="HdpForm">
-                                            <div class="HdpForm-Contact">
-                                                <div class="HdpForm-Contact-content-wrapper">
-                                                    <div class="ContactListedBy">
-                                                        <div class="ContactListedBy-phone-container">
-                                                            <div class="ContactListedBy-listedby-phone"><a
-                                                                        class="ContactListedBy-listedby-phone-link"
-                                                                        href="tel://1-415-484-1481">1-415-484-1481</a>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ContactListedBy-display-name-container">
-                                                            <div>
-                                                                <div class="Utils-bold">Listed By:</div>
-                                                                <div>Leasing Agent</div>
-                                                                <div></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="HdpForm-Contact-content">
-<!---------------------------------------------------FORM HERE-->
+                                                        <div class="content-right">
+                                                            <div class="min-price"><span>$4,200</span></div>
+                                                            <div class="beds">1 bed</div>
+                                                            <span class="tag"><!-- react-empty: 439 --></span></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!--single item END-->
+                        <% }); %>
+                    </div>
+            <!--conditional rendering here end-->
+            <!--conditional rendering here start-->
+                    <div class="ListingPage" id="ListingPage">
+                        <div class="secondary-nav-wrapper">
+                            <div class="SecondaryNav">
+                                <div class="SecondaryNav-breadcrumbs-wrapper Utils-text-overflow">
+                                    <div class="AreaBreadcrumbs">
+<!--------------------------------------------------country + city here-->
+                                    </div>
+                                </div>
+                                <div class="SecondaryNav-close-btn">
+                                    <button class="Button Button-sm Button-default">Close</button>
                                 </div>
                             </div>
                         </div>
+                        <div class="Hdp">
+                            <div class="HdpPhotoGallery">
+                                <div class="Carousel">
+                                    <div class="Carousel-container">
+                                        <div class="Carousel-track bxslider"
+                                             style="transform: translate3d(0px, 0px, 0px); width: 12390px;">
+                                            <div class="Carousel-item-wrapper" style="width: 590px;">
+                                                <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg"
+                                                        class="Carousel-item">
+                                            </div>
+                                            <div class="Carousel-item-wrapper" style="width: 590px;">
+                                                <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg"
+                                                        class="Carousel-item">
+                                            </div>
+                                            <div class="Carousel-item-wrapper" style="width: 590px;">
+                                                <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg"
+                                                        class="Carousel-item">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="MultiModelHdpHeader">
+                                <div class="Container Container-md">
+                                    <div class="Row">
+                                        <div class="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
+                                            <div class="FloorplanPricePreview"><span
+                                                        class="Text Utils-accent-dark Text-tiny">Price</span>
+                                                <div><h3 class="Text Text-sm">$2,995</h3></div>
+                                            </div>
+                                        </div>
+                                        <div class="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
+                                            <div class="FloorplanPricePreview"><span
+                                                        class="Text Utils-accent-dark Text-tiny">District</span>
+                                                <div><h3 class="Text Text-sm">Pechersky</h3></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="HdpAddress">
+                                <div class="HdpAddress-address-details" id="HdpAddress-address-details">
+                                    <div class="Container Container-md">
+                                        <div class="Row">
+                                            <div class="HdpAddress-address-wrapper">
+                                                <h1 class="Text HdpAddress-title Text-sm">
+                                                    <div class="Utils-text-overflow">1660 Bay Street</div>
+                                                    <div class="Utils-text-overflow Utils-accent-dark">
+                                                        <span>
+                                                            <span itemprop="addressLocality">San Francisco</span>
+                                                            <span itemprop="addressRegion"> CA</span>
+                                                            <span itemprop="postalCode"> 94123</span>
+                                                        </span>
+                                                    </div>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ContactButton">
+                                <div class="Container Container-md">
+                                    <div class="Row">
+                                        <button class="Button Button-md Button-primary Button-full">Be the FIRST to
+                                            contact!
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="HdpDescription">
+                                <div class="HdpContentWrapper">
+                                    <div class="Container Container-md">
+                                        <div class="HdpContentWrapper-header">
+                                            <div class="HdpContentWrapper-left">
+                                                <div class="HdpContentWrapper-title">
+                                                    <span class="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Description</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="HdpContentWrapper-content">
+                                        <div class="Container Container-md">
+                                            <div id="HdpDescriptionContent">Brimming with vibrant details,
+                                                this beautiful Marina retreat draws inspiration from
+                                                colonial Mexico. From the Spanish tile roof to lobby
+                                                Mariachi murals, there is more than a little south of the
+                                                border charm to go around. These apartments boast above
+                                                average dimensions we re talking living room concert huge.
+                                                Invite your whole crew for taco night.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="HdpDescription">
+                                <div class="HdpContentWrapper">
+                                    <div class="Container Container-md">
+                                        <div class="HdpContentWrapper-header">
+                                            <div class="HdpContentWrapper-left">
+                                                <div class="HdpContentWrapper-title">
+                                                    <span class="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Contact info</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="HdpContentWrapper-content">
+                                        <div class="Container Container-md">
+                                            <div id="HdpFormWrapper">
+                                                <div class="HdpForm" id="HdpForm">
+                                                    <div class="HdpForm-Contact">
+                                                        <div class="HdpForm-Contact-content-wrapper">
+                                                            <div class="ContactListedBy">
+                                                                <div class="ContactListedBy-phone-container">
+                                                                    <div class="ContactListedBy-listedby-phone"><a
+                                                                                class="ContactListedBy-listedby-phone-link"
+                                                                                href="tel://1-415-484-1481">1-415-484-1481</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="ContactListedBy-display-name-container">
+                                                                    <div>
+                                                                        <div class="Utils-bold">Listed By:</div>
+                                                                        <div>Leasing Agent</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="HdpForm-Contact-content">
+                                                                <!---------------------------------------------------FORM HERE-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+        <!--conditional rendering here end-->
                 </div>
             </div>
         </div>
@@ -717,11 +729,14 @@
                 });
             });
         }, 500);
+        $('#ListingPage').addClass('hidden');
+        $('button.Button.Button-sm.Button-primary').on('click', function () {
+            $('#ListingPage').toggleClass('hidden');
+            $('#hybrid-view').toggleClass('hidden');
+        });
     });
 </script>
 
-<!-- bxSlider CSS file -->
-<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4MDQL1d2dTKJQBq-alxGtbE8mCu-CLDk&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
