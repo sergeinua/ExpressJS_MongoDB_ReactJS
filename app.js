@@ -24,7 +24,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public/rapp/build/static')));
 app.use(session({secret: "ddwfjwfwbfhwelb32534pon"}));
 
 app.use('/', index);

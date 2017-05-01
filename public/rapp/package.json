@@ -1,5 +1,5 @@
 {
-  "name": "realEstate",
+  "name": "rapp",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -7,9 +7,6 @@
   },
   "dependencies": {
     "google-map-react": "^0.24.0",
-    "install": "^0.8.9",
-    "npm": "^4.5.0",
-    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },

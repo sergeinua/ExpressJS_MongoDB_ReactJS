@@ -704,11 +704,13 @@
             infowindowContent.children['place-address'].textContent = place.formatted_address;
         });
     }
-    function addMarker(location, itemId) {
+    function addMarker(location, itemId, price) {
         marker = new google.maps.Marker({
             position: location,
             map: map,
-            id: itemId
+            id: itemId,
+            icon: '/img/marker.png',
+            label: price.toString()
         });
         marker.addListener('click', function(event) {
             handleMarkerClick(this.id);
@@ -725,7 +727,7 @@
         setTimeout(function () {
             $.post('/',function (res) {
                 res.forEach(function (item) {
-                    addMarker({lat: parseFloat(item.coordinates.lat), lng: parseFloat(item.coordinates.lng)}, item._id);
+                    addMarker({lat: parseFloat(item.coordinates.lat), lng: parseFloat(item.coordinates.lng)}, item._id, item.price);
                 });
             });
         }, 500);
