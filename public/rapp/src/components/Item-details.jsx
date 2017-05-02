@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
+var Carousel = require('react-responsive-carousel').Carousel;
+import './carousel.css';
+
 class ItemDetails extends Component {
+    onChange() {}
+    onClickItem() {}
+    onClickThumb() {}
     render() {
         console.log('+',this.props.data);
         return (
@@ -19,25 +25,24 @@ class ItemDetails extends Component {
                 </div>
                 <div className="Hdp">
                     <div className="HdpPhotoGallery">
-                        <div className="Carousel">
-                            <div className="Carousel-container">
-                                <div className="Carousel-track bxslider"
-                                     style={{transform: 'translate3d(0px, 0px, 0px)', width: 12390 + 'px'}}>
-                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg"
-                                             className="Carousel-item"/>
+                        {/*<div className="Carousel">*/}
+                            {/*<div className="Carousel-container">*/}
+                                <Carousel axis="horizontal" showThumbs={true} showArrows={true} onChange={this.onChange} onClickItem={this.onClickItem} onClickThumb={this.onClickThumb} dynamicHeight emulateTouch>
+                                    <div>
+                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg" />
+                                        <p className="legend">Legend 1</p>
                                     </div>
-                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg"
-                                             className="Carousel-item"/>
+                                    <div>
+                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg" />
+                                        <p className="legend">Legend 1</p>
                                     </div>
-                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg"
-                                             className="Carousel-item"/>
+                                    <div>
+                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg" />
+                                        <p className="legend">Legend 1</p>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                </Carousel>
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
                     <div className="MultiModelHdpHeader">
                         <div className="Container Container-md">
