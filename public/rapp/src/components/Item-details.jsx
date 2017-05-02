@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
-var Carousel = require('react-responsive-carousel').Carousel;
-import './carousel.css';
+import CarouselContainer from './Carousel-container';
 
 class ItemDetails extends Component {
-    onChange() {}
-    onClickItem() {}
-    onClickThumb() {}
+
     render() {
-        console.log('+',this.props.data);
         return (
             <div className="ListingPage" id="ListingPage">
                 <div className="secondary-nav-wrapper">
@@ -25,24 +21,9 @@ class ItemDetails extends Component {
                 </div>
                 <div className="Hdp">
                     <div className="HdpPhotoGallery">
-                        {/*<div className="Carousel">*/}
-                            {/*<div className="Carousel-container">*/}
-                                <Carousel axis="horizontal" showThumbs={true} showArrows={true} onChange={this.onChange} onClickItem={this.onClickItem} onClickThumb={this.onClickThumb} dynamicHeight emulateTouch>
-                                    <div>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg" />
-                                        <p className="legend">Legend 1</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg" />
-                                        <p className="legend">Legend 1</p>
-                                    </div>
-                                    <div>
-                                        <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg" />
-                                        <p className="legend">Legend 1</p>
-                                    </div>
-                                </Carousel>
-                            {/*</div>*/}
-                        {/*</div>*/}
+                        {this.props.data ? (
+                            <CarouselContainer images={this.props.data.pics}/>
+                        ) : (null)}
                     </div>
                     <div className="MultiModelHdpHeader">
                         <div className="Container Container-md">
