@@ -9,6 +9,20 @@ import ItemDetails from './components/Item-details';
 import FilterList from './components/Filter-list';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {items: null};
+    }
+
+    componentDidMount() {
+        fetch('/', {
+            method: 'POST'
+        }).then((resp) => {
+            return resp.json();
+        }).then((items) => {
+            this.setState({items: items})
+        });
+    }
 
     render() {
         const center = {lat: 50.424, lng: 30.569};
@@ -19,7 +33,7 @@ class App extends Component {
                     <Menu/>
                     <Filter/>
                     <div className="map-wrapper right-sidebar-active">
-                        <Map center={center}/>
+                        <Map center={center} markers={this.state.items}/>
                     </div>
                     <div className="right-sidebar right-sidebar-active" id="right-sidebar">
                         <div className="HybridMapPage" id="HybridMapPage">

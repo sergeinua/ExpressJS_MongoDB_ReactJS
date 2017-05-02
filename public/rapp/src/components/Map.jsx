@@ -8,12 +8,17 @@ class Map extends Component {
         super(props);
         this.state = {
             center: {lat: 50.424, lng: 30.569},
-            zoom: 11
+            zoom: 11,
+            markers: null
         }
     }
 
     handleChildClick (key, childProps) {
-        alert(1);
+        alert(childProps.id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({markers: nextProps.markers});
     }
 
     render() {
@@ -24,15 +29,20 @@ class Map extends Component {
                 style={{height: '300px'}}
                 onChildClick={this.handleChildClick}
             >
-                <Marker
-                    lat={50.41813704110631}
-                    lng={30.544186234474182}
-                    text={'2500'}
-                />
+                {this.state.markers ? (
+                    this.state.markers.map((item, index) => {
+                        return <Marker
+                                    lat={parseFloat(item.coordinates.lat)}
+                                    lng={parseFloat(item.coordinates.lng)}
+                                    text={parseInt(item.price)}
+                                    key={"marker-" + index}
+                                    id={item._id}
+                                />
+                    })
+                ):(null)}
             </GoogleMapReact>
         );
     }
 }
 
 export default Map;
-
