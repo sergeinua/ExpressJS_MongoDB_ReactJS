@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class ItemDetails extends Component {
     render() {
+        console.log('+',this.props.data);
         return (
             <div className="ListingPage" id="ListingPage">
                 <div className="secondary-nav-wrapper">
@@ -12,7 +13,7 @@ class ItemDetails extends Component {
                             </div>
                         </div>
                         <div className="SecondaryNav-close-btn">
-                            <button className="Button Button-sm Button-default">Close</button>
+                            <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Close</button>
                         </div>
                     </div>
                 </div>
@@ -21,16 +22,16 @@ class ItemDetails extends Component {
                         <div className="Carousel">
                             <div className="Carousel-container">
                                 <div className="Carousel-track bxslider"
-                                     style="transform: translate3d(0px, 0px, 0px); width: 12390px;">
-                                    <div className="Carousel-item-wrapper" style="width: 590px;">
+                                     style={{transform: 'translate3d(0px, 0px, 0px)', width: 12390 + 'px'}}>
+                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
                                         <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0001_506686441_large.jpg"
                                              className="Carousel-item"/>
                                     </div>
-                                    <div className="Carousel-item-wrapper" style="width: 590px;">
+                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
                                         <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0002_87767953_large.jpg"
                                              className="Carousel-item"/>
                                     </div>
-                                    <div className="Carousel-item-wrapper" style="width: 590px;">
+                                    <div className="Carousel-item-wrapper" style={{width: 590 + 'px'}}>
                                         <img src="https://photonet.hotpads.com/search/listingPhoto/HotPads/1623630/0003_913580237_large.jpg"
                                              className="Carousel-item"/>
                                     </div>
@@ -41,13 +42,13 @@ class ItemDetails extends Component {
                     <div className="MultiModelHdpHeader">
                         <div className="Container Container-md">
                             <div className="Row">
-                                <div className="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
+                                <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
                                     <div className="FloorplanPricePreview"><span
                                         className="Text Utils-accent-dark Text-tiny">Price</span>
                                         <div><h3 className="Text Text-sm">$2,995</h3></div>
                                     </div>
                                 </div>
-                                <div className="MultiModelHdpHeader-block" style="width: 33.3333%;display: inline-block">
+                                <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
                                     <div className="FloorplanPricePreview"><span
                                         className="Text Utils-accent-dark Text-tiny">District</span>
                                         <div><h3 className="Text Text-sm">Pechersky</h3></div>

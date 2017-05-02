@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
 import ItemListSingle from './Item-list-single';
+import ItemDetails from './Item-details';
 
 class ItemList extends Component {
     constructor(props) {
         super(props);
-        this.state = {items: null};
+        this.state = {
+            items: null,
+            singleItem: null
+        };
     }
 
     componentDidMount() {
@@ -18,22 +22,37 @@ class ItemList extends Component {
         });
     }
 
-    render() {
-        let items = this.state.items;
+    handleItemClick(item) {
+        this.setState({singleItem: item});
+    }
 
-        if (items) {
+    handleCloseBtn() {
+        this.setState({singleItem: null});
+    }
+
+    render() {
+        let items = this.state.items,
+            singleItem = this.state.singleItem;
+
+        if (items && !singleItem) {
             return (
                 <div className="HybridView" id="hybrid-view">
                     {items.map((item, index) => {
                         return <ItemListSingle
                             data={item}
                             key={"item-list-single-" + index}
+                            onClick={()=>this.handleItemClick(item)}
                         />
                     })}
                 </div>
             );
         } else {
-            return null;
+            return (
+                <ItemDetails
+                    handleCloseBtn={this.handleCloseBtn.bind(this)}
+                    data={singleItem}
+                />
+            );
         }
     }
 }
