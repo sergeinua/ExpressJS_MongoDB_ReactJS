@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Filterlist extends Component {
+class FilterList extends Component {
     render() {
         const svgStyle = {
             width: 12 + 'px',
@@ -40,4 +40,4 @@ class Filterlist extends Component {
     }
 }
 
-export default Filterlist;
+export default FilterList;

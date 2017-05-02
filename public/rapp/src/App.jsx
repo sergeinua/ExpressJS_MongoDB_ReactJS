@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import './App.css';
 import Map from './components/Map';
-import Itemlist from './components/Itemlist';
+import ItemList from './components/Item-list';
 import Menu from './components/Menu';
 import Filter from './components/Filter';
-import Itemdetails from './components/Itemdetails';
-import Filterlist from './components/Filterlist';
+import ItemDetails from './components/Item-details';
+import FilterList from './components/Filter-list';
 
 class App extends Component {
 
@@ -65,7 +65,7 @@ class App extends Component {
                                           </div>
                                       </div>
                                       {/*<!--=============================filter_start-->*/}
-                                      <Filterlist/>
+                                      <FilterList/>
                                       {/*<!--=========================================filter_end-->*/}
                                       <span className="SecondaryNav-map-list-toggle">List</span>
                                   </div>
@@ -73,7 +73,7 @@ class App extends Component {
 
                               {/*<!--conditional rendering here start-->*/}
                               {/*<!--list-->*/}
-                              <Itemlist/>
+                              <ItemList/>
                               {/*<!--conditional rendering here end-->*/}
                               {/*<!--conditional rendering here start-->*/}
 
