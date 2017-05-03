@@ -30,6 +30,15 @@ class ItemList extends Component {
         this.setState({singleItem: null});
     }
 
+    componentWillReceiveProps(nextProps) {
+        let _items = this.state.items;
+        _items.map((item, index) => {
+            if (item._id == nextProps.singleItemId) {
+                this.setState({singleItem: _items[index]});
+            }
+        });
+    }
+
     render() {
         let items = this.state.items,
             singleItem = this.state.singleItem;

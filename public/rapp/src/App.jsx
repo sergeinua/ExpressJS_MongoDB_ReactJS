@@ -5,13 +5,12 @@ import Map from './components/Map';
 import ItemList from './components/Item-list';
 import Menu from './components/Menu';
 import Filter from './components/Filter';
-import ItemDetails from './components/Item-details';
 import FilterList from './components/Filter-list';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {items: null};
+        this.state = {items: null, singleItemId: null};
     }
 
     componentDidMount() {
@@ -24,6 +23,10 @@ class App extends Component {
         });
     }
 
+    handleMarkerClick (key, childProps) {
+        this.setState({singleItemId: childProps.id});
+    }
+
     render() {
         const center = {lat: 50.424, lng: 30.569};
 
@@ -33,7 +36,7 @@ class App extends Component {
                     <Menu/>
                     <Filter/>
                     <div className="map-wrapper right-sidebar-active">
-                        <Map center={center} markers={this.state.items}/>
+                        <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}/>
                     </div>
                     <div className="right-sidebar right-sidebar-active" id="right-sidebar">
                         <div className="HybridMapPage" id="HybridMapPage">
@@ -54,7 +57,7 @@ class App extends Component {
                                     <span className="SecondaryNav-map-list-toggle">List</span>
                                 </div>
                             </div>
-                            <ItemList/>
+                            <ItemList singleItemId={this.state.singleItemId}/>
                         </div>
                     </div>
                 </div>

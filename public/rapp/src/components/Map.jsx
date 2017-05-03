@@ -13,10 +13,6 @@ class Map extends Component {
         }
     }
 
-    handleChildClick (key, childProps) {
-        alert(childProps.id);
-    }
-
     componentWillReceiveProps(nextProps) {
         this.setState({markers: nextProps.markers});
     }
@@ -27,7 +23,7 @@ class Map extends Component {
                 defaultCenter={this.state.center}
                 defaultZoom={this.state.zoom}
                 style={{height: '300px'}}
-                onChildClick={this.handleChildClick}
+                onChildClick={this.props.handleMarkerClick}
             >
                 {this.state.markers ? (
                     this.state.markers.map((item, index) => {

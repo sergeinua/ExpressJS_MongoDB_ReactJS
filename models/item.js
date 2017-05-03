@@ -5,8 +5,7 @@ var itemSchema = mongoose.Schema({
     code: Number,
     pics: String,
     price: Number,
-    beds: Number,
-    bath: Number,
+    rooms: Number,
     sqft: Number,
     address: String,
     description: String
