@@ -37,7 +37,10 @@ class App extends Component {
     }
 
     handleItemUnHover() {
-        this.setState({itemHoveredId: null});
+        this.setState({
+            itemHoveredId: null,
+            singleItemId: null
+        });
     }
 
     render() {
