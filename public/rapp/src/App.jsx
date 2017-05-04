@@ -18,8 +18,19 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.getItems(null);
+    }
+
+    getItems(condition) {
         fetch('/', {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                sort: condition
+            })
         }).then((resp) => {
             return resp.json();
         }).then((items) => {
@@ -41,6 +52,11 @@ class App extends Component {
             itemHoveredId: null,
             singleItemId: null
         });
+    }
+
+    handleFilterList(condition) {
+        this.setState({items: null});
+        this.getItems(condition);
     }
 
     render() {
@@ -70,7 +86,7 @@ class App extends Component {
                                         </ul>
                                     </div>
                                     </div>
-                                    <FilterList/>
+                                    <FilterList handleFilterList={this.handleFilterList.bind(this)}/>
                                     <span className="SecondaryNav-map-list-toggle">List</span>
                                 </div>
                             </div>

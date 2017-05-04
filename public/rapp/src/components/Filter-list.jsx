@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 class FilterList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {value: null};
+    }
+
+    handleSelectChange(event) {
+        this.setState({value: event.target.value});
+        this.props.handleFilterList(event.target.value);
+    }
+
     render() {
         const svgStyle = {
             width: 12 + 'px',
@@ -17,13 +27,15 @@ class FilterList extends Component {
                 <div className="SortNav">
                     <div className="Select">
                         <div className="Select-input-container">
-                            <select className="Select-input Select-sm Select-no-label">
+                            <select className="Select-input Select-sm Select-no-label"
+                                    onChange={this.handleSelectChange.bind(this)}
+                                    value={this.state.value}>
                                 <option value="">Recommended</option>
                                 <option value="activated">Newest</option>
                                 <option value="weekViews">Most Viewed</option>
                                 <option value="photoCount">Photo Count</option>
-                                <option value="highPrice">High Price</option>
-                                <option value="lowPrice">Low Price</option>
+                                <option value="-price">High Price</option>
+                                <option value="price">Low Price</option>
                             </select>
                             <span className="Select-dropdown-arrow Select-sm">
                                 <span style={spanStyle}>

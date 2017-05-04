@@ -12,11 +12,10 @@ router.get('/', function(req, res, next) {
 
 //getting all item objects for further placing markers
 router.post('/', function (req, res, next) {
-    Item.find(function (err, items) {
+    Item.find().sort(req.body.sort).exec(function (err, items) {
         if (err) {
             res.status(500).send(err);
         }
-        console.log('items',items);
         res.status(200).send(JSON.stringify(items));
     });
 });
