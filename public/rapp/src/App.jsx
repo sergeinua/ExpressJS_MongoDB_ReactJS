@@ -57,7 +57,7 @@ class App extends Component {
                                     <span className="SecondaryNav-map-list-toggle">List</span>
                                 </div>
                             </div>
-                            <ItemList singleItemId={this.state.singleItemId}/>
+                            <ItemList singleItemId={this.state.singleItemId} items={this.state.items}/>
                         </div>
                     </div>
                 </div>

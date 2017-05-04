@@ -12,16 +12,6 @@ class ItemList extends Component {
         };
     }
 
-    componentDidMount() {
-        fetch('/', {
-            method: 'POST'
-        }).then((resp) => {
-            return resp.json();
-        }).then((items) => {
-            this.setState({items: items})
-        });
-    }
-
     handleItemClick(item) {
         this.setState({singleItem: item});
     }
@@ -31,12 +21,15 @@ class ItemList extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({items: nextProps.items});
         let _items = this.state.items;
-        _items.map((item, index) => {
-            if (item._id == nextProps.singleItemId) {
-                this.setState({singleItem: _items[index]});
-            }
-        });
+        if (_items) {
+            _items.map((item, index) => {
+                if (item._id == nextProps.singleItemId) {
+                    this.setState({singleItem: _items[index]});
+                }
+            });
+        }
     }
 
     render() {
