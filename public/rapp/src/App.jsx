@@ -10,7 +10,11 @@ import FilterList from './components/Filter-list';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {items: null, singleItemId: null};
+        this.state = {
+            items: null,
+            singleItemId: null,
+            itemHoveredId: null
+        };
     }
 
     componentDidMount() {
@@ -19,12 +23,21 @@ class App extends Component {
         }).then((resp) => {
             return resp.json();
         }).then((items) => {
-            this.setState({items: items})
+            this.setState({items: items});
         });
     }
 
     handleMarkerClick (key, childProps) {
         this.setState({singleItemId: childProps.id});
+        this.handleItemHover(childProps.id);
+    }
+
+    handleItemHover(itemId) {
+        this.setState({itemHoveredId: itemId});
+    }
+
+    handleItemUnHover() {
+        this.setState({itemHoveredId: null});
     }
 
     render() {
@@ -36,7 +49,8 @@ class App extends Component {
                     <Menu/>
                     <Filter/>
                     <div className="map-wrapper right-sidebar-active">
-                        <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}/>
+                        <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}
+                             hoveredMarkerId={this.state.itemHoveredId}/>
                     </div>
                     <div className="right-sidebar right-sidebar-active" id="right-sidebar">
                         <div className="HybridMapPage" id="HybridMapPage">
@@ -57,7 +71,9 @@ class App extends Component {
                                     <span className="SecondaryNav-map-list-toggle">List</span>
                                 </div>
                             </div>
-                            <ItemList singleItemId={this.state.singleItemId} items={this.state.items}/>
+                            <ItemList singleItemId={this.state.singleItemId} items={this.state.items}
+                                      handleItemHover={this.handleItemHover.bind(this)}
+                                      handleItemUnHover={this.handleItemUnHover.bind(this)}/>
                         </div>
                     </div>
                 </div>

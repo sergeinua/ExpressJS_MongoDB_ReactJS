@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactHoverObserver from 'react-hover-observer';
 
 import ItemListSingle from './Item-list-single';
 import ItemDetails from './Item-details';
@@ -18,6 +19,7 @@ class ItemList extends Component {
 
     handleCloseBtn() {
         this.setState({singleItem: null});
+        this.itemUnHovered();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -32,6 +34,14 @@ class ItemList extends Component {
         }
     }
 
+    itemHovered(itemId) {
+        this.props.handleItemHover(itemId);
+    }
+
+    itemUnHovered() {
+        this.props.handleItemUnHover();
+    }
+
     render() {
         let items = this.state.items,
             singleItem = this.state.singleItem;
@@ -40,10 +50,16 @@ class ItemList extends Component {
             return (
                 <div className="HybridView" id="hybrid-view">
                     {items.map((item, index) => {
-                        return <ItemListSingle
-                            data={item}
-                            key={"item-list-single-" + index}
-                            onClick={()=>this.handleItemClick(item)}/>
+                        return (
+                            <ReactHoverObserver
+                                onMouseEnter={() => this.itemHovered(item._id)}
+                                onMouseLeave={() => this.itemUnHovered(item._id)}>
+                                <ItemListSingle
+                                data={item}
+                                key={"item-list-single-" + index}
+                                onClick={()=>this.handleItemClick(item)}/>
+                            </ReactHoverObserver>
+                        )
                     })}
                 </div>
             );

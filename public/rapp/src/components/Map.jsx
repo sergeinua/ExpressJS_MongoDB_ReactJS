@@ -18,6 +18,7 @@ class Map extends Component {
     }
 
     render() {
+
         return (
             <GoogleMapReact
                 defaultCenter={this.state.center}
@@ -31,7 +32,8 @@ class Map extends Component {
                                     lng={parseFloat(item.coordinates.lng)}
                                     text={parseInt(item.price)}
                                     key={"marker-" + index}
-                                    id={item._id}/>
+                                    id={item._id}
+                                    hovered={this.props.hoveredMarkerId == item._id ? true : false}/>
                     })
                 ) : (null)}
             </GoogleMapReact>
