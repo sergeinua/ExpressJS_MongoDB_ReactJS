@@ -43,8 +43,7 @@ class ItemList extends Component {
                         return <ItemListSingle
                             data={item}
                             key={"item-list-single-" + index}
-                            onClick={()=>this.handleItemClick(item)}
-                        />
+                            onClick={()=>this.handleItemClick(item)}/>
                     })}
                 </div>
             );
@@ -52,8 +51,7 @@ class ItemList extends Component {
             return (
                 <ItemDetails
                     handleCloseBtn={this.handleCloseBtn.bind(this)}
-                    data={singleItem}
-                />
+                    data={singleItem}/>
             );
         }
     }

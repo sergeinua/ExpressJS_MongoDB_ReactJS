@@ -8,14 +8,14 @@ class Filter extends Component {
                     <nav className="filter-nav show-for-medium-up">
                         <div className="search-input-wrapper">
                             <div className="AutocompleteSearchInput">
-                                    <span className="AutocompleteSearchInput-geolocate-btn">
-                                        <i className="Geolocation icon-location geolocate-autocomplete-search"></i>
-                                    </span>
+                                <span className="AutocompleteSearchInput-geolocate-btn">
+                                    <i className="Geolocation icon-location geolocate-autocomplete-search"></i>
+                                </span>
                                 <input type="text" className="AutocompleteSearchInput-search-input" placeholder="Find apartments in..." value="San Francisco, CA" />
                                 <button className="AutocompleteSearchInput-search-submit">
-                                        <span className="AutocompleteSearchInput-icon-search-btn">
-                                            <i className="icon-search"></i>
-                                        </span>
+                                    <span className="AutocompleteSearchInput-icon-search-btn">
+                                        <i className="icon-search"></i>
+                                    </span>
                                 </button>
                                 <div className="AutocompleteSearchInput-suggestions Utils-hidden">
                                     <ul className="AutocompleteSearchInput-list">

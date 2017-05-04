@@ -23,8 +23,7 @@ class Map extends Component {
                 defaultCenter={this.state.center}
                 defaultZoom={this.state.zoom}
                 style={{height: '300px'}}
-                onChildClick={this.props.handleMarkerClick}
-            >
+                onChildClick={this.props.handleMarkerClick}>
                 {this.state.markers ? (
                     this.state.markers.map((item, index) => {
                         return <Marker
@@ -32,10 +31,9 @@ class Map extends Component {
                                     lng={parseFloat(item.coordinates.lng)}
                                     text={parseInt(item.price)}
                                     key={"marker-" + index}
-                                    id={item._id}
-                                />
+                                    id={item._id}/>
                     })
-                ):(null)}
+                ) : (null)}
             </GoogleMapReact>
         );
     }

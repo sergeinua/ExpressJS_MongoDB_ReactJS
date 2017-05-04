@@ -29,15 +29,19 @@ class ItemDetails extends Component {
                         <div className="Container Container-md">
                             <div className="Row">
                                 <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
-                                    <div className="FloorplanPricePreview"><span
-                                        className="Text Utils-accent-dark Text-tiny">Price</span>
-                                        <div><h3 className="Text Text-sm">$2,995</h3></div>
+                                    <div className="FloorplanPricePreview">
+                                        <span className="Text Utils-accent-dark Text-tiny">Price</span>
+                                        <div>
+                                            <h3 className="Text Text-sm">$2,995</h3>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
-                                    <div className="FloorplanPricePreview"><span
-                                        className="Text Utils-accent-dark Text-tiny">District</span>
-                                        <div><h3 className="Text Text-sm">Pechersky</h3></div>
+                                    <div className="FloorplanPricePreview">
+                                        <span className="Text Utils-accent-dark Text-tiny">District</span>
+                                        <div>
+                                            <h3 className="Text Text-sm">Pechersky</h3>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -51,11 +55,11 @@ class ItemDetails extends Component {
                                         <h1 className="Text HdpAddress-title Text-sm">
                                             <div className="Utils-text-overflow">1660 Bay Street</div>
                                             <div className="Utils-text-overflow Utils-accent-dark">
-                                                        <span>
-                                                            <span itemprop="addressLocality">San Francisco</span>
-                                                            <span itemprop="addressRegion"> CA</span>
-                                                            <span itemprop="postalCode"> 94123</span>
-                                                        </span>
+                                                <span>
+                                                    <span itemprop="addressLocality">San Francisco</span>
+                                                    <span itemprop="addressRegion"> CA</span>
+                                                    <span itemprop="postalCode"> 94123</span>
+                                                </span>
                                             </div>
                                         </h1>
                                     </div>
@@ -66,9 +70,7 @@ class ItemDetails extends Component {
                     <div className="ContactButton">
                         <div className="Container Container-md">
                             <div className="Row">
-                                <button className="Button Button-md Button-primary Button-full">Be the FIRST to
-                                    contact!
-                                </button>
+                                <button className="Button Button-md Button-primary Button-full">Contact!</button>
                             </div>
                         </div>
                     </div>
@@ -116,9 +118,9 @@ class ItemDetails extends Component {
                                                 <div className="HdpForm-Contact-content-wrapper">
                                                     <div className="ContactListedBy">
                                                         <div className="ContactListedBy-phone-container">
-                                                            <div className="ContactListedBy-listedby-phone"><a
-                                                                className="ContactListedBy-listedby-phone-link"
-                                                                href="tel://1-415-484-1481">1-415-484-1481</a>
+                                                            <div className="ContactListedBy-listedby-phone">
+                                                                <a className="ContactListedBy-listedby-phone-link"
+                                                                   href="tel://1-415-484-1481">1-415-484-1481</a>
                                                             </div>
                                                         </div>
                                                         <div className="ContactListedBy-display-name-container">
@@ -139,7 +141,6 @@ class ItemDetails extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         );
