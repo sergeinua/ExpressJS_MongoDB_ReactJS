@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 import marker from '../marker.png';
+import markerHover from '../markerHover.png';
 
 class Marker extends Component {
 
     render() {
-        //TODO: add img for hovering
-        let markerImg = this.props.hovered ? null : marker;
+        let markerImg = this.props.hovered ? markerHover : marker;
 
         return (
             <div className="marker-block">
