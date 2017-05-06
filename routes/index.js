@@ -12,12 +12,19 @@ router.get('/', function(req, res, next) {
 
 //getting all item objects for further placing markers
 router.post('/', function (req, res, next) {
-    Item.find().sort(req.body.sort).exec(function (err, items) {
-        if (err) {
-            res.status(500).send(err);
-        }
-        res.status(200).send(JSON.stringify(items));
-    });
+    console.log('req',req.body);
+    Item.find()
+        .where('price')
+        .gt(req.body.filterMinPrice ? parseInt(req.body.filterMinPrice) : 0)
+        .lt(req.body.filterMaxPrice ? parseInt(req.body.filterMaxPrice) : 1000000)
+        .sort(req.body.sort)
+        .exec(function (err, items) {
+            if (err) {
+                res.status(500).send(err);
+            }
+            console.log('items', items);
+            res.status(200).send(JSON.stringify(items));
+        });
 });
 
 module.exports = router;

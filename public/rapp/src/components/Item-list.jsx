@@ -55,9 +55,9 @@ class ItemList extends Component {
                                 onMouseEnter={() => this.itemHovered(item._id)}
                                 onMouseLeave={() => this.itemUnHovered(item._id)}>
                                 <ItemListSingle
-                                data={item}
-                                key={"item-list-single-" + index}
-                                onClick={()=>this.handleItemClick(item)}/>
+                                    data={item}
+                                    key={"item-list-single-" + index}
+                                    onClick={()=>this.handleItemClick(item)}/>
                             </ReactHoverObserver>
                         )
                     })}

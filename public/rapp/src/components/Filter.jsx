@@ -15,8 +15,7 @@ class Filter extends Component {
     }
 
     handleApplyFilters() {
-        //request here
-        console.log(this.state);
+        this.props.handleFilterCondition(this.state);
     }
 
     render() {

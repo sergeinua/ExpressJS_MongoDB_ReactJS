@@ -13,15 +13,19 @@ class App extends Component {
         this.state = {
             items: null,
             singleItemId: null,
-            itemHoveredId: null
+            itemHoveredId: null,
+            filterListCondition: null,
+            filterRooms: null,
+            filterMinPrice: null,
+            filterMaxPrice: null
         };
     }
 
     componentDidMount() {
-        this.getItems(null);
+        this.getItems();
     }
 
-    getItems(condition) {
+    getItems() {
         fetch('/', {
             method: 'POST',
             headers: {
@@ -29,7 +33,10 @@ class App extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                sort: condition
+                sort: this.state.filterListCondition,
+                filterRooms: this.state.filterRooms,
+                filterMinPrice: this.state.filterMinPrice,
+                filterMaxPrice: this.state.filterMaxPrice
             })
         }).then((resp) => {
             return resp.json();
@@ -54,9 +61,33 @@ class App extends Component {
         });
     }
 
-    handleFilterList(condition) {
-        this.setState({items: null});
-        this.getItems(condition);
+    handleFilterListSorting(condition) {
+        let promise = new Promise((resolve, reject) => {
+            this.setState({
+                items: null,
+                filterListCondition: condition
+            });
+            resolve();
+        });
+
+        promise.then(() => {
+            this.getItems();
+        });
+    }
+
+    handleFilterCondition(state) {
+        let promise = new Promise((resolve, reject) => {
+            this.setState({
+                filterRooms: state.filterRooms,
+                filterMinPrice: state.filterMinPrice,
+                filterMaxPrice: state.filterMaxPrice
+            });
+            resolve();
+        });
+
+        promise.then(() => {
+            this.getItems();
+        });
     }
 
     render() {
@@ -66,7 +97,7 @@ class App extends Component {
             <div className="AppTemplate">
                 <div className="SplitMapTemplate mobile-header-padding map-view">
                     <Menu/>
-                    <Filter/>
+                    <Filter handleFilterCondition={this.handleFilterCondition.bind(this)}/>
                     <div className="map-wrapper right-sidebar-active">
                         <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}
                              hoveredMarkerId={this.state.itemHoveredId}/>
@@ -86,7 +117,7 @@ class App extends Component {
                                         </ul>
                                     </div>
                                     </div>
-                                    <FilterList handleFilterList={this.handleFilterList.bind(this)}/>
+                                    <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
                                     <span className="SecondaryNav-map-list-toggle">List</span>
                                 </div>
                             </div>

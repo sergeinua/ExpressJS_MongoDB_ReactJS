@@ -8,7 +8,7 @@ class FilterList extends Component {
 
     handleSelectChange(event) {
         this.setState({value: event.target.value});
-        this.props.handleFilterList(event.target.value);
+        this.props.handleFilterListSorting(event.target.value);
     }
 
     render() {
