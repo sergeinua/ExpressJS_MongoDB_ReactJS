@@ -15,7 +15,8 @@ class App extends Component {
             singleItemId: null,
             itemHoveredId: null,
             filterListCondition: null,
-            filterRooms: null,
+            filterMinRooms: null,
+            filterMaxRooms: null,
             filterMinPrice: null,
             filterMaxPrice: null
         };
@@ -34,7 +35,8 @@ class App extends Component {
             },
             body: JSON.stringify({
                 sort: this.state.filterListCondition,
-                filterRooms: this.state.filterRooms,
+                filterMinRooms: this.state.filterMinRooms,
+                filterMaxRooms: this.state.filterMaxRooms,
                 filterMinPrice: this.state.filterMinPrice,
                 filterMaxPrice: this.state.filterMaxPrice
             })
@@ -78,7 +80,8 @@ class App extends Component {
     handleFilterCondition(state) {
         let promise = new Promise((resolve, reject) => {
             this.setState({
-                filterRooms: state.filterRooms,
+                filterMinRooms: state.filterMinRooms,
+                filterMaxRooms: state.filterMaxRooms,
                 filterMinPrice: state.filterMinPrice,
                 filterMaxPrice: state.filterMaxPrice
             });

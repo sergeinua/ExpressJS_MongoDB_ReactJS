@@ -17,6 +17,9 @@ router.post('/', function (req, res, next) {
         .where('price')
         .gt(req.body.filterMinPrice ? parseInt(req.body.filterMinPrice) : 0)
         .lt(req.body.filterMaxPrice ? parseInt(req.body.filterMaxPrice) : 1000000)
+        .where('rooms')
+        .gt(req.body.filterMinRooms ? parseInt(req.body.filterMinRooms) - 1 : 0)
+        .lt(req.body.filterMaxRooms ? parseInt(req.body.filterMaxRooms) + 1 : 10)
         .sort(req.body.sort)
         .exec(function (err, items) {
             if (err) {
