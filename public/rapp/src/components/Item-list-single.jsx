@@ -19,6 +19,19 @@ class ItemListSingle extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        let pics = nextProps.data.pics.split(','),
+            address = nextProps.data.address.split(',');
+        this.setState({
+            image: pics[0],
+            country: address[3],
+            city: address[2],
+            street: address[0],
+            rooms: nextProps.data.rooms,
+            price: nextProps.data.price
+        });
+    }
+
     render() {
         const divStyle = {
             backgroundImage: 'url(/img/'+ this.state.image +')',
