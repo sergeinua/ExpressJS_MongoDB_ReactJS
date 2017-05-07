@@ -7,12 +7,18 @@ class Filter extends Component {
             filterMinRooms: null,
             filterMaxRooms: null,
             filterMinPrice: null,
-            filterMaxPrice: null
+            filterMaxPrice: null,
+            filterDistrict: null
         };
     }
 
     handleSelectChange(filter, event) {
-        this.setState({[filter]: event.target.value});
+        if (filter === 'filterDistrict' && event.target.value === '') {
+            this.setState({filterDistrict: this.props.districts});
+        } else {
+            this.setState({[filter]: event.target.value});
+        }
+
     }
 
     handleApplyFilters() {
