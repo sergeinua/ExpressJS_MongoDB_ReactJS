@@ -18,7 +18,8 @@ class App extends Component {
             filterMinRooms: null,
             filterMaxRooms: null,
             filterMinPrice: null,
-            filterMaxPrice: null
+            filterMaxPrice: null,
+            districts: null
         };
     }
 
@@ -44,6 +45,18 @@ class App extends Component {
             return resp.json();
         }).then((items) => {
             this.setState({items: items});
+            let _districts = [];
+            let promise = new Promise((resolve, reject) => {
+                items.map((item, index) => {
+                    _districts.push(item.district);
+                });
+                resolve(_districts);
+            });
+
+            promise.then((_districts) => {
+                //removing duplicates
+                this.setState({districts: Array.from(new Set(_districts))});
+            });
         });
     }
 
@@ -100,7 +113,9 @@ class App extends Component {
             <div className="AppTemplate">
                 <div className="SplitMapTemplate mobile-header-padding map-view">
                     <Menu/>
-                    <Filter handleFilterCondition={this.handleFilterCondition.bind(this)}/>
+                    <Filter
+                        handleFilterCondition={this.handleFilterCondition.bind(this)}
+                        districts={this.state.districts}/>
                     <div className="map-wrapper right-sidebar-active">
                         <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}
                              hoveredMarkerId={this.state.itemHoveredId}/>

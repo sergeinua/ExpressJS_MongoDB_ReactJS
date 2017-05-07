@@ -137,6 +137,27 @@ class Filter extends Component {
                                     </span>
                                 </div>
                             </div>
+                            <div className="filter-criteria bed-option">
+                                <div className="Select-input-container">
+                                    <select className="Select-input Select-sm Select-no-label"
+                                            onChange={(event) => this.handleSelectChange('filterDistrict', event)}
+                                            value={this.state.filterDistrict}>
+                                        <option value="">District</option>
+                                        {this.props.districts ? (
+                                            this.props.districts.map((item, index) => {
+                                            return <option value={item}>{item}</option>
+                                        })
+                                        ):(null)}
+                                    </select>
+                                    <span className="Select-dropdown-arrow Select-sm">
+                                        <span style={spanStyle}>
+                                            <svg className="Svg" fill="currentColor" style={svgStyle} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                                                <path d="M95.87 25.42l-.12.11L50 70.46 4.26 25.55l-.12-.11a1.92 1.92 0 0 0-2.56.1A1.84 1.84 0 0 0 1.45 28l.12.12 47.07 46.32a1.94 1.94 0 0 0 2.71 0l47.1-46.24.12-.12a1.84 1.84 0 0 0-.1-2.51 1.92 1.92 0 0 0-2.56-.1z"/>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
                             <div className="filter-criteria search-alerts show-for-medium-up">
                                 <button className="Button Button-sm Button-primary"
                                         onClick={this.handleApplyFilters.bind(this)}>Apply filters</button>

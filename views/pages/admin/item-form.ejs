@@ -14,15 +14,21 @@
 
                         <form action="<%= data.formAction %>" method="<%= data.formMethod %>" class="clearfix">
                             <input id="pics" name="pics" value="<%= item.pics %>" hidden>
-                            <h4>Address</h4>
                             <div class="row">
                                 <div class="col-lg-10">
+                                    <h4>Address</h4>
                                     <input id="address" name="address" placeholder="address" value="<%= item.address %>">
                                 </div>
                                 <div class="col-lg-2">
                                     <div class="form-group input-group-lg">
                                         <button type="submit" class="btn btn-lg btn-success"><%= data.btnText %></button>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <h4>District</h4>
+                                    <input id="district" name="district" placeholder="district" value="<%= item.district %>">
                                 </div>
                             </div>
                             <h4>Coordinates</h4>
@@ -50,7 +56,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group input-group-lg">
-                                        <label>Beds</label>
+                                        <label>Rooms</label>
                                         <input type="text" name="rooms" placeholder="rooms" value="<%= item.rooms %>">
                                     </div>
                                 </div>

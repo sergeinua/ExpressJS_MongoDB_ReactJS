@@ -8,6 +8,7 @@ var itemSchema = mongoose.Schema({
     rooms: Number,
     sqft: Number,
     address: String,
+    district: String,
     description: String
 });
 

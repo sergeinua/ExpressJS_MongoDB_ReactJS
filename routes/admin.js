@@ -185,10 +185,10 @@ router.get('/item/create', function (req, res, next) {
             code: null,
             pics: null,
             price: null,
-            beds: null,
-            bath: null,
+            rooms: null,
             sqft: null,
             address: null,
+            district: null,
             description: null
         }),
         pics = null;
@@ -204,10 +204,10 @@ router.post('/item/create', function (req, res, next) {
         code: req.body.code,
         pics: req.body.pics,
         price: req.body.price,
-        beds: req.body.beds,
-        bath: req.body.bath,
+        rooms: req.body.rooms,
         sqft: req.body.sqft,
         address: req.body.address,
+        district: req.body.district,
         description: req.body.description
     });
     newItem.save(function (err, data) {
@@ -247,10 +247,10 @@ router.post('/item/:id', function (req, res, next) {
             item.code = req.body.code || item.code;
             item.pics = req.body.pics || item.pics;
             item.price = req.body.price || item.price;
-            item.beds = req.body.beds || item.beds;
-            item.bath = req.body.bath || item.bath;
+            item.rooms = req.body.rooms || item.rooms;
             item.sqft = req.body.sqft || item.sqft;
             item.address = req.body.address || item.address;
+            item.district = req.body.district || item.district;
             item.description = req.body.description || item.description;
 
             item.save(function (err, page) {

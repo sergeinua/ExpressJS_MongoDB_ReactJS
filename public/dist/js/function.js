@@ -67,7 +67,11 @@ function addMarker(location) {
     var _url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+
         coordinates.lat + ',' + coordinates.lng + '&sensor=true';
     $.get(_url, function (resp) {
-        $('#address').val(resp.results["0"].formatted_address);
+        console.log(resp);
+        //address string
+        $('#address').val(resp.results[0].formatted_address);
+        //district
+        $('#district').val(resp.results[1].address_components[0].long_name);
     });
 }
 // Sets the map on all markers in the array.
