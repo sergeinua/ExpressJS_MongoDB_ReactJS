@@ -26,6 +26,7 @@ class App extends Component {
 
     componentDidMount() {
         this.getItems();
+        this.getDistricts();
     }
 
     getItems() {
@@ -47,18 +48,6 @@ class App extends Component {
             return resp.json();
         }).then((items) => {
             this.setState({items: items});
-            let _districts = [];
-            let promise = new Promise((resolve, reject) => {
-                items.map((item, index) => {
-                    _districts.push(item.district);
-                });
-                resolve(_districts);
-            });
-
-            promise.then((_districts) => {
-                //removing duplicates
-                this.setState({districts: Array.from(new Set(_districts))});
-            });
         });
     }
 
@@ -106,6 +95,20 @@ class App extends Component {
 
         promise.then(() => {
             this.getItems();
+        });
+    }
+
+    getDistricts() {
+        fetch('/district', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }).then((resp) => {
+            return resp.json();
+        }).then((districts) => {
+            this.setState({districts: districts});
         });
     }
 

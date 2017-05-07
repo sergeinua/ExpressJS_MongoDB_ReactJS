@@ -27,20 +27,34 @@ router.post('/', function (req, res, next) {
         .where('rooms')
         .gt(req.body.filterMinRooms ? parseInt(req.body.filterMinRooms) - 1 : 0)
         .lt(req.body.filterMaxRooms ? parseInt(req.body.filterMaxRooms) + 1 : 10)
-        // .where('district').in(req.body.filterDistrict)
         .sort(req.body.sort)
         .exec(function (err, items) {
             if (err) {
                 res.status(500).send(err);
             }
-            console.log('items', items);
             res.status(200).send(JSON.stringify(items));
         });
 });
 
 //returns an array of existing districts
 router.post('/district', function (req, res, next) {
+    Item.find().exec(function (err, districts) {
+        if (err) {
+            res.status(500).send(err);
+        }
+        var result = [],
+            promise = new Promise((resolve, reject) => {
+                districts.map((item, index) => {
+                    result.push(item.district);
+                });
+                resolve(result);
+            });
 
+        promise.then((districts) => {
+            //removing duplicates
+            res.status(200).send(JSON.stringify(Array.from(new Set(districts))));
+        });
+    });
 });
 
 module.exports = router;
