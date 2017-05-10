@@ -13,12 +13,17 @@ class Filter extends Component {
     }
 
     handleSelectChange(filter, event) {
-        if (filter === 'filterDistrict' && event.target.value === '') {
-            this.setState({filterDistrict: this.props.districts});
-        } else {
-            this.setState({[filter]: event.target.value});
-        }
+        let promise = new Promise((resolve) => {
+            if (filter === 'filterDistrict' && event.target.value === '') {
+                resolve(this.setState({filterDistrict: this.props.districts}));
+            } else {
+                resolve(this.setState({[filter]: event.target.value}));
+            }
+        });
 
+        promise.then(() => {
+            this.handleApplyFilters();
+        });
     }
 
     handleApplyFilters() {
@@ -151,8 +156,8 @@ class Filter extends Component {
                                         <option value="">District</option>
                                         {this.props.districts ? (
                                             this.props.districts.map((item, index) => {
-                                            return <option value={item}>{item}</option>
-                                        })
+                                                return <option value={item}>{item}</option>
+                                            })
                                         ):(null)}
                                     </select>
                                     <span className="Select-dropdown-arrow Select-sm">
@@ -164,10 +169,10 @@ class Filter extends Component {
                                     </span>
                                 </div>
                             </div>
-                            <div className="filter-criteria search-alerts show-for-medium-up">
-                                <button className="Button Button-sm Button-primary"
-                                        onClick={this.handleApplyFilters.bind(this)}>Apply filters</button>
-                            </div>
+                            {/*<div className="filter-criteria search-alerts show-for-medium-up">*/}
+                                {/*<button className="Button Button-sm Button-primary"*/}
+                                        {/*onClick={this.handleApplyFilters.bind(this)}>Apply filters</button>*/}
+                            {/*</div>*/}
                         </div>
                     </nav>
                 </div>
