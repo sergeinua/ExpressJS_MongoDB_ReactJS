@@ -9,7 +9,8 @@ var itemSchema = mongoose.Schema({
     sqft: Number,
     address: String,
     district: String,
-    description: String
+    description: String,
+    type: String
 });
 
 var Item = mongoose.model("Item", itemSchema);

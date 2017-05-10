@@ -19,6 +19,11 @@ router.post('/', function (req, res, next) {
     } else {
         _filter = null;
     }
+    if (req.body.filterType && _filter) {
+        _filter.type = req.body.filterType;
+    } else if(req.body.filterType) {
+        _filter = {'type': req.body.filterType};
+    }
 
     Item.find(_filter)
         .where('price')

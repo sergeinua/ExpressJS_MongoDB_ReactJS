@@ -20,7 +20,8 @@ class App extends Component {
             filterMinPrice: null,
             filterMaxPrice: null,
             districts: null,
-            filterDistrict: null
+            filterDistrict: null,
+            filterType: null
         };
     }
 
@@ -42,7 +43,8 @@ class App extends Component {
                 filterMaxRooms: this.state.filterMaxRooms,
                 filterMinPrice: this.state.filterMinPrice,
                 filterMaxPrice: this.state.filterMaxPrice,
-                filterDistrict: this.state.filterDistrict
+                filterDistrict: this.state.filterDistrict,
+                filterType: this.state.filterType
             })
         }).then((resp) => {
             return resp.json();
@@ -88,7 +90,8 @@ class App extends Component {
                 filterMaxRooms: state.filterMaxRooms,
                 filterMinPrice: state.filterMinPrice,
                 filterMaxPrice: state.filterMaxPrice,
-                filterDistrict: state.filterDistrict
+                filterDistrict: state.filterDistrict,
+                filterType: state.filterType
             });
             resolve();
         });
