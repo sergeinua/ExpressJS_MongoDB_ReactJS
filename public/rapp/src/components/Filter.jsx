@@ -70,7 +70,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterType', event)}
                                             value={this.state.filterType}>
-                                        <option value="">Any</option>
+                                        <option value="">Type</option>
                                         <option value="rent">Rent</option>
                                         <option value="sale">Sale</option>
                                     </select>

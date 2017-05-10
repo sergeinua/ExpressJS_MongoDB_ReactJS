@@ -59,6 +59,17 @@
                                         <label>Rooms</label>
                                         <input type="text" name="rooms" placeholder="rooms" value="<%= item.rooms %>">
                                     </div>
+                                    <div class="form-group input-group-lg">
+                                        <label>Type</label>
+                                        <select name="type">
+                                            <% data.itemTypes.forEach(function(itemType) { %>
+                                                <% var selected = (item && itemType.type == item.type) ? 'selected' : ''  %>
+                                                <option value="<%= itemType.type %>" <%= selected %>>
+                                                    <%= itemType.label %>
+                                                </option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group input-group-lg">
@@ -102,14 +113,14 @@
                                 <h4>Gallery</h4>
                                 <% if (pics) { %>
                                 <% pics.forEach(function(pic) { %>
-                                <div class="col-lg-6">
-                                    <img class="img-responsive" src="/img/<%= pic %>" alt="Photo">
-                                </div>
+                                    <div class="col-lg-6">
+                                        <img class="img-responsive" src="/img/<%= pic %>" alt="Photo">
+                                    </div>
                                 <% }); %>
                                 <% } else { %>
-                                <div class="col-lg-6" id="empty-img">
-                                    <p>No photos yet.</p>
-                                </div>
+                                    <div class="col-lg-6" id="empty-img">
+                                        <p>No photos yet.</p>
+                                    </div>
                                 <% } %>
                             </div>
                         </div>

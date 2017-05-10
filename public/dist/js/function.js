@@ -67,7 +67,6 @@ function addMarker(location) {
     var _url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+
         coordinates.lat + ',' + coordinates.lng + '&sensor=true';
     $.get(_url, function (resp) {
-        console.log(resp);
         //address string
         $('#address').val(resp.results[0].formatted_address);
         //district

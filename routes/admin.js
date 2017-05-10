@@ -175,7 +175,9 @@ router.get('/item/create', function (req, res, next) {
             formAction: '/admin/item/create',
             formMethod: 'post',
             formTitle: 'Create item',
-            btnText: 'create'
+            btnText: 'create',
+            //TODO: move types to the settings collection
+            itemTypes: [{type: 'rent', label: 'Rent'}, {type: 'sale', label: 'Sale'}]
         },
         item = new Item({
             coordinates: {
@@ -208,7 +210,8 @@ router.post('/item/create', function (req, res, next) {
         sqft: req.body.sqft,
         address: req.body.address,
         district: req.body.district,
-        description: req.body.description
+        description: req.body.description,
+        type: req.body.type
     });
     newItem.save(function (err, data) {
         if (err) {
@@ -227,7 +230,9 @@ router.get('/item/:id', function (req, res, next) {
             formAction: '/admin/item/' + req.params.id,
             formMethod: 'post',
             formTitle: 'Update item',
-            btnText: 'update'
+            btnText: 'update',
+            //TODO: move types to the settings collection
+            itemTypes: [{type: 'rent', label: 'Rent'}, {type: 'sale', label: 'Sale'}]
         };
     Item.findById(req.params.id, function (err, item) {
         var pics = null;
@@ -252,6 +257,7 @@ router.post('/item/:id', function (req, res, next) {
             item.address = req.body.address || item.address;
             item.district = req.body.district || item.district;
             item.description = req.body.description || item.description;
+            item.type = req.body.type || item.type;
 
             item.save(function (err, page) {
                 if (err) {
