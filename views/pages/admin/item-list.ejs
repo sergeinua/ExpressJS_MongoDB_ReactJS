@@ -7,32 +7,66 @@
                 <div class="alert alert-success"><%= message %></div>
             <% } %>
             <div class="panel">
-                <h4>List of the items</h4>
+                <div class="container">
+                    <h4>List of the items</h4>
+                    <div class="row">
+                        <form action="" method="get">
+                            <div class="form-group input-group-lg">
+                                <div class="col-lg-2">
+                                    <select name="district">
+                                        <option value="">District</option>
+                                        <% filterDistrict.forEach(function(item) { %>
+                                            <% var selected = (_filter && _filter.district == item) ? 'selected' : ''  %>
+                                            <option value="<%= item %>" <%= selected %>>
+                                                <%= item %>
+                                            </option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group input-group-lg">
+                                <div class="col-lg-2">
+                                    <select name="rooms">
+                                        <option value="">Rooms</option>
+                                        <% filterRooms.forEach(function(item) { %>
+                                            <% var selected = (_filter && _filter.rooms == item) ? 'selected' : ''  %>
+                                            <option value="<%= item %>" <%= selected %>>
+                                                <%= item %>
+                                            </option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <button class="btn btn-success btn-xs" type="submit">Apply filter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
-                    <tr>
-                        <th>code</th>
-                        <th>price</th>
-                        <th>beds</th>
-                        <th>bath</th>
-                        <th>sqft</th>
-                        <th>address</th>
-                    </tr>
-                    <tr></tr>
+                        <tr>
+                            <th>code</th>
+                            <th>district</th>
+                            <th>price</th>
+                            <th>rooms</th>
+                            <th>sqft</th>
+                            <th>address</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <% items.forEach(function(item){ %>
-                        <tr onclick="window.document.location='/admin/item/<%= item._id %>';">
-                            <td><%= item.code %></td>
-                            <td><%= item.price %></td>
-                            <td><%= item.beds %></td>
-                            <td><%= item.bath %></td>
-                            <td><%= item.sqft %></td>
-                            <td><%= item.address %></td>
-                        </tr>
-                    <% }); %>
+                        <% items.forEach(function(item){ %>
+                            <tr onclick="window.document.location='/admin/item/<%= item._id %>';">
+                                <td><%= item.code %></td>
+                                <td><%= item.district %></td>
+                                <td><%= item.price %></td>
+                                <td><%= item.rooms %></td>
+                                <td><%= item.sqft %></td>
+                                <td><%= item.address %></td>
+                            </tr>
+                        <% }); %>
                     </tbody>
                 </table>
             </div>

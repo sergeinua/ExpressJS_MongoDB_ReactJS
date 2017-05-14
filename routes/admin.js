@@ -162,10 +162,36 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
 });
 //TODO: add auth after testing here
 router.get('/item/list',  function (req, res, next) {
-    var message = null;
-    Item.find(function (err, items) {
-        console.log('items', items);
-        res.render('pages/admin/item-list', { items: items, message: message });
+    var message = null,
+        _filter = null;
+    if (req.query.rooms && _filter) {
+        _filter.rooms = req.query.rooms;
+    } else if (req.query.rooms) {
+        _filter = {rooms: req.query.rooms};
+    }
+    if (req.query.district && _filter) {
+        _filter.district = req.query.district;
+    } else if (req.query.district) {
+        _filter = {district: req.query.district};
+    }
+    Item.find(_filter, function (err, items) {
+        return items;
+    }).then((items) => {
+        var filterDistrict = [],
+            filterRooms = [];
+        items.map((item) => {
+            filterDistrict.push(item.district);
+            filterRooms.push(item.rooms);
+        });
+        filterDistrict = Array.from(new Set(filterDistrict));
+        filterRooms = Array.from(new Set(filterRooms));
+        res.render('pages/admin/item-list', {
+            items: items,
+            message: message,
+            filterDistrict: filterDistrict.sort(),
+            filterRooms: filterRooms.sort(),
+            _filter: _filter
+        });
     });
 });
 //TODO: add auth after testing here
