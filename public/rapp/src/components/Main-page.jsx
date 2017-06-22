@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import './App.css';
-import Map from './components/Map';
-import ItemList from './components/Item-list';
-import Menu from './components/Menu';
-import Filter from './components/Filter';
-import FilterList from './components/Filter-list';
+import './Main-page.css';
+import Map from './Map';
+import ItemList from './Item-list';
+import Menu from './Menu';
+import Filter from './Filter';
+import FilterList from './Filter-list';
 
-class App extends Component {
+class MainPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -134,15 +134,15 @@ class App extends Component {
                             <div className="HybridMapPage-secondary-nav-wrapper">
                                 <div className="SecondaryNav SecondaryNav-fixed">
                                     <div className="SecondaryNav-breadcrumbs-wrapper Utils-text-overflow short">
-                                    <div className="AreaBreadcrumbs">
-                                        <ul className="HpBreadcrumb Utils-text-overflow">
-                                            <li className="HpBreadcrumb-item">
+                                        <div className="AreaBreadcrumbs">
+                                            <ul className="HpBreadcrumb Utils-text-overflow">
+                                                <li className="HpBreadcrumb-item">
                                                 <span className="TinyText">
                                                     <span className="link-style">Kiev</span>
                                                 </span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
                                     <span className="SecondaryNav-map-list-toggle">List</span>
@@ -159,4 +159,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default MainPage;
