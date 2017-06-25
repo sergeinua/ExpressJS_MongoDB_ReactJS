@@ -9,6 +9,9 @@ var Item = require('../models/item');
 router.get('/', function(req, res, next) {
     res.sendFile(path.join(__dirname + '/../public/rapp/build/index.html'));
 });
+router.get('/map', function(req, res, next) {
+    res.sendFile(path.join(__dirname + '/../public/rapp/build/index.html'));
+});
 
 //getting all item objects for further placing markers
 router.post('/', function (req, res, next) {

@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 
 class Menu extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {menuVisible: false};
+    }
+    handleHamburgerMenuClick() {
+        this.setState({menuVisible: !this.state.menuVisible});
+    }
+
     render() {
         return (
             <div className="HeaderNav">
                 <div className="HamburgerNav">
-                    <aside className="HamburgerNav-left">
+                    {this.state.menuVisible ? (
+                        <div className="HamburgerNav-cover"
+                             onClick={this.handleHamburgerMenuClick.bind(this)}
+                             style={{cursor: 'default'}}></div>
+                    ) : (
+                        null
+                    )}
+                    <aside className={"HamburgerNav-left " + (this.state.menuVisible ? "HamburgerNav-left-visible" : "")}>
                         <div className="HamburgerNav-menu">
                             <div className="HamburgerNav-logo-wrapper">
                                 <a className="Linker Linker-default" href="index.html">
@@ -172,7 +187,7 @@ class Menu extends Component {
                     <div className="HeaderNavMdAndUp show-for-medium-up">
                         <header>
                             <nav className="HeaderNavMdAndUp-header-nav">
-                                <a className="HeaderNavMdAndUp-menu-icon">
+                                <a className="HeaderNavMdAndUp-menu-icon" onClick={this.handleHamburgerMenuClick.bind(this)}>
                                     <span></span>
                                 </a>
                                 <div className="HeaderNavMdAndUp-logo-wrapper">
