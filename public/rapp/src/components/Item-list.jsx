@@ -63,12 +63,15 @@ class ItemList extends Component {
                     })}
                 </div>
             );
-        } else {
+        } else if (singleItem) {
             return (
                 <ItemDetails
                     handleCloseBtn={this.handleCloseBtn.bind(this)}
                     data={singleItem}/>
             );
+        } else {
+            //TODO: add loader here
+            return null;
         }
     }
 }
