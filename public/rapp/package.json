@@ -10,6 +10,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-hover-observer": "^1.1.1",
+    "react-loader": "^2.4.2",
     "react-responsive-carousel": "^3.1.15",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1"

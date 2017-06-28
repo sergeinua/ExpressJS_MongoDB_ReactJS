@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
 import './Main-page.css';
-import Map from './Map';
-import ItemList from './Item-list';
-import Menu from './Menu';
-import Filter from './Filter';
-import FilterList from './Filter-list';
+import Map from '../components/Map';
+import ItemList from '../components/Item-list';
+import Menu from '../components/Menu';
+import Filter from '../components/Filter';
+import FilterList from '../components/Filter-list';
+import Loader from '../components/Loader';
+import ItemListSkeleton from '../components/Item-list-skeleton';
 
 class MainPage extends Component {
     constructor(props) {

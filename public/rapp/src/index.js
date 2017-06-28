@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import HomePage from './components/Home-page';
-import MainPage from './components/Main-page';
+import HomePage from './pages/Home-page';
+import MainPage from './pages/Main-page';
 
 ReactDOM.render(
     <Router>
