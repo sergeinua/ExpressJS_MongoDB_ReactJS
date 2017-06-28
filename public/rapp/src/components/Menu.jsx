@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Menu extends Component {
     constructor(props) {
@@ -191,82 +192,84 @@ class Menu extends Component {
                                     <span></span>
                                 </a>
                                 <div className="HeaderNavMdAndUp-logo-wrapper">
-                                    <a className="Linker Linker-default" href="index.html">
-                                        <img className="HeaderNavMdAndUp-logo" src="img/hotpadsLogoHorizontal.svg" />
-                                    </a>
+                                    <Link to="/" className="Linker Linker-default" >
+                                        {/*<a className="Linker Linker-default" href="index.html">*/}
+                                            <img className="HeaderNavMdAndUp-logo" src="img/hotpadsLogoHorizontal.svg" />
+                                        {/*</a>*/}
+                                    </Link>
                                 </div>
-                                <div className="HeaderNavMenuItem">
-                                    <a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">For rent</a>
-                                    <div className="rent-drop-down HeaderDropdown">
-                                        <span className="HeaderDropdown-up-arrow"></span>
-                                        <ul className="HeaderDropdown-items">
-                                            <div className="HeaderNav-LocationHeader">San Francisco</div>
-                                            <a className="Linker Linker-default" href="apartments-for-rent.html">
-                                                <li>Apartments for Rent</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="houses-for-rent.html">
-                                                <li>Houses for Rent</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="condos-for-rent.html">
-                                                <li>Condos for Rent</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="townhomes-for-rent.html">
-                                                <li>Townhomes for Rent</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="duplexes-for-rent.html">
-                                                <li>Duplexes for Rent</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="corporate-housing.html">
-                                                <li>Corporate Housing for Rent</li>
-                                            </a>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="HeaderNavMenuItem">
-                                    <a className="Linker Linker HeaderNavMenuItem-item active Linker-default" href="#">For sale</a>
-                                    <div className="sale-drop-down HeaderDropdown">
-                                        <span className="HeaderDropdown-up-arrow"></span>
-                                        <ul className="HeaderDropdown-items">
-                                            <div className="HeaderNav-LocationHeader">San Francisco</div>
-                                            <a className="Linker Linker-default" href="homes-for-sale.html">
-                                                <li>Homes for Sale</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="land-for-sale.html">
-                                                <li>Lots and Land for Sale</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="condos-for-sale.html">
-                                                <li>Condos for Sale</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="townhomes-for-sale.html">
-                                                <li>Townhomes for Sale</li>
-                                            </a>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="HeaderNavMenuItem">
-                                    <a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">Explore</a>
-                                    <div className="explore-drop-down HeaderDropdown">
-                                        <span className="HeaderDropdown-up-arrow"></span>
-                                        <ul className="HeaderDropdown-items">
-                                            <a className="Linker Linker-default" href="#">
-                                                <li>Homes for Sale in San Jose</li>
-                                            </a>
-                                            <a className="Linker Linker-default" href="#">
-                                                <li>Homes for Sale in Sacramento</li>
-                                            </a>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="HeaderNavMdAndUp-lg-and-up">
-                                    <div className="HeaderNavMenuItem">
-                                        <a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginDashboard.html">Dashboard</a>
-                                    </div>
-                                </div>
-                                <div className="HeaderNavMdAndUp-lg-and-up">
-                                    <div className="HeaderNavMenuItem">
-                                        <a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginAddPost.html">Post to HotPads</a>
-                                    </div>
-                                </div>
+                                {/*<div className="HeaderNavMenuItem">*/}
+                                    {/*<a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">For rent</a>*/}
+                                    {/*<div className="rent-drop-down HeaderDropdown">*/}
+                                        {/*<span className="HeaderDropdown-up-arrow"></span>*/}
+                                        {/*<ul className="HeaderDropdown-items">*/}
+                                            {/*<div className="HeaderNav-LocationHeader">San Francisco</div>*/}
+                                            {/*<a className="Linker Linker-default" href="apartments-for-rent.html">*/}
+                                                {/*<li>Apartments for Rent</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="houses-for-rent.html">*/}
+                                                {/*<li>Houses for Rent</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="condos-for-rent.html">*/}
+                                                {/*<li>Condos for Rent</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="townhomes-for-rent.html">*/}
+                                                {/*<li>Townhomes for Rent</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="duplexes-for-rent.html">*/}
+                                                {/*<li>Duplexes for Rent</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="corporate-housing.html">*/}
+                                                {/*<li>Corporate Housing for Rent</li>*/}
+                                            {/*</a>*/}
+                                        {/*</ul>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                                {/*<div className="HeaderNavMenuItem">*/}
+                                    {/*<a className="Linker Linker HeaderNavMenuItem-item active Linker-default" href="#">For sale</a>*/}
+                                    {/*<div className="sale-drop-down HeaderDropdown">*/}
+                                        {/*<span className="HeaderDropdown-up-arrow"></span>*/}
+                                        {/*<ul className="HeaderDropdown-items">*/}
+                                            {/*<div className="HeaderNav-LocationHeader">San Francisco</div>*/}
+                                            {/*<a className="Linker Linker-default" href="homes-for-sale.html">*/}
+                                                {/*<li>Homes for Sale</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="land-for-sale.html">*/}
+                                                {/*<li>Lots and Land for Sale</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="condos-for-sale.html">*/}
+                                                {/*<li>Condos for Sale</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="townhomes-for-sale.html">*/}
+                                                {/*<li>Townhomes for Sale</li>*/}
+                                            {/*</a>*/}
+                                        {/*</ul>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                                {/*<div className="HeaderNavMenuItem">*/}
+                                    {/*<a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="#">Explore</a>*/}
+                                    {/*<div className="explore-drop-down HeaderDropdown">*/}
+                                        {/*<span className="HeaderDropdown-up-arrow"></span>*/}
+                                        {/*<ul className="HeaderDropdown-items">*/}
+                                            {/*<a className="Linker Linker-default" href="#">*/}
+                                                {/*<li>Homes for Sale in San Jose</li>*/}
+                                            {/*</a>*/}
+                                            {/*<a className="Linker Linker-default" href="#">*/}
+                                                {/*<li>Homes for Sale in Sacramento</li>*/}
+                                            {/*</a>*/}
+                                        {/*</ul>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                                {/*<div className="HeaderNavMdAndUp-lg-and-up">*/}
+                                    {/*<div className="HeaderNavMenuItem">*/}
+                                        {/*<a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginDashboard.html">Dashboard</a>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                                {/*<div className="HeaderNavMdAndUp-lg-and-up">*/}
+                                    {/*<div className="HeaderNavMenuItem">*/}
+                                        {/*<a className="Linker Linker HeaderNavMenuItem-item Linker-default" href="loginAddPost.html">Post to HotPads</a>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
                             </nav>
                         </header>
                     </div>

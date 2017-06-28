@@ -88,7 +88,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterMinPrice', event)}
                                             value={this.state.filterMinPrice}>
-                                        <option value="">Min price</option>
+                                        <option value="">Min цена</option>
                                         <option value="3000">3000</option>
                                         <option value="5000">5000</option>
                                         <option value="7000">7000</option>
@@ -109,7 +109,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterMaxPrice', event)}
                                             value={this.state.filterMaxPrice}>
-                                        <option value="">Max price</option>
+                                        <option value="">Max цена</option>
                                         <option value="3000">3000</option>
                                         <option value="5000">5000</option>
                                         <option value="7000">7000</option>
@@ -130,7 +130,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterMinRooms', event)}
                                             value={this.state.filterMinRooms}>
-                                        <option value="">Min rooms</option>
+                                        <option value="">Min комнат</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -151,7 +151,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterMaxRooms', event)}
                                             value={this.state.filterMaxRooms}>
-                                        <option value="">Max rooms</option>
+                                        <option value="">Max комнат</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -172,7 +172,7 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterDistrict', event)}
                                             value={this.state.filterDistrict}>
-                                        <option value="">District</option>
+                                        <option value="">Район</option>
                                         {this.props.districts ? (
                                             this.props.districts.map((item, index) => {
                                                 return <option value={item}>{item}</option>

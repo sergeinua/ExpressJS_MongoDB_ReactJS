@@ -8,13 +8,13 @@
             <% } %>
             <div class="panel">
                 <div class="container">
-                    <h4>List of the items</h4>
+                    <h4>Список объектов</h4>
                     <div class="row">
                         <form action="" method="get">
                             <div class="form-group input-group-lg">
                                 <div class="col-lg-2">
                                     <select name="district">
-                                        <option value="">District</option>
+                                        <option value="">Район</option>
                                         <% filterDistrict.forEach(function(item) { %>
                                             <% var selected = (_filter && _filter.district == item) ? 'selected' : ''  %>
                                             <option value="<%= item %>" <%= selected %>>
@@ -27,7 +27,7 @@
                             <div class="form-group input-group-lg">
                                 <div class="col-lg-2">
                                     <select name="rooms">
-                                        <option value="">Rooms</option>
+                                        <option value="">Комнат</option>
                                         <% filterRooms.forEach(function(item) { %>
                                             <% var selected = (_filter && _filter.rooms == item) ? 'selected' : ''  %>
                                             <option value="<%= item %>" <%= selected %>>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-1">
-                                <button class="btn btn-success btn-xs" type="submit">Apply filter</button>
+                                <button class="btn btn-success btn-xs" type="submit">Отфильтровать</button>
                             </div>
                         </form>
                     </div>
@@ -48,12 +48,12 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>code</th>
-                            <th>district</th>
-                            <th>price</th>
-                            <th>rooms</th>
-                            <th>sqft</th>
-                            <th>address</th>
+                            <th>код</th>
+                            <th>район</th>
+                            <th>цена</th>
+                            <th>комнат</th>
+                            <th>площадь</th>
+                            <th>адрес</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -30,12 +30,12 @@ class FilterList extends Component {
                             <select className="Select-input Select-sm Select-no-label"
                                     onChange={this.handleSelectChange.bind(this)}
                                     value={this.state.value}>
-                                <option value="">Recommended</option>
-                                <option value="activated">Newest</option>
-                                <option value="weekViews">Most Viewed</option>
-                                <option value="photoCount">Photo Count</option>
-                                <option value="-price">High Price</option>
-                                <option value="price">Low Price</option>
+                                <option value="">Рекомендуемые</option>
+                                <option value="activated">Последние</option>
+                                <option value="weekViews">Популярные</option>
+                                <option value="photoCount">Количество фото</option>
+                                <option value="-price">Макс цена</option>
+                                <option value="price">Мин цена</option>
                             </select>
                             <span className="Select-dropdown-arrow Select-sm">
                                 <span style={spanStyle}>

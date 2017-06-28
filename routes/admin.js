@@ -200,10 +200,10 @@ router.get('/item/create', function (req, res, next) {
         data = {
             formAction: '/admin/item/create',
             formMethod: 'post',
-            formTitle: 'Create item',
-            btnText: 'create',
+            formTitle: 'Добавить объект',
+            btnText: 'создать',
             //TODO: move types to the settings collection
-            itemTypes: [{type: 'rent', label: 'Rent'}, {type: 'sale', label: 'Sale'}]
+            itemTypes: [{type: 'rent', label: 'Аренда'}, {type: 'sale', label: 'Продажа'}]
         },
         item = new Item({
             coordinates: {
@@ -255,10 +255,10 @@ router.get('/item/:id', function (req, res, next) {
         data = {
             formAction: '/admin/item/' + req.params.id,
             formMethod: 'post',
-            formTitle: 'Update item',
-            btnText: 'update',
+            formTitle: 'Редактировать данные',
+            btnText: 'обновить',
             //TODO: move types to the settings collection
-            itemTypes: [{type: 'rent', label: 'Rent'}, {type: 'sale', label: 'Sale'}]
+            itemTypes: [{type: 'rent', label: 'Аренда'}, {type: 'sale', label: 'Продажа'}]
         };
     Item.findById(req.params.id, function (err, item) {
         var pics = null;

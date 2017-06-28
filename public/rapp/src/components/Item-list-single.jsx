@@ -67,7 +67,12 @@ class ItemListSingle extends Component {
                                         <span>{this.state.city},</span>
                                         <span>{this.state.country}</span>
                                     </p>
-                                    <p className="keyword Utils-text-overflow">Apartments For Rent</p>
+                                    {this.props.data.type == 'rent' &&
+                                        <p className="keyword Utils-text-overflow">Продажа</p>
+                                    }
+                                    {this.props.data.type == 'sale' &&
+                                        <p className="keyword Utils-text-overflow">Аренда</p>
+                                    }
                                 </div>
                                 <div className="content-right">
                                     <div className="min-price">
