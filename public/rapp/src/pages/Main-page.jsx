@@ -6,8 +6,6 @@ import ItemList from '../components/Item-list';
 import Menu from '../components/Menu';
 import Filter from '../components/Filter';
 import FilterList from '../components/Filter-list';
-import Loader from '../components/Loader';
-import ItemListSkeleton from '../components/Item-list-skeleton';
 
 class MainPage extends Component {
     constructor(props) {
@@ -33,6 +31,7 @@ class MainPage extends Component {
     }
 
     getItems() {
+        //show item list skeleton
         fetch('/', {
             method: 'POST',
             headers: {

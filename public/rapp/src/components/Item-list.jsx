@@ -3,6 +3,8 @@ import ReactHoverObserver from 'react-hover-observer';
 
 import ItemListSingle from './Item-list-single';
 import ItemDetails from './Item-details';
+import ItemListSkeleton from './Item-list-skeleton';
+import Loader from './Loader';
 
 class ItemList extends Component {
     constructor(props) {
@@ -70,8 +72,12 @@ class ItemList extends Component {
                     data={singleItem}/>
             );
         } else {
-            //TODO: add loader here
-            return null;
+            return (
+                <div>
+                    <ItemListSkeleton/>
+                    <Loader/>
+                </div>
+            );
         }
     }
 }

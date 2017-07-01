@@ -70,9 +70,9 @@ class Filter extends Component {
                                     <select className="Select-input Select-sm Select-no-label"
                                             onChange={(event) => this.handleSelectChange('filterType', event)}
                                             value={this.state.filterType}>
-                                        <option value="">Type</option>
-                                        <option value="rent">Rent</option>
-                                        <option value="sale">Sale</option>
+                                        <option value="">Тип</option>
+                                        <option value="rent">Аренда</option>
+                                        <option value="sale">Продажа</option>
                                     </select>
                                     <span className="Select-dropdown-arrow Select-sm">
                                         <span style={spanStyle}>
