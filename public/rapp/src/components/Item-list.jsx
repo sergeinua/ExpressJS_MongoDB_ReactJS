@@ -16,12 +16,12 @@ class ItemList extends Component {
     }
 
     handleItemClick(item) {
-        this.setState({singleItem: item});
+        this.props.handleSingleItemClick(item);
     }
 
     handleCloseBtn() {
-        this.setState({singleItem: null});
         this.itemUnHovered();
+        this.props.handleSingleItemClick(null);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -29,7 +29,7 @@ class ItemList extends Component {
         let _items = this.state.items;
         if (_items) {
             _items.map((item, index) => {
-                if (item._id == nextProps.singleItemId) {
+                if (item._id == nextProps.singleItem) {
                     this.setState({singleItem: _items[index]});
                 }
             });
@@ -46,7 +46,7 @@ class ItemList extends Component {
 
     render() {
         let items = this.state.items,
-            singleItem = this.state.singleItem;
+            singleItem = this.props.singleItem;
 
         if (items && !singleItem) {
             return (

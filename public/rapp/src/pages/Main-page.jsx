@@ -55,7 +55,11 @@ class MainPage extends Component {
     }
 
     handleMarkerClick (key, childProps) {
-        this.setState({singleItemId: childProps.id});
+        this.state.items.map((item) => {
+            if (childProps.id == item._id) {
+                this.setState({singleItem: item});
+            }
+        });
         this.handleItemHover(childProps.id);
     }
 
@@ -116,6 +120,14 @@ class MainPage extends Component {
         });
     }
 
+    handleSingleItemClick(state) {
+        this.setState({singleItem: state});
+    }
+
+    handleCloseSingleItem() {
+        this.setState({singleItem: null});
+    }
+
     render() {
         const center = {lat: 50.424, lng: 30.569};
 
@@ -123,12 +135,17 @@ class MainPage extends Component {
             <div className="AppTemplate">
                 <div className="SplitMapTemplate mobile-header-padding map-view">
                     <Menu/>
-                    <Filter
-                        handleFilterCondition={this.handleFilterCondition.bind(this)}
-                        districts={this.state.districts}/>
+                    <div className={window.innerWidth < 768 ? "Row" : ""}>
+                        <Filter
+                            handleFilterCondition={this.handleFilterCondition.bind(this)}
+                            districts={this.state.districts}/>
+                    </div>
                     <div className="map-wrapper right-sidebar-active">
-                        <Map center={center} markers={this.state.items} handleMarkerClick={this.handleMarkerClick.bind(this)}
+                        {window.innerWidth > 767 &&
+                        <Map center={center} markers={this.state.items}
+                             handleMarkerClick={this.handleMarkerClick.bind(this)}
                              hoveredMarkerId={this.state.itemHoveredId}/>
+                        }
                     </div>
                     <div className="right-sidebar right-sidebar-active" id="right-sidebar">
                         <div className="HybridMapPage" id="HybridMapPage">
@@ -146,12 +163,18 @@ class MainPage extends Component {
                                         </div>
                                     </div>
                                     <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
-                                    <span className="SecondaryNav-map-list-toggle">List</span>
+                                    {this.state.singleItem &&
+                                    <span className="SecondaryNav-map-list-toggle"
+                                          onClick={this.handleCloseSingleItem.bind(this)}>List</span>
+                                    }
                                 </div>
                             </div>
-                            <ItemList singleItemId={this.state.singleItemId} items={this.state.items}
-                                      handleItemHover={this.handleItemHover.bind(this)}
-                                      handleItemUnHover={this.handleItemUnHover.bind(this)}/>
+                            <ItemList
+                                handleSingleItemClick={this.handleSingleItemClick.bind(this)}
+                                singleItem={this.state.singleItem}
+                                items={this.state.items}
+                                handleItemHover={this.handleItemHover.bind(this)}
+                                handleItemUnHover={this.handleItemUnHover.bind(this)}/>
                         </div>
                     </div>
                 </div>
