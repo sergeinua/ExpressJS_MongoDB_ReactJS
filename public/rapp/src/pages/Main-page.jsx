@@ -162,7 +162,12 @@ class MainPage extends Component {
                                             </ul>
                                         </div>
                                     </div>
+                                    <div className="SecondaryNav-close-btn">
+                                        <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Close</button>
+                                    </div>
+                                    {!this.state.singleItem &&
                                     <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
+                                    }
                                     {this.state.singleItem &&
                                     <span className="SecondaryNav-map-list-toggle"
                                           onClick={this.handleCloseSingleItem.bind(this)}>List</span>
