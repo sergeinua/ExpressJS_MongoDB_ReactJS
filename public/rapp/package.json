@@ -7,8 +7,9 @@
   },
   "dependencies": {
     "google-map-react": "^0.24.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.1",
+    "react-dom": "^15.6.1",
     "react-hover-observer": "^1.1.1",
     "react-loader": "^2.4.2",
     "react-responsive-carousel": "^3.1.15",
