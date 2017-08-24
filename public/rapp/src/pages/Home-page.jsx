@@ -30,12 +30,15 @@ class HomePage extends Component {
     handleDistrictItemClick(districtName) {
         let district = districtName.replace(' ', '+'),
             url = `https://maps.googleapis.com/maps/api/geocode/json?address=${district}&key=AIzaSyB4MDQL1d2dTKJQBq-alxGtbE8mCu-CLDk&language=ru`;
-        console.log(url);
         fetch(url)
             .then(resp => resp.json())
             .then((resp) => {
                 console.log('resp',resp)
             });
+    }
+
+    handleAllDistrictsClick() {
+
     }
 
     render() {
@@ -55,15 +58,15 @@ class HomePage extends Component {
                     <div className="HomeHero-hero-wrapper">
                         <div className="HomeHero-hero" style={divStyle}>
                             {this.state.districts.length > 0 &&
-                                <div className="Row">
-                                    <ButtonGroup>
-                                        <DropdownButton title="Dropdown" id="bg-nested-dropdown">
-                                            {this.state.districts.map((district) => {
-                                                return (<MenuItem
-                                                            onClick={() => this.handleDistrictItemClick(district)}>{district}</MenuItem>);
-                                            })}
-                                        </DropdownButton>
-                                    </ButtonGroup>
+                                <div className="Row text-center">
+                                    <DropdownButton title="Выбрать район" id="bg-nested-dropdown">
+                                        {this.state.districts.map((district) => {
+                                            return (<MenuItem
+                                                        onClick={() => this.handleDistrictItemClick(district)}>{district}</MenuItem>);
+                                        })}
+                                    </DropdownButton>
+                                    <span>или</span>
+                                    <Button onClick={this.handleAllDistrictsClick}>Посмотреть все районы</Button>
                                 </div>
                             }
                         </div>
