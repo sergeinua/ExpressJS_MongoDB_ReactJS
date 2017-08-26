@@ -156,14 +156,14 @@ class MainPage extends Component {
                                             <ul className="HpBreadcrumb Utils-text-overflow">
                                                 <li className="HpBreadcrumb-item">
                                                 <span className="TinyText">
-                                                    <span className="link-style">Kiev</span>
+                                                    <span className="link-style">Киев</span>
                                                 </span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div className="SecondaryNav-close-btn">
-                                        <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Close</button>
+                                        <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Закрыть</button>
                                     </div>
                                     {!this.state.singleItem &&
                                     <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>

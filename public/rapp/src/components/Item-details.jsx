@@ -5,6 +5,8 @@ import CarouselContainer from './Carousel-container';
 class ItemDetails extends Component {
 
     render() {
+        let address = this.props.data.address.split(',');
+
         return (
             <div className="ListingPage" id="ListingPage">
                 <div className="secondary-nav-wrapper">
@@ -15,7 +17,7 @@ class ItemDetails extends Component {
                             </div>
                         </div>
                         <div className="SecondaryNav-close-btn">
-                            <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Close</button>
+                            <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Закрыть</button>
                         </div>
                     </div>
                 </div>
@@ -30,17 +32,17 @@ class ItemDetails extends Component {
                             <div className="Row">
                                 <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
                                     <div className="FloorplanPricePreview">
-                                        <span className="Text Utils-accent-dark Text-tiny">Price</span>
+                                        <span className="Text Utils-accent-dark Text-tiny">Стоимость</span>
                                         <div>
-                                            <h3 className="Text Text-sm">$2,995</h3>
+                                            <h3 className="Text Text-sm">{this.props.data.price} грн.</h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="MultiModelHdpHeader-block" style={{width: 33.3333 + '%', display: 'inline-block'}}>
                                     <div className="FloorplanPricePreview">
-                                        <span className="Text Utils-accent-dark Text-tiny">District</span>
+                                        <span className="Text Utils-accent-dark Text-tiny">Район</span>
                                         <div>
-                                            <h3 className="Text Text-sm">Pechersky</h3>
+                                            <h3 className="Text Text-sm">{this.props.data.district.replace('район', '')}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -53,12 +55,12 @@ class ItemDetails extends Component {
                                 <div className="Row">
                                     <div className="HdpAddress-address-wrapper">
                                         <h1 className="Text HdpAddress-title Text-sm">
-                                            <div className="Utils-text-overflow">1660 Bay Street</div>
+                                            <div className="Utils-text-overflow">{address[0]}</div>
                                             <div className="Utils-text-overflow Utils-accent-dark">
                                                 <span>
-                                                    <span itemprop="addressLocality">San Francisco</span>
-                                                    <span itemprop="addressRegion"> CA</span>
-                                                    <span itemprop="postalCode"> 94123</span>
+                                                    {/*<span itemprop="addressLocality"></span>*/}
+                                                    <span itemprop="addressRegion">{address[1]}</span>
+                                                    <span itemprop="postalCode">{address[2]}</span>
                                                 </span>
                                             </div>
                                         </h1>
