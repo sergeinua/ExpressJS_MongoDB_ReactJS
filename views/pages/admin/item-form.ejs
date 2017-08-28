@@ -74,6 +74,17 @@
                                         <label>Площадь</label>
                                         <input type="text" name="sqft" placeholder="sqft" value="<%= item.sqft %>">
                                     </div>
+                                    <div class="form-group input-group-lg">
+                                        <label>Агент</label>
+                                        <select name="agentId">
+                                            <% agents.forEach(function(agent) { %>
+                                                <% var selected = (item && agent._id == item.agentId) ? 'selected' : ''  %>
+                                                <option value="<%= agent._id %>" <%= selected %>>
+                                                    <%= agent.surname %> <%= agent.name %>
+                                                </option>
+                                            <% }); %>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <h4>Описание</h4>

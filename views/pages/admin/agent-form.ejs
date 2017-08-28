@@ -1,0 +1,63 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="container spark-screen">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><%= data.formTitle %></div>
+                    <div class="panel-body">
+                        <% if (message) { %>
+                            <div class="alert alert-danger"><%= message %></div>
+                        <% } %>
+                        <form action="<%= data.formAction %>" method="<%= data.formMethod %>" class="clearfix">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Фамилия:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-fw fa-user"></i>
+                                            </div>
+                                            <input type="text" name="name" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Имя:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-fw fa-user"></i>
+                                            </div>
+                                            <input type="text" name="surname" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Номер телефона:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <input type="text" name="telNum" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button class="btn btn-sm btn-success pull-right">Save</button>
+                                    <a href="/admin/agent/list" class="btn btn-sm btn-danger pull-right btn-cancel">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/admin-footer.ejs %>

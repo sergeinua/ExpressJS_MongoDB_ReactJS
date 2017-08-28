@@ -1,0 +1,38 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="row">
+        <div class="md-6">
+            <% if (message) { %>
+            <div class="alert alert-success"><%= message %></div>
+            <% } %>
+            <div class="panel">
+                <div class="container">
+                    <h4>Список агентов</h4>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>фамилия</th>
+                        <th>имя</th>
+                        <th>номер телефона</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% agents.forEach(function(agent){ %>
+                            <tr onclick="window.document.location='/admin/agent/<%= agent._id %>';">
+                                <td><%= agent.surname %></td>
+                                <td><%= agent.name %></td>
+                                <td><%= agent.telNum %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/admin-footer.ejs %>

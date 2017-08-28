@@ -82,21 +82,14 @@ class ItemDetails extends Component {
                                 <div className="HdpContentWrapper-header">
                                     <div className="HdpContentWrapper-left">
                                         <div className="HdpContentWrapper-title">
-                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Description</span>
+                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Описание</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="HdpContentWrapper-content">
                                 <div className="Container Container-md">
-                                    <div id="HdpDescriptionContent">Brimming with vibrant details,
-                                        this beautiful Marina retreat draws inspiration from
-                                        colonial Mexico. From the Spanish tile roof to lobby
-                                        Mariachi murals, there is more than a little south of the
-                                        border charm to go around. These apartments boast above
-                                        average dimensions we re talking living room concert huge.
-                                        Invite your whole crew for taco night.
-                                    </div>
+                                    <div id="HdpDescriptionContent">{this.props.data.description}</div>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +100,7 @@ class ItemDetails extends Component {
                                 <div className="HdpContentWrapper-header">
                                     <div className="HdpContentWrapper-left">
                                         <div className="HdpContentWrapper-title">
-                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Contact info</span>
+                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Контакт</span>
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +120,7 @@ class ItemDetails extends Component {
                                                         </div>
                                                         <div className="ContactListedBy-display-name-container">
                                                             <div>
-                                                                <div className="Utils-bold">Listed By:</div>
+                                                                <div className="Utils-bold">Агент:</div>
                                                                 <div>Leasing Agent</div>
                                                             </div>
                                                         </div>

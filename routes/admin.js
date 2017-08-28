@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var Page = require('../models/page');
 var User = require('../models/user');
 var Item = require('../models/item');
+var Agent = require('../models/agent');
 
 var multer  = require('multer');
 var storage = multer.diskStorage({
@@ -160,8 +161,8 @@ router.delete('/page/:id', isLogged, function (req, res, next) {
         res.status(200).send('Page deleted');
     });
 });
-//TODO: add auth after testing here
-router.get('/item/list',  function (req, res, next) {
+
+router.get('/item/list', isLogged,  function (req, res, next) {
     var message = null,
         _filter = null;
     if (req.query.rooms && _filter) {
@@ -194,8 +195,8 @@ router.get('/item/list',  function (req, res, next) {
         });
     });
 });
-//TODO: add auth after testing here
-router.get('/item/create', function (req, res, next) {
+
+router.get('/item/create', isLogged, function (req, res, next) {
     var message = null,
         data = {
             formAction: '/admin/item/create',
@@ -220,10 +221,20 @@ router.get('/item/create', function (req, res, next) {
             description: null
         }),
         pics = null;
-    res.render('pages/admin/item-form', { data: data, item: item, message: message, pics: pics });
+    Agent.find(function (err, agents) {
+        return agents;
+    }).then((agents) => {
+        res.render('pages/admin/item-form', {
+            data: data,
+            item: item,
+            message: message,
+            pics: pics,
+            agents: agents
+        });
+    });
 });
-//TODO: add auth after testing here
-router.post('/item/create', function (req, res, next) {
+
+router.post('/item/create', isLogged, function (req, res, next) {
     var newItem = new Item({
         coordinates: {
             lat: req.body.lat,
@@ -249,8 +260,8 @@ router.post('/item/create', function (req, res, next) {
         }
     });
 });
-//TODO: add auth after testing here
-router.get('/item/:id', function (req, res, next) {
+
+router.get('/item/:id', isLogged, function (req, res, next) {
     var message = null,
         data = {
             formAction: '/admin/item/' + req.params.id,
@@ -265,11 +276,21 @@ router.get('/item/:id', function (req, res, next) {
         if (item.pics.length > 0) {
             pics = item.pics.split(',');
         }
-        res.render('pages/admin/item-form', { data: data, item: item, message: message, pics: pics });
+        Agent.find(function (err, agents) {
+            return agents;
+        }).then((agents) => {
+            res.render('pages/admin/item-form', {
+                data: data,
+                item: item,
+                message: message,
+                pics: pics,
+                agents: agents
+            });
+        });
     });
 });
-//TODO: add auth after testing here
-router.post('/item/:id', function (req, res, next) {
+
+router.post('/item/:id', isLogged, function (req, res, next) {
     Item.findById(req.params.id, function (err, item) {
         if (err) {
             console.log('error', err);
@@ -284,6 +305,7 @@ router.post('/item/:id', function (req, res, next) {
             item.district = req.body.district || item.district;
             item.description = req.body.description || item.description;
             item.type = req.body.type || item.type;
+            item.agentId = req.body.agentId || item.agentId;
 
             item.save(function (err, page) {
                 if (err) {
@@ -301,6 +323,70 @@ router.delete('/item/:id', isLogged, function (req, res, next) {
     Item.findByIdAndRemove(req.params.id, function (err, page) {
         req.session.message = 'Item was successfully deleted';
         res.status(200).send('Item deleted');
+    });
+});
+
+router.get('/agent/list', isLogged, function (req, res, next) {
+    var message;
+    Agent.find(function (err, agents) {
+        return agents;
+    }).then((agents) => {
+        console.log('agents',agents);
+        res.render('pages/admin/agent-list', {
+            agents: agents,
+            message: message
+        });
+    });
+});
+
+router.get('/agent/create', isLogged, function (req, res, next) {
+    var message = null,
+        data = {
+            formAction: '/admin/agent/create',
+            formMethod: 'post',
+            formTitle: 'Добавить агента',
+            btnText: 'создать'
+        },
+        agent = new Agent({
+            name: null,
+            surname: null,
+            telNum: null
+        });
+    res.render('pages/admin/agent-form', {
+        data: data,
+        message: message,
+        agent: agent
+    });
+});
+
+router.post('/agent/create', isLogged, function (req, res, next) {
+    var newAgent = new Agent({
+        name: req.body.name,
+        surname: req.body.surname,
+        telNum: req.body.telNum
+
+    });
+    newAgent.save(function (err, data) {
+        if (err) {
+            console.log('Error while creating agent', err);
+            req.session.message = err;
+        } else {
+            req.session.message = 'Agent saved successfully';
+            res.redirect('/admin/agent/list');
+        }
+    });
+});
+
+router.get('/agent/:id', isLogged, function (req, res, next) {
+    var message = null,
+        data = {
+            formAction: '/admin/agent/' + req.params.id,
+            formMethod: 'post',
+            formTitle: 'Редактировать данные',
+            btnText: 'обновить'
+        };
+    Agent.findById(req.params.id, function (err, agent) {
+        res.render('pages/admin/agent-form', { data: data, agent: agent, message: message });
     });
 });
 

@@ -10,7 +10,8 @@ var itemSchema = mongoose.Schema({
     address: String,
     district: String,
     description: String,
-    type: String
+    type: String,
+    agentId: String
 });
 
 var Item = mongoose.model("Item", itemSchema);
