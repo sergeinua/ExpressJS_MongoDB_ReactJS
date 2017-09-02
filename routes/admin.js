@@ -390,4 +390,32 @@ router.get('/agent/:id', isLogged, function (req, res, next) {
     });
 });
 
+router.post('/agent/:id', isLogged, function (req, res, next) {
+    Agent.findById(req.params.id, function (err, agent) {
+        if (err) {
+            console.log('error', err);
+        } else {
+            agent.name = req.body.name || agent.name;
+            agent.surname = req.body.surname || agent.surname;
+            agent.telNum = req.body.telNum || agent.telNum;
+
+            agent.save(function (err, agent) {
+                if (err) {
+                    console.log('error', err);
+                } else {
+                    req.session.message = 'Agent\'s data has been updated successfully';
+                    res.redirect('/admin/agent/list');
+                }
+            });
+        }
+    });
+});
+
+router.delete('/agent/:id', isLogged, function (req, res, next) {
+    Agent.findByIdAndRemove(req.params.id, function (err, data) {
+        req.session.message = 'Agent has been successfully deleted';
+        res.status(200).send('Agent deleted');
+    });
+});
+
 module.exports = router;

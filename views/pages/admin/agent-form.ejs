@@ -19,7 +19,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-fw fa-user"></i>
                                             </div>
-                                            <input type="text" name="name" class="form-control">
+                                            <input type="text" name="name" class="form-control" value="<%= agent.name %>">
                                         </div>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-fw fa-user"></i>
                                             </div>
-                                            <input type="text" name="surname" class="form-control">
+                                            <input type="text" name="surname" class="form-control" value="<%= agent.surname %>">
                                         </div>
                                     </div>
                                 </div>
@@ -41,15 +41,18 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input type="text" name="telNum" class="form-control">
+                                            <input type="text" name="telNum" class="form-control" value="<%= agent.telNum %>">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <% if (agent.name) { %>
+                                        <button type="button" class="btn btn-sm btn-danger pull-left" onclick="deleteAgent('<%= agent._id %>')">Delete Agent</button>
+                                    <% } %>
                                     <button class="btn btn-sm btn-success pull-right">Save</button>
-                                    <a href="/admin/agent/list" class="btn btn-sm btn-danger pull-right btn-cancel">Cancel</a>
+                                    <a href="/admin/agent/list" class="btn btn-sm btn-primary pull-right btn-cancel">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -59,5 +62,17 @@
         </div>
     </div>
 </div>
+<script>
+    function deleteAgent(agentId) {
+        console.log(agentId);
+        $.ajax({
+            url: '/admin/agent/' + agentId,
+            method: 'delete',
+            success: function () {
+                window.location.replace('/admin/agent/list');
+            }
+        });
+    }
+</script>
 
 <% include ../../partials/admin-footer.ejs %>
