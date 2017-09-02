@@ -4,6 +4,23 @@ import CarouselContainer from './Carousel-container';
 
 class ItemDetails extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            agentData: null
+        };
+    }
+
+    getAgentData(agentId) {
+        fetch('/agent/' + agentId).then(resp => resp.json()).then(resp => {
+            this.setState({agentData: resp});
+        });
+    }
+
+    componentDidMount() {
+        this.getAgentData(this.props.data.agentId);
+    }
+
     render() {
         let address = this.props.data.address.split(',');
 
@@ -114,14 +131,18 @@ class ItemDetails extends Component {
                                                     <div className="ContactListedBy">
                                                         <div className="ContactListedBy-phone-container">
                                                             <div className="ContactListedBy-listedby-phone">
-                                                                <a className="ContactListedBy-listedby-phone-link"
-                                                                   href="tel://1-415-484-1481">1-415-484-1481</a>
+                                                                {this.state.agentData &&
+                                                                    <a className="ContactListedBy-listedby-phone-link"
+                                                                       href={"tel://" + this.state.agentData.telNum}>{this.state.agentData.telNum}</a>
+                                                                }
                                                             </div>
                                                         </div>
                                                         <div className="ContactListedBy-display-name-container">
                                                             <div>
                                                                 <div className="Utils-bold">Агент:</div>
-                                                                <div>Leasing Agent</div>
+                                                                {this.state.agentData &&
+                                                                    <div>{this.state.agentData.name} {this.state.agentData.surname}</div>
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>

@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 
 var Item = require('../models/item');
+var Agent = require('../models/agent');
 
 //home page
 router.get('/', function(req, res, next) {
@@ -62,6 +63,17 @@ router.post('/district', function (req, res, next) {
             //removing duplicates
             res.status(200).send(JSON.stringify(Array.from(new Set(districts))));
         });
+    });
+});
+
+//single agent's data
+router.get('/agent/:id', function (req, res, next) {
+    Agent.findById(req.params.id, function (err, agent) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).send(JSON.stringify(agent));
+        }
     });
 });
 
