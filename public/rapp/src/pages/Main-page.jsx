@@ -163,7 +163,7 @@ class MainPage extends Component {
                                         </div>
                                     </div>
                                     <div className="SecondaryNav-close-btn">
-                                        <button className="Button Button-sm Button-default" onClick={() => this.props.handleCloseBtn()}>Закрыть</button>
+                                        <button className="Button Button-sm Button-default" onClick={() => this.handleCloseSingleItem()}>Закрыть</button>
                                     </div>
                                     {!this.state.singleItem &&
                                     <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>

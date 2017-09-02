@@ -871,3 +871,13 @@ select.Select-sm { height:32px; padding:8px 30px 8px 8px; font-size:12px; }
     display: none;
   }
 }
+@media (min-width: 1200px) {
+  .SecondaryNav-fixed {
+    padding-right: 22px;
+  }
+}
+@media (min-width: 768px) {
+  .SecondaryNav-close-btn {
+    margin-right: 25px;
+  }
+}
