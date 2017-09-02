@@ -166,11 +166,11 @@ class MainPage extends Component {
                                         <button className="Button Button-sm Button-default" onClick={() => this.handleCloseSingleItem()}>Закрыть</button>
                                     </div>
                                     {!this.state.singleItem &&
-                                    <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
+                                        <FilterList handleFilterListSorting={this.handleFilterListSorting.bind(this)}/>
                                     }
                                     {this.state.singleItem &&
-                                    <span className="SecondaryNav-map-list-toggle"
-                                          onClick={this.handleCloseSingleItem.bind(this)}>List</span>
+                                        <span className="SecondaryNav-map-list-toggle"
+                                              onClick={this.handleCloseSingleItem.bind(this)}>List</span>
                                     }
                                 </div>
                             </div>

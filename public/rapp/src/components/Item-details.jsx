@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
 import CarouselContainer from './Carousel-container';
+import ContactForm from './Contact-form';
 
 class ItemDetails extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            agentData: null
+            agentData: null,
+            showContactForm: false
         };
     }
 
@@ -19,6 +21,15 @@ class ItemDetails extends Component {
 
     componentDidMount() {
         this.getAgentData(this.props.data.agentId);
+    }
+
+    handleContactFormVisibility(state = null) {
+        this.setState({showContactForm: (state !== null) ? state : !this.state.showContactForm});
+    }
+
+    handleSubmitForm(formData) {
+        console.log('formData',formData);
+        this.handleContactFormVisibility(false);
     }
 
     render() {
@@ -89,7 +100,8 @@ class ItemDetails extends Component {
                     <div className="ContactButton">
                         <div className="Container Container-md">
                             <div className="Row">
-                                <button className="Button Button-md Button-primary Button-full">Contact!</button>
+                                <button type="button" className="Button Button-md Button-primary Button-full"
+                                        onClick={() => this.handleContactFormVisibility(true)}>Contact!</button>
                             </div>
                         </div>
                     </div>
@@ -147,7 +159,11 @@ class ItemDetails extends Component {
                                                         </div>
                                                     </div>
                                                     <div className="HdpForm-Contact-content">
-                                                        {/*<!-- =======================================================FORM HERE -->*/}
+                                                        {this.state.showContactForm &&
+                                                            <ContactForm
+                                                                handleSubmitForm={this.handleSubmitForm.bind(this)}
+                                                                handleCancelForm={() => this.handleContactFormVisibility(false)}/>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>

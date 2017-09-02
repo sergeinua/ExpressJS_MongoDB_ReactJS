@@ -881,3 +881,12 @@ select.Select-sm { height:32px; padding:8px 30px 8px 8px; font-size:12px; }
     margin-right: 25px;
   }
 }
+input.contactFormInput,
+textarea.contactFormInput {
+  border: 1px solid #35cdb8;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+textarea.contactFormInput {
+  margin-left: 0;
+}
