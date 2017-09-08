@@ -32,7 +32,9 @@ class ContactForm extends Component {
                     name: this.state.name,
                     telephone: this.state.telephone,
                     email: this.state.email,
-                    message: this.state.message
+                    message: this.state.message,
+                    itemId: this.props.itemId,
+                    agentId: this.props.agentId
                 })
             }).then((resp) => {
                 this.setState({isSending: false});

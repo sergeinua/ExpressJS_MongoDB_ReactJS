@@ -4,7 +4,9 @@ var messageSchema = mongoose.Schema({
     name: String,
     telephone: String,
     email: String,
-    message: String
+    message: String,
+    agentId: String,
+    itemId: String
 });
 
 var Message = mongoose.model("Message", messageSchema);

@@ -84,7 +84,9 @@ router.post('/message', function (req, res, next) {
         name: req.body.name,
         telephone: req.body.telephone,
         email: req.body.email,
-        message: req.body.message
+        message: req.body.message,
+        itemId: req.body.itemId,
+        agentId: req.body.agentId
     });
     newMessage.save(function (err, data) {
         if (err) {

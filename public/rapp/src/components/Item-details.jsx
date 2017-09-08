@@ -156,6 +156,8 @@ class ItemDetails extends Component {
                                                     <div className="HdpForm-Contact-content">
                                                         {this.state.showContactForm &&
                                                             <ContactForm
+                                                                agentId={this.props.data.agentId}
+                                                                itemId={this.props.data._id}
                                                                 handleHideForm={() => this.handleContactFormVisibility(false)}/>
                                                         }
                                                     </div>
