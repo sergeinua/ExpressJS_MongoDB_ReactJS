@@ -27,11 +27,6 @@ class ItemDetails extends Component {
         this.setState({showContactForm: (state !== null) ? state : !this.state.showContactForm});
     }
 
-    handleSubmitForm(formData) {
-        console.log('formData',formData);
-        this.handleContactFormVisibility(false);
-    }
-
     render() {
         let address = this.props.data.address.split(',');
 
@@ -161,8 +156,7 @@ class ItemDetails extends Component {
                                                     <div className="HdpForm-Contact-content">
                                                         {this.state.showContactForm &&
                                                             <ContactForm
-                                                                handleSubmitForm={this.handleSubmitForm.bind(this)}
-                                                                handleCancelForm={() => this.handleContactFormVisibility(false)}/>
+                                                                handleHideForm={() => this.handleContactFormVisibility(false)}/>
                                                         }
                                                     </div>
                                                 </div>

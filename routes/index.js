@@ -5,6 +5,7 @@ var path = require('path');
 
 var Item = require('../models/item');
 var Agent = require('../models/agent');
+var Message = require('../models/message');
 
 //home page
 router.get('/', function(req, res, next) {
@@ -73,6 +74,24 @@ router.get('/agent/:id', function (req, res, next) {
             console.log(err);
         } else {
             res.status(200).send(JSON.stringify(agent));
+        }
+    });
+});
+
+//message for the agent
+router.post('/message', function (req, res, next) {
+    var newMessage = new Message({
+        name: req.body.name,
+        telephone: req.body.telephone,
+        email: req.body.email,
+        message: req.body.message
+    });
+    newMessage.save(function (err, data) {
+        if (err) {
+            console.log('Error while sending message', err);
+            res.status(500).send('Error happened');
+        } else {
+            res.status(200).send('Success');
         }
     });
 });

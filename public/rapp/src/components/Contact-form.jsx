@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Loader from './Loader';
+
 class ContactForm extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,8 @@ class ContactForm extends Component {
             message: null,
             errorName: false,
             errorTelephone: false,
-            errorMessage: false
+            errorMessage: false,
+            isSending: false
         };
         this.handleFieldChange = this.handleFieldChange.bind(this);
         this.handleSubmitForm = this.handleSubmitForm.bind(this);
@@ -18,7 +21,25 @@ class ContactForm extends Component {
 
     handleSubmitForm() {
         if (this.validateForm()) {
-            console.log('sending form');
+            this.setState({isSending: true});
+            fetch('/message', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    telephone: this.state.telephone,
+                    email: this.state.email,
+                    message: this.state.message
+                })
+            }).then((resp) => {
+                this.setState({isSending: false});
+                this.props.handleHideForm();
+                //TODO:add notification here
+                console.log('form has been sent', resp);
+            });
         }
     }
 
@@ -54,6 +75,9 @@ class ContactForm extends Component {
     }
 
     render() {
+        if (this.state.isSending) {
+            return(<Loader/>);
+        }
         return (
             <div className="Container Container-md" style={{margin: 'auto'}}>
                 <div className="Row Row-md">
