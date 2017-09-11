@@ -13,6 +13,9 @@ var markers = [];
 var marker;
 //initial setup
 function initMap() {
+    if ($('#map').length === 0 ) {
+        return;
+    }
     var haightAshbury = {lat: 50.424, lng: 30.569};
     //setting map
     map = new google.maps.Map(document.getElementById('map'), {

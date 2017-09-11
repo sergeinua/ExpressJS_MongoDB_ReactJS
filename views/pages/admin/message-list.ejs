@@ -1,0 +1,47 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="row">
+        <div class="md-6">
+            <% if (message) { %>
+            <div class="alert alert-success"><%= message %></div>
+            <% } %>
+            <div class="panel">
+                <div class="container">
+                    <h4>Сообщения</h4>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>время</th>
+                        <th>агент</th>
+                        <th>номер телефона</th>
+                        <th>email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% messages.forEach(function(message) { %>
+                            <tr class="<%= (message.unRead) ? 'unread-message' : '' %>"
+                                onclick="window.document.location='/admin/message/<%= message._id %>'">
+                                <td><%= formatDate(message.timestamp) %></td>
+                                <td><%= message.agent.name + ' ' + message.agent.surname %></td>
+                                <td><%= message.telephone %></td>
+                                <td><%= message.email %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%
+    function formatDate(date) {
+        var result = new Date(date);
+        return result.toLocaleString('ru');
+    }
+%>
+
+<% include ../../partials/admin-footer.ejs %>

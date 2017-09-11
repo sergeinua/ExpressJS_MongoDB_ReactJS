@@ -5,8 +5,10 @@ var messageSchema = mongoose.Schema({
     telephone: String,
     email: String,
     message: String,
-    agentId: String,
-    itemId: String
+    agent: {type: mongoose.Schema.Types.ObjectId, ref: 'Agent'},
+    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    timestamp: { type : Date, default: Date.now },
+    unRead: Boolean
 });
 
 var Message = mongoose.model("Message", messageSchema);

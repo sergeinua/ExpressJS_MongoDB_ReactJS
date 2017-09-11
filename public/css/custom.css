@@ -5,3 +5,8 @@
 tbody tr {
     cursor: pointer;
 }
+
+.unread-message {
+    background-color: red!important;
+    color: white!important;
+}

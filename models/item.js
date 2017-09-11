@@ -11,7 +11,7 @@ var itemSchema = mongoose.Schema({
     district: String,
     description: String,
     type: String,
-    agentId: String
+    agent: {type: mongoose.Schema.Types.ObjectId, ref: 'Agent'}
 });
 
 var Item = mongoose.model("Item", itemSchema);

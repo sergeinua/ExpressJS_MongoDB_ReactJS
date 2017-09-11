@@ -6,6 +6,7 @@ var Page = require('../models/page');
 var User = require('../models/user');
 var Item = require('../models/item');
 var Agent = require('../models/agent');
+var Message = require('../models/message');
 
 var multer  = require('multer');
 var storage = multer.diskStorage({
@@ -327,11 +328,10 @@ router.delete('/item/:id', isLogged, function (req, res, next) {
 });
 
 router.get('/agent/list', isLogged, function (req, res, next) {
-    var message;
+    var message = null;
     Agent.find(function (err, agents) {
         return agents;
     }).then((agents) => {
-        console.log('agents',agents);
         res.render('pages/admin/agent-list', {
             agents: agents,
             message: message
@@ -416,6 +416,25 @@ router.delete('/agent/:id', isLogged, function (req, res, next) {
         req.session.message = 'Agent has been successfully deleted';
         res.status(200).send('Agent deleted');
     });
+});
+
+router.get('/message/list', function (req, res, next) {
+    var message = null;
+    Message.find()
+        .populate('agent')
+        .populate('item')
+        .exec(function (err, messages) {
+            if (err) {
+                console.log(err);
+            } else {
+                return messages;
+            }
+        }).then((messages) => {
+            res.render('pages/admin/message-list', {
+                messages: messages,
+                message: message
+            });
+        });
 });
 
 module.exports = router;
