@@ -458,4 +458,21 @@ router.get('/message/:id', function (req, res, next) {
         });
 });
 
+router.post('/message/:id', function (req, res, next) {
+    Message.findById(req.params.id, function (err, message) {
+        if (err) {
+            console.log(err);
+        } else {
+            message.unRead = false;
+            message.save(function (err, message) {
+                if (err) {
+                    console.log(err);
+                    res.status(500).send(err);
+                }
+                res.status(200).send('Marked as read');
+            });
+        }
+    });
+});
+
 module.exports = router;

@@ -56,5 +56,13 @@
         </div>
     </div>
 </div>
+<script>
+    function markMessageAsRead() {
+        $.post('/admin/message/<%= messageData._id %>');
+    }
+    setTimeout(function () {
+        markMessageAsRead();
+    });
+</script>
 
 <% include ../../partials/admin-footer.ejs %>
