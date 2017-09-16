@@ -423,6 +423,7 @@ router.get('/message/list', function (req, res, next) {
     Message.find()
         .populate('agent')
         .populate('item')
+        .sort({timestamp: 'desc'})
         .exec(function (err, messages) {
             if (err) {
                 console.log('Message list error', err);
