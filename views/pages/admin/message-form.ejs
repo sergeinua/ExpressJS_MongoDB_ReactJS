@@ -1,0 +1,60 @@
+<% include ../../partials/admin-header.ejs %>
+
+<div class="content">
+    <div class="container spark-screen">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><%= formTitle %></div>
+                    <div class="panel-body">
+                        <% if (message) { %>
+                            <div class="alert alert-danger"><%= message %></div>
+                        <% } %>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label for="client-name">Клиент</label>
+                                <p id="client-name"><%= messageData.name %></p>
+                            </div>
+                            <% if (messageData.email) { %>
+                                <div class="col-xs-4">
+                                    <label for="client-email">Email</label>
+                                    <p id="client-email"><%= messageData.email %></p>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label for="client-telephone">Телефон</label>
+                                <p id="client-telephone"><%= messageData.telephone %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label for="client-message">Сообщение</label>
+                                <p id="client-message"><%= messageData.message %></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>Объект</h2>
+                                <a href="/admin/item/<%= messageData.item._id %>">Ссылка на объект</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h2>Агент</h2>
+                                <p><%= messageData.agent.name %></p>
+                                <p><%= messageData.agent.surname %></p>
+                                <p><%= messageData.agent.telNum %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../partials/admin-footer.ejs %>

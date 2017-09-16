@@ -64,7 +64,6 @@
 </div>
 <script>
     function deleteAgent(agentId) {
-        console.log(agentId);
         $.ajax({
             url: '/admin/agent/' + agentId,
             method: 'delete',

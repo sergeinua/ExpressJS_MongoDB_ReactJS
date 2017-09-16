@@ -425,7 +425,7 @@ router.get('/message/list', function (req, res, next) {
         .populate('item')
         .exec(function (err, messages) {
             if (err) {
-                console.log(err);
+                console.log('Message list error', err);
             } else {
                 return messages;
             }
@@ -433,6 +433,27 @@ router.get('/message/list', function (req, res, next) {
             res.render('pages/admin/message-list', {
                 messages: messages,
                 message: message
+            });
+        });
+});
+
+router.get('/message/:id', function (req, res, next) {
+    var message = null,
+        formTitle = 'Сообщение';
+    Message.findById(req.params.id)
+        .populate('agent')
+        .populate('item')
+        .exec(function (err, messageData) {
+            if (err) {
+                console.log('Single message error', err);
+            } else {
+                return message;
+            }
+        }).then((messageData) => {
+            res.render('pages/admin/message-form', {
+                messageData: messageData,
+                message: message,
+                formTitle: formTitle
             });
         });
 });
