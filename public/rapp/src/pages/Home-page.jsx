@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { ButtonGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import './Home-page.css';
@@ -10,7 +10,8 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            districts: []
+            districts: [],
+            selectedDistrict: null
         };
     }
 
@@ -33,15 +34,38 @@ class HomePage extends Component {
         fetch(url)
             .then(resp => resp.json())
             .then((resp) => {
-                console.log('resp',resp)
+                this.setState({
+                    selectedDistrict: {
+                        mapCenter: {
+                            lat: resp.results[0].geometry.location.lat,
+                            lng: resp.results[0].geometry.location.lng
+                        },
+                        districtName: districtName
+                    }
+                });
             });
     }
 
     handleAllDistrictsClick() {
+        this.setState({
+            selectedDistrict: {
+                mapCenter: {
+                    lat: 50.424,
+                    lng: 30.569
+                },
+                districtName: null
+            }
+        });
+    }
 
+    componentWillUnmount() {
+        this.setState({selectedDistrict: null});
     }
 
     render() {
+        if (this.state.selectedDistrict) {
+            return <Redirect to={{pathname: '/map', state: this.state.selectedDistrict}}/>;
+        }
         let image = '/img/homeBackground.jpg';
         let divStyle = {
             backgroundImage: `url(${image})`,
@@ -66,7 +90,7 @@ class HomePage extends Component {
                                         })}
                                     </DropdownButton>
                                     <span>или</span>
-                                    <Button onClick={this.handleAllDistrictsClick}>Посмотреть все районы</Button>
+                                    <Button onClick={() => this.handleAllDistrictsClick()}>Посмотреть все районы</Button>
                                 </div>
                             }
                         </div>

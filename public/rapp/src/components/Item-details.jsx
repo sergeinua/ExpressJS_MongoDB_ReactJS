@@ -100,35 +100,39 @@ class ItemDetails extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="HdpDescription">
-                        <div className="HdpContentWrapper">
-                            <div className="Container Container-md">
-                                <div className="HdpContentWrapper-header">
-                                    <div className="HdpContentWrapper-left">
-                                        <div className="HdpContentWrapper-title">
-                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Описание</span>
+                    {!this.state.showContactForm &&
+                        <div className="HdpDescription">
+                            <div className="HdpContentWrapper">
+                                <div className="Container Container-md">
+                                    <div className="HdpContentWrapper-header">
+                                        <div className="HdpContentWrapper-left">
+                                            <div className="HdpContentWrapper-title">
+                                                <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Описание</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="HdpContentWrapper-content">
-                                <div className="Container Container-md">
-                                    <div id="HdpDescriptionContent">{this.props.data.description}</div>
+                                <div className="HdpContentWrapper-content">
+                                    <div className="Container Container-md">
+                                        <div id="HdpDescriptionContent">{this.props.data.description}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    }
                     <div className="HdpDescription">
                         <div className="HdpContentWrapper">
-                            <div className="Container Container-md">
-                                <div className="HdpContentWrapper-header">
-                                    <div className="HdpContentWrapper-left">
-                                        <div className="HdpContentWrapper-title">
-                                            <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Контакт</span>
+                            {!this.state.showContactForm &&
+                                <div className="Container Container-md">
+                                    <div className="HdpContentWrapper-header">
+                                        <div className="HdpContentWrapper-left">
+                                            <div className="HdpContentWrapper-title">
+                                                <span className="Text Text-lg Text Utils-bold Utils-accent-dark Text-sm">Контакт</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                             <div className="HdpContentWrapper-content">
                                 <div className="Container Container-md">
                                     <div id="HdpFormWrapper">
@@ -136,22 +140,26 @@ class ItemDetails extends Component {
                                             <div className="HdpForm-Contact">
                                                 <div className="HdpForm-Contact-content-wrapper">
                                                     <div className="ContactListedBy">
-                                                        <div className="ContactListedBy-phone-container">
-                                                            <div className="ContactListedBy-listedby-phone">
-                                                                {this.state.agentData &&
+                                                        {!this.state.showContactForm &&
+                                                            <div className="ContactListedBy-phone-container">
+                                                                <div className="ContactListedBy-listedby-phone">
+                                                                    {this.state.agentData &&
                                                                     <a className="ContactListedBy-listedby-phone-link"
                                                                        href={"tel://" + this.state.agentData.telNum}>{this.state.agentData.telNum}</a>
-                                                                }
+                                                                    }
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="ContactListedBy-display-name-container">
-                                                            <div>
-                                                                <div className="Utils-bold">Агент:</div>
-                                                                {this.state.agentData &&
+                                                        }
+                                                        {!this.state.showContactForm &&
+                                                            <div className="ContactListedBy-display-name-container">
+                                                                <div>
+                                                                    <div className="Utils-bold">Агент:</div>
+                                                                    {this.state.agentData &&
                                                                     <div>{this.state.agentData.name} {this.state.agentData.surname}</div>
-                                                                }
+                                                                    }
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        }
                                                     </div>
                                                     <div className="HdpForm-Contact-content">
                                                         {this.state.showContactForm &&
