@@ -1,6 +1,6 @@
 {
   "name": "expr",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "cd ./public/rapp && npm install && npm run build && cd ../../ && node ./bin/www",
