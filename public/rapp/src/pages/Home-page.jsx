@@ -62,6 +62,10 @@ class HomePage extends Component {
         this.setState({selectedDistrict: null});
     }
 
+    componentWillMount() {
+        this.setState({selectedDistrict: null});
+    }
+
     render() {
         if (this.state.selectedDistrict) {
             return <Redirect to={{pathname: '/map', state: this.state.selectedDistrict}}/>;

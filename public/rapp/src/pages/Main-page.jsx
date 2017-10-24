@@ -21,13 +21,15 @@ class MainPage extends Component {
             filterMaxPrice: null,
             districts: null,
             filterDistrict: null,
-            filterType: null
+            filterType: null,
+            selectedDistrictName: null
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.getItems();
         this.getDistricts();
+        this.setState({selectedDistrictName: this.props.location.state.districtName});
     }
 
     getItems() {
@@ -129,7 +131,7 @@ class MainPage extends Component {
     }
 
     render() {
-        const center = {lat: 50.424, lng: 30.569};
+        const center = this.props.location.state.mapCenter;
 
         return (
             <div className="AppTemplate">
@@ -137,6 +139,7 @@ class MainPage extends Component {
                     <Menu/>
                     <div className={window.innerWidth < 768 ? "Row" : ""}>
                         <Filter
+                            selectedDistrictName={this.state.selectedDistrictName}
                             handleFilterCondition={this.handleFilterCondition.bind(this)}
                             districts={this.state.districts}/>
                     </div>

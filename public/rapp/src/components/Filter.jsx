@@ -31,6 +31,13 @@ class Filter extends Component {
         this.props.handleFilterCondition(this.state);
     }
 
+    componentWillMount() {
+        if (this.props.selectedDistrictName) {
+            this.setState({filterDistrict: this.props.selectedDistrictName});
+            this.handleSelectChange('filterDistrict', {target:{value: this.props.selectedDistrictName}});
+        }
+    }
+
     render() {
         const svgStyle = {
             width: 12 + 'px',

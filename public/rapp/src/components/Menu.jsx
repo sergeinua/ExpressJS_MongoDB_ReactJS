@@ -24,130 +24,130 @@ class Menu extends Component {
                     <aside className={"HamburgerNav-left " + (this.state.menuVisible ? "HamburgerNav-left-visible" : "")}>
                         <div className="HamburgerNav-menu">
                             <div className="HamburgerNav-logo-wrapper">
-                                <a className="Linker Linker-default" href="index.html">
+                                <a className="Linker Linker-default" href="/">
                                     <img className="HamburgerNav-logo" src="img/hotpadsLogoHorizontal.svg" />
                                 </a>
                             </div>
                             <ul className="HamburgerNav-list">
                                 <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="apartments-for-rent/map.html">
+                                    <a className="Linker Linker-default" href="/map">
                                         <i className="HamburgerNav-icon icon-search-for-rent"></i>
-                                        <span className="HamburgerNav-link-text">Search for rent</span>
+                                        <span className="HamburgerNav-link-text">Аренда</span>
                                     </a>
                                 </li>
                                 <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="map.html">
+                                    <a className="Linker Linker-default" href="/map">
                                         <i className="HamburgerNav-icon icon-search-for-sale"></i>
-                                        <span className="HamburgerNav-link-text">Search for sale</span>
+                                        <span className="HamburgerNav-link-text">Продажа</span>
                                     </a>
                                 </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="loginDashboard.html">
-                                        <i className="HamburgerNav-icon icon-star-outline"></i>
-                                        <span className="HamburgerNav-link-text">Dashboard</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="loginSearch.html">
-                                        <i className="HamburgerNav-icon icon-alert"></i>
-                                        <span className="HamburgerNav-link-text">Search alerts</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="loginAddPost.html">
-                                        <i className="HamburgerNav-icon icon-post-a-listing"></i>
-                                        <span className="HamburgerNav-link-text">Post to HotPads</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="mailto:support@realtor.loc">
-                                        <i className="HamburgerNav-icon icon-sublet"></i>
-                                        <span className="HamburgerNav-link-text">Send feedback</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default">
-                                        <i className="HamburgerNav-icon icon-profile"></i>
-                                        <span className="HamburgerNav-link-text">Sign in / register</span>
-                                    </a>
-                                </li>
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="loginDashboard.html">*/}
+                                        {/*<i className="HamburgerNav-icon icon-star-outline"></i>*/}
+                                        {/*<span className="HamburgerNav-link-text">Dashboard</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="loginSearch.html">*/}
+                                        {/*<i className="HamburgerNav-icon icon-alert"></i>*/}
+                                        {/*<span className="HamburgerNav-link-text">Search alerts</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="loginAddPost.html">*/}
+                                        {/*<i className="HamburgerNav-icon icon-post-a-listing"></i>*/}
+                                        {/*<span className="HamburgerNav-link-text">Post to HotPads</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="mailto:support@realtor.loc">*/}
+                                        {/*<i className="HamburgerNav-icon icon-sublet"></i>*/}
+                                        {/*<span className="HamburgerNav-link-text">Send feedback</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default">*/}
+                                        {/*<i className="HamburgerNav-icon icon-profile"></i>*/}
+                                        {/*<span className="HamburgerNav-link-text">Sign in / register</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
                             </ul>
-                            <div>
-                                <ul className="HamburgerNav-list">
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="apartments-for-rent.html">
-                                            <span className="HamburgerNav-link-text">Apartments for Rent</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="houses-for-rent.html">
-                                            <span className="HamburgerNav-link-text">Houses for Rent</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="condos-for-rent.html">
-                                            <span className="HamburgerNav-link-text">Condos for Rent</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="townhomes-for-rent.html">
-                                            <span className="HamburgerNav-link-text">Townhomes for Rent</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="duplexes-for-rent.html">
-                                            <span className="HamburgerNav-link-text">Duplexes for Rent</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="corporate-housing.html">
-                                            <span className="HamburgerNav-link-text">Corporate Housing for Rent</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul className="HamburgerNav-list">
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="homes-for-sale.html">
-                                            <span className="HamburgerNav-link-text">Homes for Sale</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="land-for-sale.html">
-                                            <span className="HamburgerNav-link-text">Lots and Land for Sale</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="condos-for-sale.html">
-                                            <span className="HamburgerNav-link-text">Condos for Sale</span>
-                                        </a>
-                                    </li>
-                                    <li className="HamburgerNav-list-item">
-                                        <a className="Linker Linker-default" href="townhomes-for-sale.html">
-                                            <span className="HamburgerNav-link-text">Townhomes for Sale</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="HamburgerNav-section">Resources</div>
-                            <ul className="HamburgerNav-list">
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="blog.html">
-                                        <span className="HamburgerNav-link-text">Blog</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="pages/rentersGuide/home.html">
-                                        <span className="HamburgerNav-link-text">Renter&#x27;s guide</span>
-                                    </a>
-                                </li>
-                                <li className="HamburgerNav-list-item">
-                                    <a className="Linker Linker-default" href="pages/buyersGuide/index.html">
-                                        <span className="HamburgerNav-link-text">Buyer&#x27;s guide</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            {/*<div>*/}
+                                {/*<ul className="HamburgerNav-list">*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="apartments-for-rent.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Apartments for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="houses-for-rent.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Houses for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="condos-for-rent.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Condos for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="townhomes-for-rent.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Townhomes for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="duplexes-for-rent.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Duplexes for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="corporate-housing.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Corporate Housing for Rent</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                {/*</ul>*/}
+                            {/*</div>*/}
+                            {/*<div>*/}
+                                {/*<ul className="HamburgerNav-list">*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="homes-for-sale.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Homes for Sale</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="land-for-sale.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Lots and Land for Sale</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="condos-for-sale.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Condos for Sale</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                    {/*<li className="HamburgerNav-list-item">*/}
+                                        {/*<a className="Linker Linker-default" href="townhomes-for-sale.html">*/}
+                                            {/*<span className="HamburgerNav-link-text">Townhomes for Sale</span>*/}
+                                        {/*</a>*/}
+                                    {/*</li>*/}
+                                {/*</ul>*/}
+                            {/*</div>*/}
+                            {/*<div className="HamburgerNav-section">Resources</div>*/}
+                            {/*<ul className="HamburgerNav-list">*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="blog.html">*/}
+                                        {/*<span className="HamburgerNav-link-text">Blog</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="pages/rentersGuide/home.html">*/}
+                                        {/*<span className="HamburgerNav-link-text">Renter&#x27;s guide</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                                {/*<li className="HamburgerNav-list-item">*/}
+                                    {/*<a className="Linker Linker-default" href="pages/buyersGuide/index.html">*/}
+                                        {/*<span className="HamburgerNav-link-text">Buyer&#x27;s guide</span>*/}
+                                    {/*</a>*/}
+                                {/*</li>*/}
+                            {/*</ul>*/}
                         </div>
                     </aside>
                 </div>
