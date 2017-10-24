@@ -29,7 +29,9 @@ class MainPage extends Component {
     componentWillMount() {
         this.getItems();
         this.getDistricts();
-        this.setState({selectedDistrictName: this.props.location.state.districtName});
+        if (this.props.location.state && this.props.location.state.districtName) {
+            this.setState({selectedDistrictName: this.props.location.state.districtName});
+        }
     }
 
     getItems() {
@@ -131,7 +133,7 @@ class MainPage extends Component {
     }
 
     render() {
-        const center = this.props.location.state.mapCenter;
+        const center = this.props.location.state ? this.props.location.state.mapCenter : null;
 
         return (
             <div className="AppTemplate">
