@@ -13,6 +13,12 @@ class Map extends Component {
         }
     }
 
+    componentWillMount() {
+        if (this.props.center) {
+            this.setState({center: this.props.center});
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({markers: nextProps.markers});
     }
