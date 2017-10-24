@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm install -g create-react-app && cd ./public/rapp && npm run build && cd ../../ && node ./bin/www",
+    "start": "cd ./public/rapp && npm run build && cd ../../ && node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
